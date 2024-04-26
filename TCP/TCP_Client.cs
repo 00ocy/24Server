@@ -11,7 +11,7 @@ namespace console_tcp_00
         static void Main(string[] args)
         {
             // 1. 로컬 네트워크 테스트용 EndPoint 설정
-            var remoteEP = new IPEndPoint(IPAddress.Parse("172.18.27.70"), 25000);
+            var remoteEP = new IPEndPoint(IPAddress.Loopback, 25000);
             // TCP 클라이언트로 메세지 전송
             SendTcpMsg(remoteEP, "Hello First App\n");
 
@@ -76,6 +76,7 @@ namespace console_tcp_00
                 //Console.WriteLine($"[data] ==> [{buffer.ToString()}]");
                 Console.WriteLine($"[data] ==> [{Encoding.UTF8.GetString(buffer)}]");
                 Console.WriteLine("[info] -- Finish Recv");
+
             }
             catch (Exception ex)
             {

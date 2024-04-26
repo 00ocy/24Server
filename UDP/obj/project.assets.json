@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\VRdepartment\\GitHub\\24Server\\ConsoleApp1\\Lean.csproj",
-      "projectName": "Lean",
-      "projectPath": "D:\\VRdepartment\\GitHub\\24Server\\ConsoleApp1\\Lean.csproj",
+      "projectUniqueName": "D:\\VRdepartment\\GitHub\\24Server\\UDP\\UDP.csproj",
+      "projectName": "UDP",
+      "projectPath": "D:\\VRdepartment\\GitHub\\24Server\\UDP\\UDP.csproj",
       "packagesPath": "C:\\Users\\YUHAN\\.nuget\\packages\\",
-      "outputPath": "D:\\VRdepartment\\GitHub\\24Server\\ConsoleApp1\\obj\\",
+      "outputPath": "D:\\VRdepartment\\GitHub\\24Server\\UDP\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\YUHAN\\AppData\\Roaming\\NuGet\\NuGet.Config",

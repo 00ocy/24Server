@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\VRdepartment\\GitHub\\24Server\\ConsoleApp1\\Lean.csproj",
-      "projectName": "Lean",
-      "projectPath": "D:\\VRdepartment\\GitHub\\24Server\\ConsoleApp1\\Lean.csproj",
+      "projectUniqueName": "D:\\VRdepartment\\GitHub\\24Server\\TCP\\TCP.csproj",
+      "projectName": "TCP",
+      "projectPath": "D:\\VRdepartment\\GitHub\\24Server\\TCP\\TCP.csproj",
       "packagesPath": "C:\\Users\\YUHAN\\.nuget\\packages\\",
-      "outputPath": "D:\\VRdepartment\\GitHub\\24Server\\ConsoleApp1\\obj\\",
+      "outputPath": "D:\\VRdepartment\\GitHub\\24Server\\TCP\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\YUHAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
