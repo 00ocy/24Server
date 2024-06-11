@@ -46,8 +46,8 @@ namespace console_tcp_00
                 // 버퍼 내용 확인 
                 // String 클래스와 다르게 바이트배열은 클래스가 가지고 있는 기본 정보는 타입 정보이며 
                 // 인코딩을 통해서 내용을 확인가능
-                //Console.WriteLine($"[data] ==> [{buffer}]");
-                //Console.WriteLine($"[data] ==> [{buffer.ToString()}]");
+                // Console.WriteLine($"[data] ==> [{buffer}]");
+                // Console.WriteLine($"[data] ==> [{buffer.ToString()}]");
                 Console.WriteLine($"[data] ==> [{Encoding.UTF8.GetString(buffer)}]");
 
                 // 데이터 송신

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\VRdepartment\\GitHub\\24Server\\ConsoleApp1\\Lean.csproj": {}
+    "C:\\Users\\chan\\Documents\\GitHub\\24Server\\ConsoleApp1\\Lean.csproj": {}
   },
   "projects": {
-    "D:\\VRdepartment\\GitHub\\24Server\\ConsoleApp1\\Lean.csproj": {
+    "C:\\Users\\chan\\Documents\\GitHub\\24Server\\ConsoleApp1\\Lean.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\VRdepartment\\GitHub\\24Server\\ConsoleApp1\\Lean.csproj",
+        "projectUniqueName": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\ConsoleApp1\\Lean.csproj",
         "projectName": "Lean",
-        "projectPath": "D:\\VRdepartment\\GitHub\\24Server\\ConsoleApp1\\Lean.csproj",
-        "packagesPath": "C:\\Users\\YUHAN\\.nuget\\packages\\",
-        "outputPath": "D:\\VRdepartment\\GitHub\\24Server\\ConsoleApp1\\obj\\",
+        "projectPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\ConsoleApp1\\Lean.csproj",
+        "packagesPath": "C:\\Users\\chan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\ConsoleApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\YUHAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -55,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

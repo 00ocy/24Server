@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lean
 {
-    internal class Class1
+    internal class Server
     {
         private static Socket sock;
 
@@ -13,16 +13,34 @@ namespace Lean
         {
             // 로컬 네트워크 테스트용 EndPoint 설정
             var remoteEP = new IPEndPoint(IPAddress.Loopback, 25000);
+            var remoteEP2 = new IPEndPoint(IPAddress.Loopback, 25000);
             // TCP 클라이언트로 메세지 전송
             SendTcpMsg(remoteEP, "Hi\n");
+            SendTcpMdg2(remoteEP2, "Hi\n");
 
             //// DNS 를 이용한 네트워크 전송 설정
             // var hostEntry = Dns. GetHostEntry("www.google.com");
             // hostEntry.AddressList 에서 확인된 IP 정보로 EndPoint 설정
             // var remoteEp = new IPEndPoint(hostEntry.AddressList[0], 80);
-            //// TCP ㅋㄹ라이언트로 메세지 전송
+            //// TCP 클라이언트로 메세지 전송
             //// 차이점 웹서버가 인식가능한 문장으로 전송
             //SendTcpMsg(remoteEP, "GET / HTTP/1.1\r\n\r\n");
+        }
+
+        private static void SendTcpMdg2(IPEndPoint remoteEP2, string v)
+        {
+            try
+            {
+                //Socket 생성
+                Console.WriteLine("[info] -- Create Skcket");
+                sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                //접속 시도
+
+            }
+            catch 
+            {
+                
+            }
         }
 
         private static void SendTcpMsg(IPEndPoint remoteEP, string v)

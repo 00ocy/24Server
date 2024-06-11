@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lean
 {
-    internal class Program
+    internal class Client
     {
         private static Socket socket;
         static void Main(string[] args)

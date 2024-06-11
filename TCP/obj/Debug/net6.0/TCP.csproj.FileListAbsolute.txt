@@ -13,3 +13,11 @@ D:\VRdepartment\GitHub\24Server\TCP\obj\Debug\net6.0\refint\TCP.dll
 D:\VRdepartment\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.pdb
 D:\VRdepartment\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.genruntimeconfig.cache
 D:\VRdepartment\GitHub\24Server\TCP\obj\Debug\net6.0\ref\TCP.dll
+C:\Users\chan\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\chan\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.AssemblyInfoInputs.cache
+C:\Users\chan\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.AssemblyInfo.cs
+C:\Users\chan\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.csproj.CoreCompileInputs.cache
+C:\Users\chan\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.sourcelink.json
+C:\Users\chan\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.dll
+C:\Users\chan\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\refint\TCP.dll
+C:\Users\chan\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.pdb
