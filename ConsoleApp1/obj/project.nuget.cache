@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "hfZW7bwPiTOUHFYSkYbRjODX1xYg4LxizZoR/EDxF9tT7a+THbOWn8tcxqypLoZlcmNrdfLPG9jNj/XDAN2Apg==",
+  "dgSpecHash": "HBexLlKU8W8fr2G/hdWVG80sAjTryhoOPjPJZA1bmyZ3rSn/6dDi7M220uYZ26LJ3F/5wKRoKwn+coY0Dq8ndw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\ConsoleApp1\\z_Lean.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\ConsoleApp1\\z_Lean.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\YUHAN\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.26\\microsoft.windowsdesktop.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\YUHAN\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.26\\microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\YUHAN\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.26\\microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\YUHAN\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.26\\microsoft.netcore.app.host.win-x64.6.0.26.nupkg.sha512"
+  ],
   "logs": []
 }

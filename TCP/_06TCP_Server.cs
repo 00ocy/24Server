@@ -21,7 +21,7 @@ namespace console_tcp_01svr
             localEPLoopBack = new IPEndPoint(IPAddress.Loopback, 25000);
             // 3. 호스트가 소유한 모든 NIC에서 수신되는 데이터
             var localEPALL = new IPEndPoint(IPAddress.Parse("0.0.0.0"), 25000);
-            localEPALL = new IPEndPoint(IPAddress.Any, 25000);
+            localEPALL = new IPEndPoint(IPAddress.Any, 30000);
 
             // 로컬 EndPoint로 설정된 서버 시작 
             StartServer(localEPALL);

@@ -13,7 +13,7 @@ namespace console_tcpServer_variableType1
         static void Main(string[] args)
         {
             Console.WriteLine("[SERVER] Send Message VariableType 1 with TerminalChar");
-            IPEndPoint localEP = new IPEndPoint(IPAddress.Any, 25000);
+            IPEndPoint localEP = new IPEndPoint(IPAddress.Any, 26000);
             StartServerVariableTypeWithTerminalChar(localEP);
         }
 
