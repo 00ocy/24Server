@@ -1,43 +1,43 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net7.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\YUHAN\\.nuget\\packages\\": {},
+    "C:\\Users\\오찬영\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\Client\\Client.csproj",
+      "projectUniqueName": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\Client\\Client.csproj",
       "projectName": "Client",
-      "projectPath": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\Client\\Client.csproj",
-      "packagesPath": "C:\\Users\\YUHAN\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\Client\\obj\\",
+      "projectPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\Client\\Client.csproj",
+      "packagesPath": "C:\\Users\\오찬영\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\YUHAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\오찬영\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net8.0"
+        "net7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "projectReferences": {}
         }
       },
@@ -48,8 +48,8 @@
       }
     },
     "frameworks": {
-      "net8.0": {
-        "targetAlias": "net8.0",
+      "net7.0": {
+        "targetAlias": "net7.0",
         "imports": [
           "net461",
           "net462",
@@ -66,7 +66,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

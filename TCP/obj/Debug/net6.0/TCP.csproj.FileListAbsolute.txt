@@ -21,3 +21,11 @@ C:\Users\chan\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.sourcelink.json
 C:\Users\chan\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.dll
 C:\Users\chan\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\refint\TCP.dll
 C:\Users\chan\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.pdb
+C:\Users\오찬영\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.csproj.AssemblyReference.cache
+C:\Users\오찬영\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\오찬영\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.AssemblyInfoInputs.cache
+C:\Users\오찬영\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.AssemblyInfo.cs
+C:\Users\오찬영\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.csproj.CoreCompileInputs.cache
+C:\Users\오찬영\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.dll
+C:\Users\오찬영\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\refint\TCP.dll
+C:\Users\오찬영\Documents\GitHub\24Server\TCP\obj\Debug\net6.0\TCP.pdb

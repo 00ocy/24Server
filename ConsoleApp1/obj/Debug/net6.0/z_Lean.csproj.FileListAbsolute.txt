@@ -1,0 +1,5 @@
+C:\Users\오찬영\Documents\GitHub\24Server\ConsoleApp1\obj\Debug\net6.0\z_Lean.csproj.AssemblyReference.cache
+C:\Users\오찬영\Documents\GitHub\24Server\ConsoleApp1\obj\Debug\net6.0\z_Lean.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\오찬영\Documents\GitHub\24Server\ConsoleApp1\obj\Debug\net6.0\z_Lean.AssemblyInfoInputs.cache
+C:\Users\오찬영\Documents\GitHub\24Server\ConsoleApp1\obj\Debug\net6.0\z_Lean.AssemblyInfo.cs
+C:\Users\오찬영\Documents\GitHub\24Server\ConsoleApp1\obj\Debug\net6.0\z_Lean.csproj.CoreCompileInputs.cache
