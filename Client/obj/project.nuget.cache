@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UYqigJmVRgTHjLsoZ79vLPX/1qsA+sbK0yEqagDi89+UFomSUptA2qD5Bp+Iur60OhX6A43fw3YJrc7qQh4b5Q==",
+  "dgSpecHash": "qzeWoT7J7TZZIgK3apqwUS3mfwDgFcGLhK9azAofxmfQOkBamX0Wo3YqqZ/wR31QiAkRspflPAXgepSgYdMdsA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\Client\\Client.csproj",
+  "projectFilePath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\Client\\Client.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

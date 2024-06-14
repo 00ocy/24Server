@@ -6,7 +6,25 @@
       "AbsoluteMoniker": "D:0:0:{19443A0C-FC04-4A7F-B361-28D246E4F318}|..\\Server\\Server.csproj|c:\\users\\chan\\documents\\github\\24server\\server\\server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A3F9F143-E580-4E01-AF7E-D4DF9876A7E0}|z_Lean.csproj|c:\\users\\chan\\documents\\github\\24server\\consoleapp1\\udp_server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3F9F143-E580-4E01-AF7E-D4DF9876A7E0}|z_Lean.csproj|solutionrelative:udp_server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3F9F143-E580-4E01-AF7E-D4DF9876A7E0}|z_Lean.csproj|c:\\users\\chan\\documents\\github\\24server\\consoleapp1\\udp_client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3F9F143-E580-4E01-AF7E-D4DF9876A7E0}|z_Lean.csproj|solutionrelative:udp_client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{90FF3DEA-5802-4D73-AF45-CA9D8B748A10}|..\\Client\\Client.csproj|c:\\users\\chan\\documents\\github\\24server\\client\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB5679F-E67A-40DF-ADC5-37BCBD25990B}|..\\UDP\\UDP.csproj|c:\\users\\chan\\documents\\github\\24server\\udp\\_01udp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB5679F-E67A-40DF-ADC5-37BCBD25990B}|..\\UDP\\UDP.csproj|c:\\users\\chan\\documents\\github\\24server\\udp\\_02udp_byteorder_dns.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3F9F143-E580-4E01-AF7E-D4DF9876A7E0}|z_Lean.csproj|c:\\users\\chan\\documents\\github\\24server\\consoleapp1\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3F9F143-E580-4E01-AF7E-D4DF9876A7E0}|z_Lean.csproj|solutionrelative:client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{90FF3DEA-5802-4D73-AF45-CA9D8B748A10}|..\\Client\\Client.csproj|c:\\users\\chan\\documents\\github\\24server\\client\\client.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
@@ -22,10 +40,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{678E29A2-D0F5-4898-B50F-935D7BEA9FCC}|..\\TCP\\TCP.csproj|c:\\users\\chan\\documents\\github\\24server\\tcp\\_14helper_listener.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A3F9F143-E580-4E01-AF7E-D4DF9876A7E0}|z_Lean.csproj|c:\\users\\chan\\documents\\github\\24server\\consoleapp1\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A3F9F143-E580-4E01-AF7E-D4DF9876A7E0}|z_Lean.csproj|solutionrelative:client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A3F9F143-E580-4E01-AF7E-D4DF9876A7E0}|z_Lean.csproj|c:\\users\\chan\\documents\\github\\24server\\consoleapp1\\server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -60,36 +74,87 @@
       "DocumentGroups": [
         {
           "DockedWidth": 300,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Client.csproj",
-              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\Client\\Client.csproj",
-              "RelativeDocumentMoniker": "..\\Client\\Client.csproj",
-              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\Client\\Client.csproj",
-              "RelativeToolTip": "..\\Client\\Client.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-06-08T12:56:09.917Z"
+              "DocumentIndex": 1,
+              "Title": "UDP_server.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\ConsoleApp1\\UDP_server.cs",
+              "RelativeDocumentMoniker": "UDP_server.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\ConsoleApp1\\UDP_server.cs",
+              "RelativeToolTip": "UDP_server.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAgwDkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T14:11:40.15Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "UDP_client.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\ConsoleApp1\\UDP_client.cs",
+              "RelativeDocumentMoniker": "UDP_client.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\ConsoleApp1\\UDP_client.cs",
+              "RelativeToolTip": "UDP_client.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAADwvxYAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T13:04:13.419Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Client.cs",
               "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\Client\\Client.cs",
               "RelativeDocumentMoniker": "..\\Client\\Client.cs",
               "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\Client\\Client.cs",
               "RelativeToolTip": "..\\Client\\Client.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAgwCAAAAAQAAAA",
+              "ViewState": "AQIAAC4AAAAAAAAAAADwv0cAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-08T12:52:23.844Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "Server.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\Server\\Server.cs",
+              "RelativeDocumentMoniker": "..\\Server\\Server.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\Server\\Server.cs",
+              "RelativeToolTip": "..\\Server\\Server.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAA5wCAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-01T12:53:30.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_02UDP_ByteOrder_DNS.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\UDP\\_02UDP_ByteOrder_DNS.cs",
+              "RelativeDocumentMoniker": "..\\UDP\\_02UDP_ByteOrder_DNS.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\UDP\\_02UDP_ByteOrder_DNS.cs",
+              "RelativeToolTip": "..\\UDP\\_02UDP_ByteOrder_DNS.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAQwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T13:17:03.601Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_01UDP.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\UDP\\_01UDP.cs",
+              "RelativeDocumentMoniker": "..\\UDP\\_01UDP.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\UDP\\_01UDP.cs",
+              "RelativeToolTip": "..\\UDP\\_01UDP.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAIwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T13:18:28.072Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "_03MultiCast1.cs",
               "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\UDP\\_03MultiCast1.cs",
               "RelativeDocumentMoniker": "..\\UDP\\_03MultiCast1.cs",
@@ -101,7 +166,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "_04MultiCast2.cs",
               "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\UDP\\_04MultiCast2.cs",
               "RelativeDocumentMoniker": "..\\UDP\\_04MultiCast2.cs",
@@ -113,7 +178,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "_05TCP_Client.cs",
               "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\TCP\\_05TCP_Client.cs",
               "RelativeDocumentMoniker": "..\\TCP\\_05TCP_Client.cs",
@@ -125,7 +190,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "_18Task.cs",
               "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\TCP\\_18Task.cs",
               "RelativeDocumentMoniker": "..\\TCP\\_18Task.cs",
@@ -137,7 +202,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "_17thread.cs",
               "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\TCP\\_17thread.cs",
               "RelativeDocumentMoniker": "..\\TCP\\_17thread.cs",
@@ -149,7 +214,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "_16udpHelper.cs",
               "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\UDP\\_16udpHelper.cs",
               "RelativeDocumentMoniker": "..\\UDP\\_16udpHelper.cs",
@@ -161,7 +226,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "_15Helper_Client.cs",
               "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\TCP\\_15Helper_Client.cs",
               "RelativeDocumentMoniker": "..\\TCP\\_15Helper_Client.cs",
@@ -173,7 +238,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "_12Client_variableType2.cs",
               "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\TCP\\_12Client_variableType2.cs",
               "RelativeDocumentMoniker": "..\\TCP\\_12Client_variableType2.cs",
@@ -185,7 +250,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "_14Helper_Listener.cs",
               "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\TCP\\_14Helper_Listener.cs",
               "RelativeDocumentMoniker": "..\\TCP\\_14Helper_Listener.cs",
@@ -197,20 +262,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Server.cs",
-              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\Server\\Server.cs",
-              "RelativeDocumentMoniker": "..\\Server\\Server.cs",
-              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\Server\\Server.cs",
-              "RelativeToolTip": "..\\Server\\Server.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAKAAAA",
+              "DocumentIndex": 6,
+              "Title": "Client.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\ConsoleApp1\\Client.cs",
+              "RelativeDocumentMoniker": "Client.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\ConsoleApp1\\Client.cs",
+              "RelativeToolTip": "Client.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAIwBMAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-01T12:53:30.763Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-01T12:52:40.239Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 7,
+              "Title": "Client.csproj",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\Client\\Client.csproj",
+              "RelativeDocumentMoniker": "..\\Client\\Client.csproj",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\Client\\Client.csproj",
+              "RelativeToolTip": "..\\Client\\Client.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-06-08T12:56:09.917Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "_11Server_variableType1.cs",
               "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\TCP\\_11Server_variableType1.cs",
               "RelativeDocumentMoniker": "..\\TCP\\_11Server_variableType1.cs",
@@ -222,19 +298,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Client.cs",
-              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\ConsoleApp1\\Client.cs",
-              "RelativeDocumentMoniker": "Client.cs",
-              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\ConsoleApp1\\Client.cs",
-              "RelativeToolTip": "Client.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAADwvxMAAAA+AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-01T12:52:40.239Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "Server.cs",
               "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\ConsoleApp1\\Server.cs",
               "RelativeDocumentMoniker": "Server.cs",
@@ -246,7 +310,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "_09Server_FixedType.cs",
               "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\TCP\\_09Server_FixedType.cs",
               "RelativeDocumentMoniker": "..\\TCP\\_09Server_FixedType.cs",

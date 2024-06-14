@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("z_Lean")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6e4c6e485248c4b8556facebeed744151d837c2")]
 [assembly: System.Reflection.AssemblyProductAttribute("z_Lean")]
 [assembly: System.Reflection.AssemblyTitleAttribute("z_Lean")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
