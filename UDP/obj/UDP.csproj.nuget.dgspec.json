@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\chan\\Documents\\GitHub\\24Server\\UDP\\UDP.csproj": {}
+    "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\UDP\\UDP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\chan\\Documents\\GitHub\\24Server\\UDP\\UDP.csproj": {
+    "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\UDP\\UDP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\UDP\\UDP.csproj",
+        "projectUniqueName": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\UDP\\UDP.csproj",
         "projectName": "UDP",
-        "projectPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\UDP\\UDP.csproj",
-        "packagesPath": "C:\\Users\\chan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\UDP\\obj\\",
+        "projectPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\UDP\\UDP.csproj",
+        "packagesPath": "C:\\Users\\오찬영\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\UDP\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\오찬영\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,11 +38,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -60,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

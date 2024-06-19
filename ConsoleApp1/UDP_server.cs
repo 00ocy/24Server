@@ -10,7 +10,6 @@ namespace z_Lean
     {
         private static Socket sock;
         private static IPEndPoint serverEP;
-        private static EndPoint clientEP;
 
         static void Main(string[] args)
         {
@@ -35,11 +34,11 @@ namespace z_Lean
         {
             byte[] buffer = new byte[1500];
             var receiveEP = new IPEndPoint(IPAddress.Any, 0);
-            clientEP = (EndPoint)receiveEP;
+            EndPoint RecEP = (EndPoint)receiveEP;
 
             while (true)
             {
-                int retval = sock.ReceiveFrom(buffer, ref clientEP);
+                int retval = sock.ReceiveFrom(buffer, ref RecEP);
                 string receivedMsg = Encoding.UTF8.GetString(buffer, 0, retval);
                 Console.WriteLine($"Received: {receivedMsg}");
 

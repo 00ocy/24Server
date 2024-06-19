@@ -16,7 +16,6 @@ namespace console_tcpClient_variableType1
             IPEndPoint remoteEP = new IPEndPoint(IPAddress.Loopback, 26000);
 
             // 끝문자를 글로벌 변수로 사용하였지만, 함수 인자로 전달 하도록 작성하여도 상관없음
-            //SendMessageVariableTypeWithTerminalChar(remoteEP, terminalStr2);
             SendMessageVariableTypeWithTerminalChar(remoteEP);
         }
 
@@ -36,23 +35,22 @@ namespace console_tcpClient_variableType1
             // 다음 두가지를 사용할 예정
             // Array.Copy(src, dst, length)
             // Array.Copy(src, src.offset, dst, dst.offset, length)
-
+                
 
             // 전달 메세지의 끝 문자열 붙여넣기
-            // 1.2 두개중 한개 선택
-            // 1. 뉴라인 끝문자사용
-            //byte[] terminalBufStr = Encoding.UTF8.GetBytes(terminalStr);            
-            //Array.Copy(terminalStr.ToCharArray(), sendBuffer, terminalStr.Length);
             // 2. ETX 문자열 사용
             byte[] terminalBufStr = Encoding.UTF8.GetBytes(terminalStr2);
+            
+            // 샌드 버퍼 = 메세지 + 끝문자 버퍼 길이
             Byte[] sendBuffer = new byte[cmdBuff.Length + terminalBufStr.Length];
-            // 전송용 유저 버퍼의 마지막에 끝문자 또는 끝나는 문자열 추가 
+            // 터미널 버퍼를, 0번째부터, 샌드버퍼에 복사, 메세지길이, 터미널 버퍼 길이까지
             Array.Copy(terminalBufStr, 0, sendBuffer, cmdBuff.Length, terminalBufStr.Length);
+            // 메세지 버퍼를, 샌드 버퍼에다가, 메세지 버퍼 길이만큼 복사
+            Array.Copy(cmdBuff, sendBuffer, cmdBuff.Length);
 
             //명령어 바이트배열을 전송용 유저버퍼에 기록
             //명령어를 먼저 기록해도 되고 끝문자를 기록해도 됨.
             // 버퍼를 생성하면서 편한데로 작성 , 단 수업중에는 명령어를 먼저 기록해봤음.
-            Array.Copy(cmdBuff, sendBuffer, cmdBuff.Length);
 
             //데이터 전송
             sock.Send(sendBuffer, 0, sendBuffer.Length, SocketFlags.None);

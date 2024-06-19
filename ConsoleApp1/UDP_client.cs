@@ -14,7 +14,7 @@ namespace udp_03
             var remoteEP = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 25000);
             ConnectedUDP(remoteEP);
         }
-
+            
         private static void ConnectedUDP(IPEndPoint remoteEP)
         {
             // 소켓 생성
