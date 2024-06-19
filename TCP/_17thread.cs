@@ -17,7 +17,7 @@ namespace thread_console_msdn_01
                               Thread.CurrentThread.ManagedThreadId,
                               Thread.CurrentThread.ThreadState,
                               Thread.CurrentThread.Priority);
-
+            
             // public delegate void ThreadStart();
             //Thread th1 = new Thread(ExecuteInForeground);
             // 오버로딩되는 함수를 정확히 인식하지 못하는 문제
@@ -164,6 +164,7 @@ namespace thread_console_msdn_01
                 Console.WriteLine("Work Thread {0}: Elapsed {1:N2} seconds",
                                   Thread.CurrentThread.ManagedThreadId,
                                   sw.ElapsedMilliseconds / 1000.0);
+                
                 Thread.Sleep(500);
             } while (sw.ElapsedMilliseconds <= 10000);
             sw.Stop();

@@ -1,57 +1,57 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 
-namespace z_Lean
+namespace console_tcpServer_variableType2
 {
-    internal class UDP_server
+    internal class Program
     {
-        private static Socket sock;
-        private static IPEndPoint serverEP;
-        private static EndPoint clientEP;
-
         static void Main(string[] args)
         {
-            serverEP = new IPEndPoint(IPAddress.Any, 25000);
-            RecStart(serverEP);
+            Console.WriteLine("[SERVER] Send Message VariableType 2 With SizeData");
+            IPEndPoint localEP = new IPEndPoint(IPAddress.Any, 25000);
+            StartServerVariableTypeWithSizeData(localEP);
         }
 
-        private static void RecStart(IPEndPoint serverEP)
+        private static void StartServerVariableTypeWithSizeData(IPEndPoint localEP)
         {
-            // 소켓 생성
-            sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            // Accept 호출되는 구간까지 모두 동일
+            Socket listenSock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            // 지연 시뮬레이션을 위해서 수신 버퍼 크기 변경
+            // 하지만 로컬  루프백으로 테스트하면 효과가 없음
+            // 고속으로 전송됨. < 100ns 이네
+            // 지연 현상을 시뮬레이션하여 데이터 결합을 처리하고 싶다면 송신측에서 버퍼를 분할하여 천천히 전송할 것
+            listenSock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveBuffer, 15);
+            listenSock.Bind(localEP);
+            listenSock.Listen();
 
-            // 바인드
-            sock.Bind(serverEP);
-
-            // 수신 후 송신하는 스레드 생성
-            Thread receiveThread = new Thread(ReceiveData);
-            receiveThread.Start();
-        }
-
-        private static void ReceiveData()
-        {
-            byte[] buffer = new byte[1500];
-            var receiveEP = new IPEndPoint(IPAddress.Any, 0);
-            clientEP = (EndPoint)receiveEP;
+            Console.WriteLine("[info] -- Sever Start");
 
             while (true)
             {
-                int retval = sock.ReceiveFrom(buffer, ref clientEP);
-                string receivedMsg = Encoding.UTF8.GetString(buffer, 0, retval);
-                Console.WriteLine($"Received: {receivedMsg}");
+                Socket clientSock = listenSock.Accept();
+                // 주의 서버 접속은 listenSock으로 하고 접속한 클라이언트들은
+                // 개별로 클라이언트 소켓으로 반환되어 처리
+                IPEndPoint clientEP = (IPEndPoint)clientSock.RemoteEndPoint;
+                Console.WriteLine();
+                Console.WriteLine($"[info] -- connection with [{clientEP.Address}]:[{clientEP.Port}]");
 
-                // Echo the received message back to the client
-                SendData(receivedMsg);
+                // 분리 배송 수신 대기
+                Console.WriteLine("[info] ==> RECV waiting..1 sizeData");
+                byte[] sizeBuf = new byte[sizeof(int)];
+                int retSizeVal = clientSock.Receive(sizeBuf, 0, sizeBuf.Length, SocketFlags.None);
+                Console.Write($"[RECV-RAW] --> recvSizeVal [ {retSizeVal}]Bytes ==> ");
+                int realDataSize = BitConverter.ToInt32(sizeBuf);
+                Console.WriteLine($" Data_size are [ {realDataSize}] Bytes"); ;
+                byte[] dataBuf = new byte[realDataSize];
+                Console.WriteLine("[info] ==> RECV waiting..2 realData");
+                int retDataVal = clientSock.Receive(dataBuf, 0, dataBuf.Length, SocketFlags.None);
+                Console.WriteLine($"[RECV-RAW] --> recvBytes[ {retDataVal}]");
+                Console.WriteLine($"[RECV-DATA] --> [{Encoding.UTF8.GetString(dataBuf)}]");
+
+
+
             }
-        }
-
-        private static void SendData(string message)
-        {
-            byte[] buffer = Encoding.UTF8.GetBytes(message);
-            sock.SendTo(buffer, clientEP);
         }
     }
 }

@@ -1,59 +1,38 @@
-﻿using System.Diagnostics;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace Lean
+namespace console_tcpClient_variableType2
 {
-    internal class Client
+    internal class Client_variableType2
     {
-        private static Socket sock;
-        private static IPEndPoint serverEP;
-
         static void Main(string[] args)
         {
-            serverEP = new IPEndPoint(IPAddress.Loopback, 25000);
-            RunUdp(serverEP);
+            Console.WriteLine("[CLIENT] Send Message VariableType 2 With SizeData");
+            IPEndPoint remoteEP = new IPEndPoint(IPAddress.Loopback, 25000);
+            SendMessageVariableTypeWithSizeData(remoteEP);
         }
 
-        private static void RunUdp(IPEndPoint serverEP)
+        private static void SendMessageVariableTypeWithSizeData(IPEndPoint remoteEP)
         {
-            // 소켓 생성
-            sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            // 바인드 (옵션)
-            sock.Bind(new IPEndPoint(IPAddress.Loopback, 25001));
-            // 스레드 나누기
-            Thread RecThread = new Thread(RecFun);
-            RecThread.Start();
-            // 송신 스레드 버퍼 준비
-            // 송신 스레드 송신
-            while (true)
-            {
-                string Msg = Console.ReadLine();
-                byte[] buffer = Encoding.UTF8.GetBytes(Msg);
-                int retval = sock.SendTo(buffer, buffer.Length, SocketFlags.None, serverEP);
-                Console.WriteLine($" Send Msg: {Msg}");
-            }
-            // 수신 스레드 리시브 준비 (함수로 뺄 수도 있음)
-            // 수신 스레드 리시브
-        }
+            Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.SendBuffer, 5);
 
-        private static void RecFun()
-        {
-            IPEndPoint clientEP = new IPEndPoint(IPAddress.Any, 0);
-            EndPoint Recref = (EndPoint)clientEP;
-            while (true)
-            {
-                byte[] buffer2 = new byte[4000];
-                int recval = sock.ReceiveFrom(buffer2, SocketFlags.None, ref Recref);
-                string Msg2 = Encoding.UTF8.GetString(buffer2);
-                Console.WriteLine(Msg2);
-                if (recval == 0)
-                {
-                    Console.WriteLine("server closed");
-                    return;
-                }
-            }
+            sock.Connect(remoteEP);
+
+            // 사이즈+ 데이터 분리 전송용
+            String sendCommand = "GET Weather/NewTemp";
+            byte[] DataBuf = Encoding.UTF8.GetBytes(sendCommand);
+            byte[] sizeBuf = new byte[sizeof(int)];
+            sizeBuf = BitConverter.GetBytes(DataBuf.Length);
+
+            // 1.분리전송
+            // SizeBuf 전송
+            sock.Send(sizeBuf, 0, sizeBuf.Length, SocketFlags.None);
+            // DataBuf 전송
+            sock.Send(DataBuf, 0, DataBuf.Length, SocketFlags.None);
+
+
         }
     }
 }

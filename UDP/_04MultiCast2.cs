@@ -24,8 +24,6 @@ namespace console_udp_03_1
             sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
 
             sock.Bind(new IPEndPoint(IPAddress.Any, remoteEP.Port));
-
-            /// 수업시간이 모자라 설명이 안된 부분
             // 멀티캐스트 그룹 가입
             var mcastOption = new MulticastOption(IPAddress.Parse(remoteEP.Address.ToString()), IPAddress.Any);
             // 멀티캐스용 소켓 옵션 변경
@@ -49,7 +47,6 @@ namespace console_udp_03_1
 
             }
 
-            /// 수업시간이 모자라 설명이 안된 부분
             // 멀티캐스트 그룹 탈퇴
             sock.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.DropMembership, mcastOption);
             sock.Close();
