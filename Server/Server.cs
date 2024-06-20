@@ -2,55 +2,70 @@
 using System.Net.Sockets;
 using System.Text;
 
-namespace console_tcpServer_variableType2
+namespace console_tcpServer_variableType1
 {
     internal class Program
     {
+        // 메세지 끝을 판단하기 위한 문자또는 문자열 사용
+        static readonly string terminalStr2 = "[ETX]";
+
         static void Main(string[] args)
         {
-            Console.WriteLine("[SERVER] Send Message VariableType 2 With SizeData");
-            IPEndPoint localEP = new IPEndPoint(IPAddress.Any, 25000);
-            StartServerVariableTypeWithSizeData(localEP);
+            Console.WriteLine("[SERVER] Send Message VariableType 1 with TerminalChar");
+            IPEndPoint localEP = new IPEndPoint(IPAddress.Any, 26000);
+            StartServerVariableTypeWithTerminalChar(localEP);
         }
 
-        private static void StartServerVariableTypeWithSizeData(IPEndPoint localEP)
+        private static void StartServerVariableTypeWithTerminalChar(IPEndPoint localEP)
         {
-            // Accept 호출되는 구간까지 모두 동일
             Socket listenSock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            // 지연 시뮬레이션을 위해서 수신 버퍼 크기 변경
-            // 하지만 로컬  루프백으로 테스트하면 효과가 없음
-            // 고속으로 전송됨. < 100ns 이네
-            // 지연 현상을 시뮬레이션하여 데이터 결합을 처리하고 싶다면 송신측에서 버퍼를 분할하여 천천히 전송할 것
             listenSock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveBuffer, 15);
             listenSock.Bind(localEP);
             listenSock.Listen();
 
             Console.WriteLine("[info] -- Sever Start");
-
             while (true)
             {
                 Socket clientSock = listenSock.Accept();
-                // 주의 서버 접속은 listenSock으로 하고 접속한 클라이언트들은
-                // 개별로 클라이언트 소켓으로 반환되어 처리
                 IPEndPoint clientEP = (IPEndPoint)clientSock.RemoteEndPoint;
-                Console.WriteLine();
                 Console.WriteLine($"[info] -- connection with [{clientEP.Address}]:[{clientEP.Port}]");
+                // 버퍼 사용시 주의 사항
+                // 사전에 1500만큼 배열을 생성하면 
+                // Receive 함수이후에 실제 데이터 포함하고 나머지는 null 로 채워진
+                // 1500바이트 배열을 모두 사용하게 되므로 
+                // 필요한 데이터 사이즈 만큼 바이트 배열에서 추출하여 사용한다.
+                byte[] buffer = new byte[1500];
 
-                // 분리 배송 수신 대기
-                Console.WriteLine("[info] ==> RECV waiting..1 sizeData");
-                byte[] sizeBuf = new byte[sizeof(int)];
-                int retSizeVal = clientSock.Receive(sizeBuf, 0, sizeBuf.Length, SocketFlags.None);
-                Console.Write($"[RECV-RAW] --> recvSizeVal [ {retSizeVal}]Bytes ==> ");
-                int realDataSize = BitConverter.ToInt32(sizeBuf);
-                Console.WriteLine($" Data_size are [ {realDataSize}] Bytes"); ;
-                byte[] dataBuf = new byte[realDataSize];
-                Console.WriteLine("[info] ==> RECV waiting..2 realData");
-                int retDataVal = clientSock.Receive(dataBuf, 0, dataBuf.Length, SocketFlags.None);
-                Console.WriteLine($"[RECV-RAW] --> recvBytes[ {retDataVal}]");
-                Console.WriteLine($"[RECV-DATA] --> [{Encoding.UTF8.GetString(dataBuf)}]");
+                Console.WriteLine("[info] -- RECV waiting");
+                int retval = clientSock.Receive(buffer, 0, buffer.Length, SocketFlags.None);
+                Console.WriteLine($"[RECV-RAW] --> recvBytes[{retval}]");
+                string temp = Encoding.UTF8.GetString(buffer);
+                Console.WriteLine($"[RECV-RAW] --> [{temp}]");
+                
+                // 수신데이터 처리
+                // 끝문자열로 메세지 끝 확인
+                // 1. string 객체에 끝문자열이 있는지 확인하고 처리하는 방법
+                // 2. string 객체에서 indexOf 함수로 바로 처리하는 방법의 경우 '-1' 반환상태를 검사
+                if (temp.Contains(terminalStr2))
+                {
+                    // 끝문자열 위치 확인
+                    int idx = temp.IndexOf(terminalStr2);
+                    // 추출할 실제 데이터 공간 준비
+                    // 이미 string 객체로 변경한 temp 를 사용해서 substring으로 추출해도 됨.
+                    // 다른 형태의 데이터를 받았다고 가정하고 바이트 배열에서 복사하여 추출함.
+                    //byte[] data = new byte[buffer.Length];
+                    byte[] data = new byte[idx];
+                    // 사용자 수신버퍼에서 data버퍼로 끝문자위치까지 복사
+                    Array.Copy(buffer, 0, data, 0, idx);
+                    Console.WriteLine($"[RECV-DATA] --> [{Encoding.UTF8.GetString(data)}]");
+                }
 
+                // 구문분석 및 처리
+                // 에러 처리				
+                // 응답처리
 
-
+                // 소켓 닫기
+                clientSock.Close();
             }
         }
     }

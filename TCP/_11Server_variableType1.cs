@@ -7,7 +7,7 @@ namespace console_tcpServer_variableType1
     internal class Program
     {
         // 메세지 끝을 판단하기 위한 문자또는 문자열 사용
-        static readonly string terminalStr2 = "[[ETX]]";
+        static readonly string terminalStr2 = "[ETX]";
 
         static void Main(string[] args)
         {

@@ -187,6 +187,8 @@ namespace thread_console_msdn_01
                               Thread.CurrentThread.ManagedThreadId,
                               Thread.CurrentThread.ThreadState,
                               Thread.CurrentThread.Priority);
+            
+
             do
             {
                 Console.WriteLine("Thread {0}: Elapsed {1:N2} seconds",
@@ -199,4 +201,5 @@ namespace thread_console_msdn_01
                               Thread.CurrentThread.ManagedThreadId);
         }
     }
+    
 }

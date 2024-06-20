@@ -8,19 +8,24 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\chan\\.nuget\\packages\\": {}
+    "C:\\Users\\YUHAN\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\Client\\Client.csproj",
+      "projectUniqueName": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\Client\\Client.csproj",
       "projectName": "Client",
-      "projectPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\Client\\Client.csproj",
-      "packagesPath": "C:\\Users\\chan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\Client\\obj\\",
+      "projectPath": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\Client\\Client.csproj",
+      "packagesPath": "C:\\Users\\YUHAN\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\Client\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\YUHAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,6 +66,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.17, 7.0.17]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[7.0.17, 7.0.17]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.17, 7.0.17]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[7.0.17, 7.0.17]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"

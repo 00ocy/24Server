@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\ConsoleApp1",
+    "\\Server",
     "\\TCP"
   ],
-  "SelectedNode": "\\TCP\\_05TCP_Client.cs",
+  "SelectedNode": "\\ConsoleApp1\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = z_Lean
-build_property.ProjectDir = C:\Users\오찬영\Documents\GitHub\24Server\ConsoleApp1\
+build_property.ProjectDir = C:\Users\YUHAN\Desktop\a\24Server\ConsoleApp1\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
