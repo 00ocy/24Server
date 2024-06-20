@@ -32,7 +32,7 @@ namespace console_Task_test_01
                 Console.WriteLine("Task Calss TESING with LAMDA_02");
                 ShowThreadInformation(null);
             });
-            // Thread, Task 시작
+            // Thread, Task 시작  
             thread.Start();
             task1.Start();
             task2.Start();

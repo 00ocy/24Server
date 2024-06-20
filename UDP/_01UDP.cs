@@ -38,7 +38,7 @@ namespace console_udp_01
                 //byte[] buffer = null;
                 remoteSocket.SendTo(buffer, buffer.Length, SocketFlags.None, remoteEP);
 
-                // var remote1 = new IPEndPoint(IPAddress.Parse("172.18.27.255"), 25000);
+                // var remote1 = new IPEndPoint(IPAddress.Parse("   172.18.27.255"), 25000);
                 // remoteSocket.SendTo(buffer, buffer.Length, SocketFlags.None, remote1);
 
                 // 수신된 패킷의 발송자 정보를 얻기 위한 데이터객체 생성

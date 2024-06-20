@@ -3,6 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\ConsoleApp1\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FEB5679F-E67A-40DF-ADC5-37BCBD25990B}|..\\UDP\\UDP.csproj|c:\\users\\yuhan\\desktop\\a\\24server\\udp\\_01udp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{678E29A2-D0F5-4898-B50F-935D7BEA9FCC}|..\\TCP\\TCP.csproj|c:\\users\\yuhan\\desktop\\a\\24server\\tcp\\_18task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{678E29A2-D0F5-4898-B50F-935D7BEA9FCC}|..\\TCP\\TCP.csproj|c:\\users\\yuhan\\desktop\\a\\24server\\tcp\\_17thread.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A3F9F143-E580-4E01-AF7E-D4DF9876A7E0}|z_Lean.csproj|c:\\users\\yuhan\\desktop\\a\\24server\\consoleapp1\\test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A3F9F143-E580-4E01-AF7E-D4DF9876A7E0}|z_Lean.csproj|solutionrelative:test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -16,7 +25,7 @@
       "AbsoluteMoniker": "D:0:0:{678E29A2-D0F5-4898-B50F-935D7BEA9FCC}|..\\TCP\\TCP.csproj|c:\\users\\yuhan\\desktop\\a\\24server\\tcp\\_11server_variabletype1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A3F9F143-E580-4E01-AF7E-D4DF9876A7E0}|z_Lean.csproj|c:\\users\\yuhan\\desktop\\a\\24server\\consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A3F9F143-E580-4E01-AF7E-D4DF9876A7E0}|z_Lean.csproj|C:\\Users\\YUHAN\\Desktop\\a\\24Server\\ConsoleApp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A3F9F143-E580-4E01-AF7E-D4DF9876A7E0}|z_Lean.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -27,9 +36,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{FEB5679F-E67A-40DF-ADC5-37BCBD25990B}|..\\UDP\\UDP.csproj|c:\\users\\yuhan\\desktop\\a\\24server\\udp\\_04multicast2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{678E29A2-D0F5-4898-B50F-935D7BEA9FCC}|..\\TCP\\TCP.csproj|c:\\users\\yuhan\\desktop\\a\\24server\\tcp\\_17thread.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -44,32 +50,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "_01UDP.cs",
+              "DocumentMoniker": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\UDP\\_01UDP.cs",
+              "RelativeDocumentMoniker": "..\\UDP\\_01UDP.cs",
+              "ToolTip": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\UDP\\_01UDP.cs",
+              "RelativeToolTip": "..\\UDP\\_01UDP.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAwCgAAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-20T08:04:24.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_18Task.cs",
+              "DocumentMoniker": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\TCP\\_18Task.cs",
+              "RelativeDocumentMoniker": "..\\TCP\\_18Task.cs",
+              "ToolTip": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\TCP\\_18Task.cs",
+              "RelativeToolTip": "..\\TCP\\_18Task.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-20T07:07:19.709Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "test.cs",
               "DocumentMoniker": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\ConsoleApp1\\test.cs",
               "RelativeDocumentMoniker": "test.cs",
               "ToolTip": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\ConsoleApp1\\test.cs",
               "RelativeToolTip": "test.cs",
-              "ViewState": "AQIAAHgAAAAAAAAAAAAAAKEAAAAAAAAA",
+              "ViewState": "AQIAAHgAAAAAAAAAAAAwwKEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-20T03:07:17.1Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "_05TCP_Client.cs",
-              "DocumentMoniker": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\TCP\\_05TCP_Client.cs",
-              "RelativeDocumentMoniker": "..\\TCP\\_05TCP_Client.cs",
-              "ToolTip": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\TCP\\_05TCP_Client.cs",
-              "RelativeToolTip": "..\\TCP\\_05TCP_Client.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAYwD0AAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T02:16:04.645Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Server.cs",
               "DocumentMoniker": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\Server\\Server.cs",
               "RelativeDocumentMoniker": "..\\Server\\Server.cs",
@@ -77,12 +96,11 @@
               "RelativeToolTip": "..\\Server\\Server.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T01:42:01.22Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-20T01:42:01.22Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "_11Server_variableType1.cs",
               "DocumentMoniker": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\TCP\\_11Server_variableType1.cs",
               "RelativeDocumentMoniker": "..\\TCP\\_11Server_variableType1.cs",
@@ -90,12 +108,11 @@
               "RelativeToolTip": "..\\TCP\\_11Server_variableType1.cs",
               "ViewState": "AQIAAB8AAAAAAAAAAAAAAEgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T01:34:46.439Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-20T01:34:46.439Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "_03MultiCast1.cs",
               "DocumentMoniker": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\UDP\\_03MultiCast1.cs",
               "RelativeDocumentMoniker": "..\\UDP\\_03MultiCast1.cs",
@@ -103,12 +120,36 @@
               "RelativeToolTip": "..\\UDP\\_03MultiCast1.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAABgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T01:18:32.692Z",
+              "WhenOpened": "2024-06-20T01:18:32.692Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_17thread.cs",
+              "DocumentMoniker": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\TCP\\_17thread.cs",
+              "RelativeDocumentMoniker": "..\\TCP\\_17thread.cs",
+              "ToolTip": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\TCP\\_17thread.cs",
+              "RelativeToolTip": "..\\TCP\\_17thread.cs",
+              "ViewState": "AQIAAEwAAAAAAAAAAAAQwL0AAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-20T01:04:52.454Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
+              "Title": "_05TCP_Client.cs",
+              "DocumentMoniker": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\TCP\\_05TCP_Client.cs",
+              "RelativeDocumentMoniker": "..\\TCP\\_05TCP_Client.cs",
+              "ToolTip": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\TCP\\_05TCP_Client.cs",
+              "RelativeToolTip": "..\\TCP\\_05TCP_Client.cs",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAYwD0AAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-20T02:16:04.645Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "_10Client_variableType1.cs",
               "DocumentMoniker": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\TCP\\_10Client_variableType1.cs",
               "RelativeDocumentMoniker": "..\\TCP\\_10Client_variableType1.cs",
@@ -116,12 +157,11 @@
               "RelativeToolTip": "..\\TCP\\_10Client_variableType1.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAAAQwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T01:01:59.534Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-20T01:01:59.534Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\ConsoleApp1\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -129,25 +169,11 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAAIsAAAAAAAAAAAAkwJ4AAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-19T13:09:28.309Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-19T13:09:28.309Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "_17thread.cs",
-              "DocumentMoniker": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\TCP\\_17thread.cs",
-              "RelativeDocumentMoniker": "..\\TCP\\_17thread.cs",
-              "ToolTip": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\TCP\\_17thread.cs",
-              "RelativeToolTip": "..\\TCP\\_17thread.cs",
-              "ViewState": "AQIAAKwAAAAAAAAAAAAkwL0AAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T01:04:52.454Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "_04MultiCast2.cs",
               "DocumentMoniker": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\UDP\\_04MultiCast2.cs",
               "RelativeDocumentMoniker": "..\\UDP\\_04MultiCast2.cs",
@@ -155,8 +181,7 @@
               "RelativeToolTip": "..\\UDP\\_04MultiCast2.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAAAQwCYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T00:00:27.191Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-20T00:00:27.191Z"
             }
           ]
         }
