@@ -1,5 +1,0 @@
-C:\Users\오찬영\Documents\GitHub\24Server\UDP\obj\Debug\net6.0\UDP.csproj.AssemblyReference.cache
-C:\Users\오찬영\Documents\GitHub\24Server\UDP\obj\Debug\net6.0\UDP.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\오찬영\Documents\GitHub\24Server\UDP\obj\Debug\net6.0\UDP.AssemblyInfoInputs.cache
-C:\Users\오찬영\Documents\GitHub\24Server\UDP\obj\Debug\net6.0\UDP.AssemblyInfo.cs
-C:\Users\오찬영\Documents\GitHub\24Server\UDP\obj\Debug\net6.0\UDP.csproj.CoreCompileInputs.cache

@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "TcpClientTest/1.0.0": {
+        "dependencies": {
+          "Protocol": "1.0.0"
+        },
+        "runtime": {
+          "TcpClientTest.dll": {}
+        }
+      },
+      "Protocol/1.0.0": {
+        "runtime": {
+          "Protocol.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TcpClientTest/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Protocol/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
