@@ -14,7 +14,7 @@ namespace TcpClientTest
     {
         static void Main(string[] args)
         {
-            FtpClient ftpClient = new FtpClient("172.18.27.201", 25000);
+            FtpClient ftpClient = new FtpClient("127.0.0.1", 25000);
             ftpClient.ConnectServer();
         }
     }

@@ -9,7 +9,7 @@ namespace NetworkProgramming
         public static void Main()
         {
             IPEndPoint homeServerEp = new IPEndPoint(IPAddress.Parse("192.168.0.38"), 25000);
-            IPEndPoint schoolServerEp= new IPEndPoint(IPAddress.Parse("172.18.27.201"), 25000);
+            IPEndPoint schoolServerEp= new IPEndPoint(IPAddress.Parse("127.0.0.1"), 25000);
 
             TcpServer tcpServer = new TcpServer(schoolServerEp);
             tcpServer.Start();

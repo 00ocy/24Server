@@ -1,6 +1,7 @@
 ﻿// FTP 패킷을 처리하는 클래스
 using System.Net;
 using System.Text;
+using System.Security.Cryptography;
 
 // FTP 패킷을 처리하는 클래스
 public class FTP
@@ -82,6 +83,25 @@ public class FTP
         }
         return protocol;  // 파싱된 FTP 패킷 반환
     }
+    public string CalculateFileHash(byte[] fileData)
+    {
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            byte[] hashBytes = sha256.ComputeHash(fileData);
+            return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+        }
+    }
+
+    public string CalculateFileHash(string filePath)
+    {
+        using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            byte[] hashBytes = sha256.ComputeHash(fs);
+            return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+        }
+    }
+
 
     // 연결 요청 패킷 생성
     public byte[] StartConnectionRequest()
@@ -101,11 +121,14 @@ public class FTP
         return GetPacket();  // 패킷 생성 및 반환
     }
 
-    // 파일 전송 요청 패킷 생성
-    public byte[] TransmitFileRequest(string filename, uint filesize)
+    // 파일 전송 요청 패킷 생성 (해시 추가)
+    public byte[] TransmitFileRequest(string filename, uint filesize, string fileHash)
     {
         OpCode = OpCode.FileTransferRequest;  // 파일 전송 요청 코드 (100)
-        Body = Encoding.UTF8.GetBytes(filename + "\0" + filesize.ToString());  // 파일명과 파일 크기를 바디에 저장
+
+        // 파일명, 파일 크기, 해시값을 문자열로 결합하여 바디에 저장
+        string fileInfo = filename + "\0" + filesize.ToString() + "\0" + fileHash;
+        Body = Encoding.UTF8.GetBytes(fileInfo);
         Length = (uint)Body.Length;  // 바디의 길이 저장
         return GetPacket();  // 패킷 생성 및 반환
     }
@@ -165,22 +188,32 @@ public class FTP
         return GetPacket();  // 패킷 생성 및 반환
     }
 
-    // 파일 다운로드 응답 패킷 생성
-    public byte[] DownloadFileResponse(bool ok, uint filesize = 0)
+   // 파일 다운로드 응답 패킷 생성
+public byte[] DownloadFileResponse(bool ok, uint filesize = 0, string fileHash = null)
+{
+    OpCode = ok ? OpCode.FileDownloadOK : OpCode.FileDownloadFailed_FileNotFound; // 다운로드 OK/실패 여부에 따라 OpCode 설정
+
+    if (ok)
     {
-        OpCode = ok ? OpCode.FileDownloadOK : OpCode.FileDownloadFailed_FileNotFound;  // 파일 다운로드 성공/실패 여부에 따라 OpCode 설정
-        if (ok)
-        {
-            Body = BitConverter.GetBytes(IPAddress.HostToNetworkOrder((int)filesize));  // 파일 크기를 바디에 저장
-            Length = 4;  // 바디의 길이 저장
-        }
-        else
-        {            
-            Length = 0;
-            Body = null;
-        }
-        return GetPacket();  // 패킷 생성 및 반환
+        // 파일 크기(4바이트)와 해시값(64바이트)을 바디에 저장
+        byte[] fileSizeBytes = BitConverter.GetBytes(IPAddress.HostToNetworkOrder((int)filesize));  // 파일 크기를 네트워크 바이트 순서로 변환
+        byte[] fileHashBytes = Encoding.UTF8.GetBytes(fileHash ?? string.Empty).Take(64).ToArray();  // 해시값을 UTF8로 인코딩, 최대 64바이트로 제한
+
+        // 바디 생성: 파일 크기(4바이트) + 해시값(64바이트)
+        Body = new byte[4 + fileHashBytes.Length];
+        Array.Copy(fileSizeBytes, 0, Body, 0, fileSizeBytes.Length);
+        Array.Copy(fileHashBytes, 0, Body, fileSizeBytes.Length, fileHashBytes.Length);
+
+        Length = (uint)Body.Length;  // 바디 길이 설정 (총 68바이트)
     }
+    else
+    {
+        Length = 0;
+        Body = null;
+    }
+
+    return GetPacket();  // 패킷 생성 및 반환
+}
 
     // 파일 데이터 패킷 전송
     public byte[] SendFileDataPacket(ushort seqNo, byte[] data, bool isFinal)

@@ -27,24 +27,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\YUHAN\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\chan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Minkang\\University_3\\2학기\\Server Programming\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj",
       "projectName": "NetworkLibrary",
-      "projectPath": "D:\\Minkang\\University_3\\2학기\\Server Programming\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj",
-      "packagesPath": "C:\\Users\\YUHAN\\.nuget\\packages\\",
-      "outputPath": "D:\\Minkang\\University_3\\2학기\\Server Programming\\NetworkProgramming\\NetworkLibrary\\obj\\",
+      "projectPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj",
+      "packagesPath": "C:\\Users\\chan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\YUHAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -52,15 +47,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Minkang\\University_3\\2학기\\Server Programming\\NetworkProgramming\\Protocol\\Protocol.csproj": {
-              "projectPath": "D:\\Minkang\\University_3\\2학기\\Server Programming\\NetworkProgramming\\Protocol\\Protocol.csproj"
+            "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj": {
+              "projectPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj"
             }
           }
         }
@@ -95,7 +89,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

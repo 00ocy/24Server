@@ -7,14 +7,14 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Security.Cryptography;
 
 namespace NetworkLibrary
 {
     public class ClientHandler
     {
-        // 클라이언트 연결 객체
         private readonly ClientInfo _clientInfo;
-        private FTP _ftpProtocol; // 파일 전송 프로토콜 객체
+        private FTP _ftpProtocol;
         private NetworkStream _stream;
         private Thread _receiveThread;
         private bool _isRunning;
@@ -23,7 +23,7 @@ namespace NetworkLibrary
         public ClientHandler(ClientInfo clientInfo)
         {
             _clientInfo = clientInfo;
-            _ftpProtocol = new FTP();  // FTP 객체 초기화
+            _ftpProtocol = new FTP();
             _packetQueue = new ConcurrentQueue<FTP>();
         }
 
@@ -41,7 +41,6 @@ namespace NetworkLibrary
 
                     while (isConnected)
                     {
-                        // 패킷 기달리기
                         FTP requestProtocol = WaitForPacket();
 
                         if (requestProtocol == null)
@@ -51,41 +50,34 @@ namespace NetworkLibrary
                         {
                             case OpCode.ConnectionRequest:
                                 Console.WriteLine("클라이언트로부터 연결 요청을 받았습니다.");
-
-                                // 연결 승인 응답 전송
                                 FTP responseProtocol = new FTP();
                                 byte[] responsePacket = responseProtocol.StartConnectionResponse(true);
                                 _stream.Write(responsePacket, 0, responsePacket.Length);
-
                                 break;
 
                             case OpCode.FileTransferRequest:
-                                // 파일 전송 요청 처리
                                 HandleFileTransferRequest(requestProtocol);
                                 break;
 
                             case OpCode.FileListRequest:
-                                // 파일 목록 요청 처리
                                 HandleFileListRequest();
                                 break;
 
                             case OpCode.FileDownloadRequest:
-                                // 파일 다운로드 요청 처리
                                 HandleFileDownloadRequest(requestProtocol);
                                 break;
 
                             case OpCode.RequestTerminationAfterProcessing:
                                 Console.WriteLine("클라이언트로부터 연결 종료 요청을 받았습니다.");
-
-                                // 연결 종료 승인 응답 전송
                                 FTP disconnectResponse = new FTP();
                                 byte[] disconnectPacket = disconnectResponse.DisconnectionResponse();
                                 _stream.Write(disconnectPacket, 0, disconnectPacket.Length);
-
                                 isConnected = false;
                                 _isRunning = false;
                                 break;
-
+                            case OpCode.ReceptionCompletedSuccessfully:
+                                Console.WriteLine($"수신 정상 완료");
+                                break;
                             default:
                                 Console.WriteLine($"알 수 없는 OpCode를 수신하였습니다: {requestProtocol.OpCode}");
                                 break;
@@ -128,11 +120,7 @@ namespace NetworkLibrary
                 while (_isRunning)
                 {
                     FTP packet = ReceivePacket();
-
-                    // 패킷 내용 출력
                     packet.PrintPacketInfo("받은 패킷");
-
-                    // 패킷을 큐에 저장 (ConcurrentQueue는 스레드 안전함)
                     _packetQueue.Enqueue(packet);
                 }
             }
@@ -145,7 +133,7 @@ namespace NetworkLibrary
 
         private FTP ReceivePacket()
         {
-            byte[] headerBuffer = new byte[9]; // 헤더 크기
+            byte[] headerBuffer = new byte[9];
             int bytesRead = _stream.Read(headerBuffer, 0, headerBuffer.Length);
             if (bytesRead == 0)
                 throw new Exception("클라이언트가 연결을 종료하였습니다.");
@@ -155,7 +143,6 @@ namespace NetworkLibrary
 
             FTP protocol = FTP.ParsePacket(headerBuffer);
 
-            // 바디가 있는 경우 바디 읽기
             if (protocol.Length > 0)
             {
                 byte[] bodyBuffer = new byte[protocol.Length];
@@ -175,71 +162,51 @@ namespace NetworkLibrary
 
         private void HandleFileTransferRequest(FTP requestProtocol)
         {
-            // 파일 전송 요청 처리
             string[] bodyParts = Encoding.UTF8.GetString(requestProtocol.Body).Split('\0');
             string filename = bodyParts[0];
             uint filesize = uint.Parse(bodyParts[1]);
+            string clientFileHash = bodyParts[2];
 
             Console.WriteLine($"파일 전송 요청을 받았습니다. 파일명: {filename}, 크기: {filesize} bytes");
 
-            // 파일 전송 승인 응답 전송
             FTP responseProtocol = new FTP();
             byte[] responsePacket = responseProtocol.TransmitFileResponse(true);
-
-            // 패킷 내용 출력
             responseProtocol.PrintPacketInfo("보낸 패킷");
 
             _stream.Write(responsePacket, 0, responsePacket.Length);
 
-            // 파일 데이터 수신
-            ReceiveFileData(filename, filesize);
+            ReceiveFileData(filename, filesize, clientFileHash);
         }
 
         private void HandleFileListRequest()
         {
-            // 현재 디렉토리 경로 설정
             string currentDirectory = Directory.GetCurrentDirectory();
             currentDirectory = Path.Combine(currentDirectory, "S_UploadFiles");
 
-            // 디렉토리가 존재하지 않으면 생성
             if (!Directory.Exists(currentDirectory))
             {
                 Console.WriteLine($"디렉토리가 존재하지 않으므로 '{currentDirectory}'를 생성합니다.");
                 Directory.CreateDirectory(currentDirectory);
-
-                // 더미 파일 생성                
-                DummyData.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1kb.txt"), 1 * 1024);          // 1KB
-                DummyData.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1mb.txt"), 1 * 1024 * 1024);    // 1MB
-                DummyData.CreateDummyFile(Path.Combine(currentDirectory, "dummy_100mb.txt"), 100 * 1024 * 1024); // 100MB
-                DummyData.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1gb.txt"), 1L * 1024 * 1024 * 1024); // 1GB
-
+                DummyData.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1kb.txt"), 1 * 1024);
+                DummyData.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1mb.txt"), 1 * 1024 * 1024);
+                DummyData.CreateDummyFile(Path.Combine(currentDirectory, "dummy_100mb.txt"), 100 * 1024 * 1024);
+                DummyData.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1gb.txt"), 1L * 1024 * 1024 * 1024);
                 Console.WriteLine("더미 파일 생성이 완료되었습니다.");
-            }            
-            int index = 0;
+            }
 
-            string[] files = Directory.GetFiles(currentDirectory)
-                                 .Select(f => Path.GetFileName(f))
-                                 .ToArray();
-
-            // 파일 목록 응답 패킷 생성
+            string[] files = Directory.GetFiles(currentDirectory).Select(f => Path.GetFileName(f)).ToArray();
             FTP responseProtocol = new FTP();
             byte[] responsePacket = responseProtocol.GetFileListResponse(files);
-
-            // 패킷 내용 출력
             responseProtocol.PrintPacketInfo("보낸 패킷");
 
-            // 클라이언트에게 파일 목록 전송
             _stream.Write(responsePacket, 0, responsePacket.Length);
         }
 
         private void HandleFileDownloadRequest(FTP requestProtocol)
         {
-            // 패킷 내용 출력
             requestProtocol.PrintPacketInfo("받은 패킷");
 
-            // 요청한 파일명 가져오기
             string filename = Encoding.UTF8.GetString(requestProtocol.Body);
-
             string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "S_UploadFiles");
             string filePath = Path.Combine(directoryPath, filename);
 
@@ -248,10 +215,14 @@ namespace NetworkLibrary
                 FileInfo fileInfo = new FileInfo(filePath);
                 uint filesize = (uint)fileInfo.Length;
 
-                // 파일 다운로드 승인 응답 전송 (파일 크기 포함)
+                // 파일의 SHA-256 해시를 계산하고 바디에 포함하도록 응답 생성
+                string fileHash = _ftpProtocol.CalculateFileHash(filePath);
                 FTP responseProtocol = new FTP();
-                byte[] responsePacket = responseProtocol.DownloadFileResponse(true, filesize);
+
+                // fileHash는 64자, 이를 UTF8 인코딩해 바이트 배열로 변환하고 추가
+                byte[] responsePacket = responseProtocol.DownloadFileResponse(true, filesize, fileHash);
                 responseProtocol.PrintPacketInfo("보낸 패킷");
+
                 _stream.Write(responsePacket, 0, responsePacket.Length);
 
                 // 파일 데이터 전송
@@ -259,87 +230,99 @@ namespace NetworkLibrary
             }
             else
             {
-                // 파일이 없을 경우 다운로드 실패 응답 전송
                 FTP responseProtocol = new FTP();
                 byte[] responsePacket = responseProtocol.DownloadFileResponse(false);
                 responseProtocol.PrintPacketInfo("보낸 패킷");
+
                 _stream.Write(responsePacket, 0, responsePacket.Length);
             }
         }
+
         private void SendFileData(string filePath)
         {
-            const int bufferSize = 4096; // 한 번에 읽을 바이트 수 (4KB)
+            const int bufferSize = 4096;
             byte[] buffer = new byte[bufferSize];
-            ushort seqNo = 0; // 시퀀스 번호 초기화
+            ushort seqNo = 0;
+
+            string fileHash = _ftpProtocol.CalculateFileHash(filePath);
+            Console.WriteLine($"\n[파일 전송 시작] 파일경로: {filePath}");
 
             using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
                 int bytesRead;
                 while ((bytesRead = fs.Read(buffer, 0, bufferSize)) > 0)
                 {
-                    bool isFinal = fs.Position == fs.Length; // 파일의 마지막 청크인지 확인
+                    bool isFinal = fs.Position == fs.Length;
                     byte[] dataChunk = new byte[bytesRead];
                     Array.Copy(buffer, dataChunk, bytesRead);
 
-                    // FTP 클래스의 SendFileDataPacket 메서드를 사용하여 패킷 생성
                     byte[] dataPacket = _ftpProtocol.SendFileDataPacket(seqNo, dataChunk, isFinal);
-
-                    // 패킷 내용 출력
                     _ftpProtocol.PrintPacketInfo("보낸 패킷");
 
-                    // 데이터 패킷 전송
                     _stream.Write(dataPacket, 0, dataPacket.Length);
 
                     seqNo++;
                 }
+            Console.WriteLine($"\n[파일 전송 끝] 파일경로: {filePath}");
+            Console.WriteLine($"[SHA-256 해시] {fileHash}\n");
             }
+
         }
 
-
-        private void ReceiveFileData(string filename, uint filesize)
+        private void ReceiveFileData(string filename, uint filesize, string expectedHash)
         {
             Dictionary<ushort, byte[]> fileChunks = new Dictionary<ushort, byte[]>();
             bool isReceiving = true;
 
-            while (isReceiving && _isRunning)
+            try
             {
-                FTP dataPacket = WaitForPacket();
-
-                if (dataPacket == null)
-                    break;
-
-                if (dataPacket.OpCode == OpCode.SplitTransferInProgress || dataPacket.OpCode == OpCode.SplitTransferFinal)
+                while (isReceiving && _isRunning)
                 {
-                    // 수신한 데이터 저장
+                    FTP dataPacket = WaitForPacket();
+
+                    if (dataPacket == null)
+                    {
+                        Console.WriteLine("파일 데이터 수신 타임아웃 또는 연결 종료.");
+                        break;
+                    }
+
                     fileChunks[dataPacket.SeqNo] = dataPacket.Body;
 
-                    if (dataPacket.OpCode == OpCode.SplitTransferFinal)
+                    if (dataPacket.OpCode == OpCode.FileDownloadDataEnd)
                     {
-                        // 모든 데이터 수신 완료
                         isReceiving = false;
+                        string receivedFilePath = SaveReceivedFile(filename, fileChunks);
 
-                        // 파일 저장
-                        SaveReceivedFile(filename, fileChunks);
-
-                        // 전송 완료 응답 전송
-                        FTP completionResponse = new FTP();
-                        byte[] responsePacket = completionResponse.TransferCompletionResponse(true);
-                        _stream.Write(responsePacket, 0, responsePacket.Length);
+                        string receivedFileHash = _ftpProtocol.CalculateFileHash(receivedFilePath);
+                        if (receivedFileHash == expectedHash)
+                        {
+                            Console.WriteLine($"\n[파일 수신 완료] 파일명: '{filename}'");
+                            Console.WriteLine($"[SHA-256 해시] {receivedFileHash}\n");
+                            // 전송 완료 응답 전송
+                            FTP completionResponse = new FTP();
+                            byte[] responsePacket = completionResponse.TransferCompletionResponse(true);
+                            _stream.Write(responsePacket, 0, responsePacket.Length);
+                        }
+                        else
+                        {
+                            Console.WriteLine($"[받은 SHA-256 해시] {expectedHash}");
+                            Console.WriteLine($"[현재 SHA-256 해시] {receivedFileHash}");
+                            Console.WriteLine("파일 다운로드가 완료되었지만 해시값이 일치하지 않습니다. 파일이 손상되었을 수 있습니다.");
+                        }
                     }
                 }
-                else
-                {
-                    // 예상치 못한 패킷 처리
-                    Console.WriteLine("잘못된 패킷을 수신하였습니다.");
-                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"파일 데이터 수신 중 오류 발생: {ex.Message}");
             }
         }
 
-        // 수신한 파일 저장 메서드
-        private void SaveReceivedFile(string filename, Dictionary<ushort, byte[]> fileChunks)
+        private string SaveReceivedFile(string filename, Dictionary<ushort, byte[]> fileChunks)
         {
-            string filePath = Path.Combine("S_DownloadFiles", filename);
-            Directory.CreateDirectory("S_DownloadFiles");
+            string directoryPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DownloadFiles");
+            Directory.CreateDirectory(directoryPath);
+            string filePath = Path.Combine(directoryPath, filename);
 
             using (FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
             {
@@ -348,7 +331,8 @@ namespace NetworkLibrary
                     fs.Write(chunk.Value, 0, chunk.Value.Length);
                 }
             }
-            Console.WriteLine($"파일이 성공적으로 저장되었습니다: {filePath}");
+
+            return filePath;
         }
     }
 }
