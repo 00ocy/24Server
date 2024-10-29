@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0cp7Th65wDc5Yk96sRypoc7+YKvA0Vd1FC2kw9SpMH8Vpce4ZkADP1JfxFuLx/CcffJwX6V9Z5wZdpvXHORxZg==",
+  "dgSpecHash": "lMRJuUZQrK1NTUpzhpFPnmuBDbrlpsjOpsQI5EeAIAwtVFvyJ4FKh2usy7TuY3ChtgvPGadRwvyrvByuZk+yUg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\TCP\\TCP.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\YUHAN\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.28\\microsoft.windowsdesktop.app.ref.6.0.28.nupkg.sha512",
-    "C:\\Users\\YUHAN\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.28\\microsoft.netcore.app.ref.6.0.28.nupkg.sha512",
-    "C:\\Users\\YUHAN\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.28\\microsoft.aspnetcore.app.ref.6.0.28.nupkg.sha512",
-    "C:\\Users\\YUHAN\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.28\\microsoft.netcore.app.host.win-x64.6.0.28.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\TCP\\TCP.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

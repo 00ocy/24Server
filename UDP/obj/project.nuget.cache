@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6ykaa478iU9bNXOp5hy1fl5R6Ugo1WkJ4Ps0dBqfaDE3fqYyza3LUfIPFhVU3EOMtms+WzcNicMYJm+0TR6M6w==",
+  "dgSpecHash": "D/wOlqlDcBvO4wraxeH7irtr5r/1JX0zRtZhKR/UXwY96uVzUT+U2SuMJLYGExAcIQUZ3wpb3fy+P++A4hk+4Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\YUHAN\\Desktop\\a\\24Server\\UDP\\UDP.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\YUHAN\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.28\\microsoft.windowsdesktop.app.ref.6.0.28.nupkg.sha512",
-    "C:\\Users\\YUHAN\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.28\\microsoft.netcore.app.ref.6.0.28.nupkg.sha512",
-    "C:\\Users\\YUHAN\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.28\\microsoft.aspnetcore.app.ref.6.0.28.nupkg.sha512",
-    "C:\\Users\\YUHAN\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.28\\microsoft.netcore.app.host.win-x64.6.0.28.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\UDP\\UDP.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
