@@ -46,15 +46,15 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FtpClient.cs",
-              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\FtpClient.cs",
-              "RelativeDocumentMoniker": "TcpClientTest\\FtpClient.cs",
-              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\FtpClient.cs",
-              "RelativeToolTip": "TcpClientTest\\FtpClient.cs",
-              "ViewState": "AQIAAIMBAAAAAAAAAAAowJMBAAAmAAAA",
+              "DocumentIndex": 2,
+              "Title": "ClientHandler.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientHandler.cs",
+              "RelativeDocumentMoniker": "NetworkLibrary\\ClientHandler.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientHandler.cs",
+              "RelativeToolTip": "NetworkLibrary\\ClientHandler.cs",
+              "ViewState": "AQIAAIYAAAAAAAAAAAAiwJkAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T06:32:16.859Z",
+              "WhenOpened": "2024-10-15T04:29:01.14Z",
               "EditorCaption": ""
             },
             {
@@ -65,22 +65,23 @@
               "RelativeDocumentMoniker": "Protocol\\FTP.cs",
               "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTP.cs",
               "RelativeToolTip": "Protocol\\FTP.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAAABkAAAAfAAAA",
+              "ViewState": "AQIAAOMAAAAAAAAAAAAcwAMBAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-22T04:29:03.351Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ClientInfo.cs",
-              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientInfo.cs",
-              "RelativeDocumentMoniker": "NetworkLibrary\\ClientInfo.cs",
-              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientInfo.cs",
-              "RelativeToolTip": "NetworkLibrary\\ClientInfo.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentIndex": 1,
+              "Title": "FtpClient.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\FtpClient.cs",
+              "RelativeDocumentMoniker": "TcpClientTest\\FtpClient.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\FtpClient.cs",
+              "RelativeToolTip": "TcpClientTest\\FtpClient.cs",
+              "ViewState": "AQIAAG0AAAAAAAAAAAD4v44AAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T04:27:51.319Z"
+              "WhenOpened": "2024-10-22T06:32:16.859Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -90,7 +91,7 @@
               "RelativeDocumentMoniker": "NetworkLibrary\\TcpServer.cs",
               "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\TcpServer.cs",
               "RelativeToolTip": "NetworkLibrary\\TcpServer.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAA4AAAAAAAAAAADwvwAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-22T04:27:49.352Z"
             },
@@ -108,15 +109,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ClientHandler.cs",
-              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientHandler.cs",
-              "RelativeDocumentMoniker": "NetworkLibrary\\ClientHandler.cs",
-              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientHandler.cs",
-              "RelativeToolTip": "NetworkLibrary\\ClientHandler.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAANUAAAApAAAA",
+              "DocumentIndex": 3,
+              "Title": "ClientInfo.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientInfo.cs",
+              "RelativeDocumentMoniker": "NetworkLibrary\\ClientInfo.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientInfo.cs",
+              "RelativeToolTip": "NetworkLibrary\\ClientInfo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T04:29:01.14Z"
+              "WhenOpened": "2024-10-22T04:27:51.319Z"
             },
             {
               "$type": "Document",

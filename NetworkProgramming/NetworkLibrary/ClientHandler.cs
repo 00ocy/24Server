@@ -112,7 +112,27 @@ namespace NetworkLibrary
             }
             return null;
         }
-
+        private FTP WaitForPacket(params OpCode[] expectedOpCodes)
+        {
+            int timeout = 5000; // 5초 타임아웃
+            int waited = 0;
+            while (_isRunning && waited < timeout)
+            {
+                if (_packetQueue.TryDequeue(out FTP packet))
+                {
+                    if (Array.Exists(expectedOpCodes, op => op == packet.OpCode))
+                    {
+                        return packet;
+                    }
+                }
+                else
+                {
+                    Thread.Sleep(100); // 100ms 대기
+                    waited += 100;
+                }
+            }
+            return null;
+        }
         private void ReceivePackets()
         {
             try
@@ -133,7 +153,7 @@ namespace NetworkLibrary
 
         private FTP ReceivePacket()
         {
-            byte[] headerBuffer = new byte[9];
+            byte[] headerBuffer = new byte[11];
             int bytesRead = _stream.Read(headerBuffer, 0, headerBuffer.Length);
             if (bytesRead == 0)
                 throw new Exception("클라이언트가 연결을 종료하였습니다.");
@@ -271,14 +291,14 @@ namespace NetworkLibrary
 
         private void ReceiveFileData(string filename, uint filesize, string expectedHash)
         {
-            Dictionary<ushort, byte[]> fileChunks = new Dictionary<ushort, byte[]>();
+            Dictionary<uint, byte[]> fileChunks = new Dictionary<uint, byte[]>();
             bool isReceiving = true;
 
             try
             {
                 while (isReceiving && _isRunning)
                 {
-                    FTP dataPacket = WaitForPacket();
+                    FTP dataPacket = WaitForPacket(OpCode.FileDownloadData, OpCode.FileDownloadDataEnd);
 
                     if (dataPacket == null)
                     {
@@ -318,7 +338,7 @@ namespace NetworkLibrary
             }
         }
 
-        private string SaveReceivedFile(string filename, Dictionary<ushort, byte[]> fileChunks)
+        private string SaveReceivedFile(string filename, Dictionary<uint, byte[]> fileChunks)
         {
             string directoryPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DownloadFiles");
             Directory.CreateDirectory(directoryPath);

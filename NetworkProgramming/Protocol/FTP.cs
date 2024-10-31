@@ -8,7 +8,7 @@ public class FTP
 {
     public byte ProtoVer { get; private set; }          // 프로토콜 버전
     public OpCode OpCode { get; private set; }          // 명령 코드 (OpCode enum 사용)
-    public ushort SeqNo { get; private set; }           // 순차 번호 (데이터 분할 전송 시 사용)
+    public uint SeqNo { get; private set; }           // 순차 번호 (데이터 분할 전송 시 사용)
     public uint Length { get; private set; }            // 데이터 길이 (본문의 길이)
     public byte[]? Body { get; set; }            // 데이터 본문 (null 허용)
 
@@ -29,7 +29,7 @@ public class FTP
         {
             ms.WriteByte(ProtoVer); // 프로토콜 버전 추가
             ms.Write(BitConverter.GetBytes(IPAddress.HostToNetworkOrder((short)OpCode)), 0, 2); // OpCode 추가 (2바이트)
-            ms.Write(BitConverter.GetBytes(IPAddress.HostToNetworkOrder((short)SeqNo)), 0, 2);  // SeqNo 추가 (2바이트)
+            ms.Write(BitConverter.GetBytes(IPAddress.HostToNetworkOrder((int)SeqNo)), 0, 4);  // SeqNo 추가 (4바이트)
             ms.Write(BitConverter.GetBytes(IPAddress.HostToNetworkOrder((int)Length)), 0, 4);   // Length 추가 (4바이트)
             return ms.ToArray();  // 완성된 헤더 반환
         }
@@ -66,8 +66,10 @@ public class FTP
             protocol.OpCode = (OpCode)IPAddress.NetworkToHostOrder(BitConverter.ToInt16(buffer, 0));
 
             // SeqNo 파싱
-            ms.Read(buffer, 0, 2);
-            protocol.SeqNo = (ushort)IPAddress.NetworkToHostOrder(BitConverter.ToInt16(buffer, 0));
+            buffer = new byte[4];
+            ms.Read(buffer, 0, 4);
+            protocol.SeqNo = (uint)IPAddress.NetworkToHostOrder(BitConverter.ToInt32(buffer, 0));
+
 
             // Length 파싱
             buffer = new byte[4];
@@ -216,7 +218,7 @@ public byte[] DownloadFileResponse(bool ok, uint filesize = 0, string fileHash =
 }
 
     // 파일 데이터 패킷 전송
-    public byte[] SendFileDataPacket(ushort seqNo, byte[] data, bool isFinal)
+    public byte[] SendFileDataPacket(uint seqNo, byte[] data, bool isFinal)
     {
         OpCode = isFinal ? OpCode.FileDownloadDataEnd : OpCode.FileDownloadData;  // 파일 데이터 전송 여부에 따른 OpCode 설정
         SeqNo = seqNo;  // 순차 번호 설정

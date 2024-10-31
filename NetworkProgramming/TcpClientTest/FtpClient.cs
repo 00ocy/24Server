@@ -375,7 +375,7 @@ namespace TcpClientTest
         {
             const int bufferSize = 4096; // 한 번에 읽을 바이트 수 (4KB)
             byte[] buffer = new byte[bufferSize];
-            ushort seqNo = 0; // 시퀀스 번호 초기화
+            uint seqNo = 0; // 시퀀스 번호 초기화
 
             // 전송할 파일의 SHA-256 해시값 계산 및 출력
             string fileHash = _ftpProtocol.CalculateFileHash(filePath);
@@ -410,7 +410,7 @@ namespace TcpClientTest
 
         private void ReceiveFileData(string filename, uint filesize, string expectedHash)
         {
-            Dictionary<ushort, byte[]> fileChunks = new Dictionary<ushort, byte[]>();
+            Dictionary<uint, byte[]> fileChunks = new Dictionary<uint, byte[]>();
             bool isReceiving = true;
 
             try
@@ -461,7 +461,7 @@ namespace TcpClientTest
 
 
 
-        private string SaveReceivedFile(string filename, Dictionary<ushort, byte[]> fileChunks)
+        private string SaveReceivedFile(string filename, Dictionary<uint, byte[]> fileChunks)
         {
             string directoryPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DownloadFiles");
             Directory.CreateDirectory(directoryPath);
@@ -528,7 +528,7 @@ namespace TcpClientTest
 
         private FTP ReceivePacket()
         {
-            byte[] headerBuffer = new byte[9]; // 헤더 크기 (ProtoVer(1) + OpCode(2) + SeqNo(2) + Length(4))
+            byte[] headerBuffer = new byte[11]; // 헤더 크기 (ProtoVer(1) + OpCode(2) + SeqNo(4) + Length(4))
             int bytesRead = _stream.Read(headerBuffer, 0, headerBuffer.Length);
             if (bytesRead == 0)
                 throw new Exception("패킷 헤더를 읽는 중 오류 발생");
