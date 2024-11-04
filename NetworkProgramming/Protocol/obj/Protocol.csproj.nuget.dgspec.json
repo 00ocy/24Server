@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj": {}
+    "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj": {}
   },
   "projects": {
-    "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj": {
+    "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
+        "projectUniqueName": "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
         "projectName": "Protocol",
-        "projectPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
-        "packagesPath": "C:\\Users\\chan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\obj\\",
+        "projectPath": "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
+        "packagesPath": "C:\\Users\\YUHAN\\.nuget\\packages\\",
+        "outputPath": "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\Protocol\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\YUHAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
