@@ -50,11 +50,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\NetworkProgramming\\NetworkProgramming.csproj",
+      "projectUniqueName": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkProgramming\\NetworkProgramming.csproj",
       "projectName": "NetworkProgramming",
-      "projectPath": "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\NetworkProgramming\\NetworkProgramming.csproj",
+      "projectPath": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkProgramming\\NetworkProgramming.csproj",
       "packagesPath": "C:\\Users\\YUHAN\\.nuget\\packages\\",
-      "outputPath": "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\NetworkProgramming\\obj\\",
+      "outputPath": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkProgramming\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\YUHAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -71,8 +71,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj": {
-              "projectPath": "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj"
+            "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj": {
+              "projectPath": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj"
             }
           }
         }

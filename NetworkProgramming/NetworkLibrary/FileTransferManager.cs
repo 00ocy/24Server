@@ -88,6 +88,7 @@ public class FileTransferManager
                     }
                     else
                     {
+                        //FileDownloadFailed_SHAhashValueDifferent
                         Console.WriteLine($"[받은 SHA-256 해시] {expectedHash}");
                         Console.WriteLine($"[현재 SHA-256 해시] {receivedFileHash}");
                         Console.WriteLine("파일 다운로드가 완료되었지만 해시값이 일치하지 않습니다. 파일이 손상되었을 수 있습니다.");

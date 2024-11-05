@@ -51,11 +51,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\TcpClientTest.csproj",
+      "projectUniqueName": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\TcpClientTest.csproj",
       "projectName": "TcpClientTest",
-      "projectPath": "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\TcpClientTest.csproj",
+      "projectPath": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\TcpClientTest.csproj",
       "packagesPath": "C:\\Users\\YUHAN\\.nuget\\packages\\",
-      "outputPath": "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\obj\\",
+      "outputPath": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\YUHAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -72,11 +72,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj": {
-              "projectPath": "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj"
+            "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj": {
+              "projectPath": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj"
             },
-            "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj": {
-              "projectPath": "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj"
+            "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj": {
+              "projectPath": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj"
             }
           }
         }

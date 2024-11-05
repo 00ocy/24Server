@@ -381,7 +381,7 @@ namespace TcpClientTest
                 uint filesize = (uint)fileInfo.Length;
 
                 // 1. SHA-256 해시값 생성
-                string fileHash = _ftpProtocol.CalculateFileHash(filePath);
+                string fileHash = _fileTransferManager.CalculateFileHash(filePath);
                 byte[] fileTransferRequest = _ftpProtocol.TransmitFileRequest(filename, filesize, fileHash);
 
                 // 패킷 내용 출력

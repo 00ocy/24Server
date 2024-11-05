@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
+      "projectUniqueName": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
       "projectName": "Protocol",
-      "projectPath": "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
+      "projectPath": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
       "packagesPath": "C:\\Users\\YUHAN\\.nuget\\packages\\",
-      "outputPath": "D:\\VRdepartment\\GitHub\\24Server\\NetworkProgramming\\Protocol\\obj\\",
+      "outputPath": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\YUHAN\\AppData\\Roaming\\NuGet\\NuGet.Config",

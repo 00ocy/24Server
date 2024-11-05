@@ -85,24 +85,7 @@ public class FTP
         }
         return protocol;  // 파싱된 FTP 패킷 반환
     }
-    public string CalculateFileHash(byte[] fileData)
-    {
-        using (SHA256 sha256 = SHA256.Create())
-        {
-            byte[] hashBytes = sha256.ComputeHash(fileData);
-            return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
-        }
-    }
 
-    public string CalculateFileHash(string filePath)
-    {
-        using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-        using (SHA256 sha256 = SHA256.Create())
-        {
-            byte[] hashBytes = sha256.ComputeHash(fs);
-            return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
-        }
-    }
 
 
     // 연결 요청 패킷 생성
@@ -294,6 +277,9 @@ public enum OpCode
 
     // 112: 파일 다운로드 실패 (파일 없음)
     FileDownloadFailed_FileNotFound = 112,
+
+    // 113: 파일 다운로드 실패 (SHA-256 해시값이 다름)
+    FileDownloadFailed_SHAhashValueDifferent =113,
 
     // 120: 파일 데이터 전송 (다운로드)
     FileDownloadData = 120,
