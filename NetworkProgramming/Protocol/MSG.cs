@@ -5,9 +5,9 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace NetworkLibrary
+namespace Protocol
 {
-    internal class MessageProcessor
+    internal class MSG
     {
         public class ClientJson
         {

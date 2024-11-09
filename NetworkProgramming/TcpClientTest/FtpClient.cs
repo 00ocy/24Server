@@ -15,7 +15,7 @@ namespace TcpClientTest
     {
         private TcpClient _client;
         private FtpPacketHandler _packetHandler;
-        private FileTransferManager _fileTransferManager;
+        private FTPManager _fileTransferManager;
 
         private NetworkStream _stream;
         private FTP _ftpProtocol;
@@ -35,13 +35,12 @@ namespace TcpClientTest
         public void ConnectServer()
         {
             
-            
             try
             {
                 Console.WriteLine("Connecting to Server...");
                 _client.Connect(_remoteEp);
                 _stream = _client.GetStream();
-                _fileTransferManager = new FileTransferManager(_stream, new FTP()); // FTP 인스턴스 전달
+                _fileTransferManager = new FTPManager(_stream, new FTP()); // FTP 인스턴스 전달
 
                 Console.WriteLine("Connected!");
                 Console.WriteLine($"Remote-[{_remoteEp.Address}]:[{_remoteEp.Port}]");
@@ -209,10 +208,10 @@ namespace TcpClientTest
                 Directory.CreateDirectory(currentDirectory);
 
                 // 더미 파일 생성                
-                DummyData.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1kb.txt"), 1 * 1024);          // 1KB
-                DummyData.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1mb.txt"), 1 * 1024 * 1024);    // 1MB
-                DummyData.CreateDummyFile(Path.Combine(currentDirectory, "dummy_100mb.txt"), 100 * 1024 * 1024); // 100MB
-                DummyData.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1gb.txt"), 1L * 1024 * 1024 * 1024); // 1GB
+                FTPManager.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1kb.txt"), 1 * 1024);          // 1KB
+                FTPManager.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1mb.txt"), 1 * 1024 * 1024);    // 1MB
+                FTPManager.CreateDummyFile(Path.Combine(currentDirectory, "dummy_100mb.txt"), 100 * 1024 * 1024); // 100MB
+                FTPManager.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1gb.txt"), 1L * 1024 * 1024 * 1024); // 1GB
 
                 Console.WriteLine("더미 파일 생성이 완료되었습니다.");
             }

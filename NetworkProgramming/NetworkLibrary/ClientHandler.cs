@@ -14,7 +14,7 @@ namespace NetworkLibrary
     {
         private readonly ClientInfo _clientInfo;
         private FtpPacketHandler _packetHandler;
-        private FileTransferManager _fileTransferManager;
+        private FTPManager _ftpManager;
         private NetworkStream _stream;
         private Thread _receiveThread;
         private bool _isRunning;
@@ -32,7 +32,7 @@ namespace NetworkLibrary
             using (_stream = _clientInfo.Client.GetStream())
             {
                 _packetHandler = new FtpPacketHandler(_stream, _packetQueue, _isRunning);
-                _fileTransferManager = new FileTransferManager(_stream, new FTP()); // FTP 인스턴스 전달
+                _ftpManager = new FTPManager(_stream, new FTP()); // FTP 인스턴스 전달
 
                 _receiveThread = new Thread(_packetHandler.ReceivePackets);
                 _receiveThread.Start();
@@ -68,31 +68,29 @@ namespace NetworkLibrary
         {
             switch (requestProtocol.OpCode)
             {
-                case OpCode.ConnectionRequest:
-                    HandleConnectionRequest();
+                case OpCode.ConnectionRequest:                         // 접속 요청 0
+                    HandleConnectionRequest();                         // 접속 요청을 처리하는 함수
                     break;
 
-                case OpCode.FileTransferRequest:
-                    HandleFileTransferRequest(requestProtocol);
+                case OpCode.FileTransferRequest:                       // 파일 전송 요청 100
+                    HandleFileTransferRequest(requestProtocol);        // 파일 전송 요청을 처리하는 함수
                     break;
 
-                case OpCode.FileListRequest:
-                    HandleFileListRequest();
+                case OpCode.FileListRequest:                           // 파일 리스트 요청 105
+                    HandleFileListRequest();                           // 파일 리스트 요청을 처리하는 함수
+                    break; 
+
+                case OpCode.FileDownloadRequest:                       // 파일 다운로드 요청 110
+                    HandleFileDownloadRequest(requestProtocol);        // 파일 다운로드 요청을 처리하는 함수
                     break;
 
-                case OpCode.FileDownloadRequest:
-                    HandleFileDownloadRequest(requestProtocol);
+                case OpCode.RequestTerminationAfterProcessing:         // 종료 요청 400
+                    HandleTerminationRequest(ref isConnected);         // 종료 요청을 처리하는 함수
                     break;
 
-                case OpCode.RequestTerminationAfterProcessing:
-                    HandleTerminationRequest(ref isConnected);
+                case OpCode.ReceptionCompletedSuccessfully:            // 전송 완료 300
+                    Console.WriteLine($"수신 정상 완료");              // 전송 완료 패킷을 받았음을 출력
                     break;
-
-                case OpCode.ReceptionCompletedSuccessfully:
-                    Console.WriteLine($"수신 정상 완료");
-                    break;
-
-
 
                 default:
                     Console.WriteLine($"알 수 없는 OpCode를 수신하였습니다: {requestProtocol.OpCode}");
@@ -100,8 +98,9 @@ namespace NetworkLibrary
             }
         }
 
-        private void HandleConnectionRequest()
+        private void HandleConnectionRequest() 
         {
+            // 접속 요청 처리
             Console.WriteLine("클라이언트로부터 연결 요청을 받았습니다.");
             FTP responseProtocol = new FTP();
             byte[] responsePacket = responseProtocol.StartConnectionResponse(true);
@@ -133,7 +132,7 @@ namespace NetworkLibrary
 
             _stream.Write(responsePacket, 0, responsePacket.Length);
 
-            _fileTransferManager.ReceiveFileData(filename, filesize, clientFileHash, _packetQueue, _isRunning);
+            _ftpManager.ReceiveFileData(filename, filesize, clientFileHash, _packetQueue, _isRunning);
         }
 
         private void HandleFileListRequest()
@@ -144,10 +143,10 @@ namespace NetworkLibrary
             {
                 Console.WriteLine($"디렉토리가 존재하지 않으므로 '{currentDirectory}'를 생성합니다.");
                 Directory.CreateDirectory(currentDirectory);
-                DummyData.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1kb.txt"), 1 * 1024);
-                DummyData.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1mb.txt"), 1 * 1024 * 1024);
-                DummyData.CreateDummyFile(Path.Combine(currentDirectory, "dummy_100mb.txt"), 100 * 1024 * 1024);
-                DummyData.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1gb.txt"), 1L * 1024 * 1024 * 1024);
+                FTPManager.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1kb.txt"), 1 * 1024);
+                FTPManager.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1mb.txt"), 1 * 1024 * 1024);
+                FTPManager.CreateDummyFile(Path.Combine(currentDirectory, "dummy_100mb.txt"), 100 * 1024 * 1024);
+                FTPManager.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1gb.txt"), 1L * 1024 * 1024 * 1024);
                 Console.WriteLine("더미 파일 생성이 완료되었습니다.");
             }
 
@@ -172,7 +171,7 @@ namespace NetworkLibrary
                 FileInfo fileInfo = new FileInfo(filePath);
                 uint filesize = (uint)fileInfo.Length;
 
-                string fileHash = _fileTransferManager.CalculateFileHash(filePath);
+                string fileHash = _ftpManager.CalculateFileHash(filePath);
                 FTP responseProtocol = new FTP();
 
                 byte[] responsePacket = responseProtocol.DownloadFileResponse(true, filesize, fileHash);
@@ -180,7 +179,7 @@ namespace NetworkLibrary
 
                 _stream.Write(responsePacket, 0, responsePacket.Length);
 
-                _fileTransferManager.SendFileData(filePath);
+                _ftpManager.SendFileData(filePath);
             }
             else
             {

@@ -1,54 +1,54 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\",
+  "WorkspaceRootPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|c:\\users\\yuhan\\documents\\github\\24server\\networkprogramming\\tcpclienttest\\class2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|solutionrelative:tcpclienttest\\class2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|c:\\users\\chan\\documents\\github\\24server\\networkprogramming\\networklibrary\\serverhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|solutionrelative:networklibrary\\serverhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|c:\\users\\yuhan\\documents\\github\\24server\\networkprogramming\\tcpclienttest\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|solutionrelative:tcpclienttest\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|c:\\users\\yuhan\\documents\\github\\24server\\networkprogramming\\protocol\\ftp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|solutionrelative:protocol\\ftp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|c:\\users\\yuhan\\documents\\github\\24server\\networkprogramming\\tcpclienttest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|c:\\users\\chan\\documents\\github\\24server\\networkprogramming\\tcpclienttest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|solutionrelative:tcpclienttest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|c:\\users\\yuhan\\documents\\github\\24server\\networkprogramming\\networklibrary\\clienthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|solutionrelative:networklibrary\\clienthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|c:\\users\\chan\\documents\\github\\24server\\networkprogramming\\tcpclienttest\\class2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|solutionrelative:tcpclienttest\\class2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|c:\\users\\yuhan\\documents\\github\\24server\\networkprogramming\\networklibrary\\filetransfermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|solutionrelative:networklibrary\\filetransfermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|c:\\users\\yuhan\\documents\\github\\24server\\networkprogramming\\networklibrary\\ftppackethandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|solutionrelative:networklibrary\\ftppackethandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|c:\\users\\yuhan\\documents\\github\\24server\\networkprogramming\\tcpclienttest\\ftpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|c:\\users\\chan\\documents\\github\\24server\\networkprogramming\\tcpclienttest\\ftpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|solutionrelative:tcpclienttest\\ftpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|c:\\users\\yuhan\\documents\\github\\24server\\networkprogramming\\networklibrary\\clientinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|solutionrelative:networklibrary\\clientinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|c:\\users\\chan\\documents\\github\\24server\\networkprogramming\\protocol\\msg.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|solutionrelative:protocol\\msg.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|c:\\users\\yuhan\\documents\\github\\24server\\networkprogramming\\networklibrary\\tcpserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|c:\\users\\chan\\documents\\github\\24server\\networkprogramming\\protocol\\ftp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|solutionrelative:protocol\\ftp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|c:\\users\\chan\\documents\\github\\24server\\networkprogramming\\networklibrary\\tcpserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|solutionrelative:networklibrary\\tcpserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|c:\\users\\yuhan\\documents\\github\\24server\\networkprogramming\\networklibrary\\messageprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|solutionrelative:networklibrary\\messageprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|c:\\users\\chan\\documents\\github\\24server\\networkprogramming\\networklibrary\\ftppackethandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|solutionrelative:networklibrary\\ftppackethandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1A35DAD6-1C7D-4C70-8E8A-EA12C79F193A}|NetworkProgramming\\NetworkProgramming.csproj|c:\\users\\yuhan\\documents\\github\\24server\\networkprogramming\\networkprogramming\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A35DAD6-1C7D-4C70-8E8A-EA12C79F193A}|NetworkProgramming\\NetworkProgramming.csproj|solutionrelative:networkprogramming\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|c:\\users\\chan\\documents\\github\\24server\\networkprogramming\\networklibrary\\clienthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|solutionrelative:networklibrary\\clienthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|c:\\users\\chan\\documents\\github\\24server\\networkprogramming\\networklibrary\\clientinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|solutionrelative:networklibrary\\clientinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|c:\\users\\chan\\documents\\github\\24server\\networkprogramming\\protocol\\ftpmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|solutionrelative:protocol\\ftpmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|c:\\users\\chan\\documents\\github\\24server\\networkprogramming\\tcpclienttest\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|solutionrelative:tcpclienttest\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,151 +62,165 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Class2.cs",
-              "DocumentMoniker": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\Class2.cs",
-              "RelativeDocumentMoniker": "TcpClientTest\\Class2.cs",
-              "ToolTip": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\Class2.cs",
-              "RelativeToolTip": "TcpClientTest\\Class2.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T05:38:44.936Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\Class1.cs",
-              "RelativeDocumentMoniker": "TcpClientTest\\Class1.cs",
-              "ToolTip": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\Class1.cs",
-              "RelativeToolTip": "TcpClientTest\\Class1.cs",
-              "ViewState": "AQIAAE0AAAAAAAAAAAAmwG8AAAADAAAA",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\Program.cs",
+              "RelativeDocumentMoniker": "TcpClientTest\\Program.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\Program.cs",
+              "RelativeToolTip": "TcpClientTest\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwgAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T05:22:55.91Z",
+              "WhenOpened": "2024-11-09T19:47:33.628Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "ClientHandler.cs",
-              "DocumentMoniker": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientHandler.cs",
-              "RelativeDocumentMoniker": "NetworkLibrary\\ClientHandler.cs",
-              "ToolTip": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientHandler.cs",
-              "RelativeToolTip": "NetworkLibrary\\ClientHandler.cs",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAiwFIAAAAwAAAAAAAAAA==",
+              "Title": "MSG.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\MSG.cs",
+              "RelativeDocumentMoniker": "Protocol\\MSG.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\MSG.cs",
+              "RelativeToolTip": "Protocol\\MSG.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAD4vzoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T04:29:01.14Z"
+              "WhenOpened": "2024-11-09T19:45:28.882Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ClientInfo.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientInfo.cs",
+              "RelativeDocumentMoniker": "NetworkLibrary\\ClientInfo.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientInfo.cs",
+              "RelativeToolTip": "NetworkLibrary\\ClientInfo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-09T19:24:51.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "FTPManager.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTPManager.cs",
+              "RelativeDocumentMoniker": "Protocol\\FTPManager.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTPManager.cs",
+              "RelativeToolTip": "Protocol\\FTPManager.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAYAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-09T19:05:24.287Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FtpClient.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\FtpClient.cs",
+              "RelativeDocumentMoniker": "TcpClientTest\\FtpClient.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\FtpClient.cs",
+              "RelativeToolTip": "TcpClientTest\\FtpClient.cs",
+              "ViewState": "AQIAAHUBAAAAAAAAAAAWwIgBAAB/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-09T15:57:00.361Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "FTP.cs",
-              "DocumentMoniker": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTP.cs",
-              "RelativeDocumentMoniker": "Protocol\\FTP.cs",
-              "ToolTip": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTP.cs",
-              "RelativeToolTip": "Protocol\\FTP.cs",
-              "ViewState": "AQIAAKAAAAAAAAAAAAAnwLAAAABRAAAA",
+              "Title": "Class2.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\Class2.cs",
+              "RelativeDocumentMoniker": "TcpClientTest\\Class2.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\Class2.cs",
+              "RelativeToolTip": "TcpClientTest\\Class2.cs",
+              "ViewState": "AQIAADQAAAAAAAAAAAAIwFQAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T04:29:03.351Z",
+              "WhenOpened": "2024-11-09T16:00:13.637Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\Class1.cs",
+              "RelativeDocumentMoniker": "TcpClientTest\\Class1.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\Class1.cs",
+              "RelativeToolTip": "TcpClientTest\\Class1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-09T16:00:12.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FTP.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTP.cs",
+              "RelativeDocumentMoniker": "Protocol\\FTP.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTP.cs",
+              "RelativeToolTip": "Protocol\\FTP.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-09T15:55:40.659Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ClientHandler.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientHandler.cs",
+              "RelativeDocumentMoniker": "NetworkLibrary\\ClientHandler.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientHandler.cs",
+              "RelativeToolTip": "NetworkLibrary\\ClientHandler.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAAAwC8AAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-09T11:48:03.497Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TcpServer.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\TcpServer.cs",
+              "RelativeDocumentMoniker": "NetworkLibrary\\TcpServer.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\TcpServer.cs",
+              "RelativeToolTip": "NetworkLibrary\\TcpServer.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-09T19:35:17.511Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ServerHandler.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ServerHandler.cs",
+              "RelativeDocumentMoniker": "NetworkLibrary\\ServerHandler.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ServerHandler.cs",
+              "RelativeToolTip": "NetworkLibrary\\ServerHandler.cs",
+              "ViewState": "AQIAAE0AAAAAAAAAAAAcwGAAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-09T19:34:45.798Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "FtpClient.cs",
-              "DocumentMoniker": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\FtpClient.cs",
-              "RelativeDocumentMoniker": "TcpClientTest\\FtpClient.cs",
-              "ToolTip": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\FtpClient.cs",
-              "RelativeToolTip": "TcpClientTest\\FtpClient.cs",
-              "ViewState": "AgIAAIkAAAAAAAAAAAAtwIkBAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T06:32:16.859Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\Program.cs",
-              "RelativeDocumentMoniker": "TcpClientTest\\Program.cs",
-              "ToolTip": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\Program.cs",
-              "RelativeToolTip": "TcpClientTest\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T05:56:11.776Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "FtpPacketHandler.cs",
-              "DocumentMoniker": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\FtpPacketHandler.cs",
+              "DocumentMoniker": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\FtpPacketHandler.cs",
               "RelativeDocumentMoniker": "NetworkLibrary\\FtpPacketHandler.cs",
-              "ToolTip": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\FtpPacketHandler.cs",
+              "ToolTip": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\FtpPacketHandler.cs",
               "RelativeToolTip": "NetworkLibrary\\FtpPacketHandler.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAIAywCMAAAAPAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T04:11:33.301Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FileTransferManager.cs",
-              "DocumentMoniker": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\FileTransferManager.cs",
-              "RelativeDocumentMoniker": "NetworkLibrary\\FileTransferManager.cs",
-              "ToolTip": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\FileTransferManager.cs",
-              "RelativeToolTip": "NetworkLibrary\\FileTransferManager.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAQwFoAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T04:24:16.515Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "TcpServer.cs",
-              "DocumentMoniker": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\TcpServer.cs",
-              "RelativeDocumentMoniker": "NetworkLibrary\\TcpServer.cs",
-              "ToolTip": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\TcpServer.cs",
-              "RelativeToolTip": "NetworkLibrary\\TcpServer.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAADwvwAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T04:27:49.352Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "MessageProcessor.cs",
-              "DocumentMoniker": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\MessageProcessor.cs",
-              "RelativeDocumentMoniker": "NetworkLibrary\\MessageProcessor.cs",
-              "ToolTip": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\MessageProcessor.cs",
-              "RelativeToolTip": "NetworkLibrary\\MessageProcessor.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAkwB0AAABBAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T04:27:37.588Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ClientInfo.cs",
-              "DocumentMoniker": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientInfo.cs",
-              "RelativeDocumentMoniker": "NetworkLibrary\\ClientInfo.cs",
-              "ToolTip": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientInfo.cs",
-              "RelativeToolTip": "NetworkLibrary\\ClientInfo.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T04:27:51.319Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkProgramming\\Program.cs",
-              "RelativeDocumentMoniker": "NetworkProgramming\\Program.cs",
-              "ToolTip": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkProgramming\\Program.cs",
-              "RelativeToolTip": "NetworkProgramming\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAABJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T04:01:28.222Z"
+              "WhenOpened": "2024-11-09T19:21:07.715Z",
+              "EditorCaption": ""
             }
           ]
         }

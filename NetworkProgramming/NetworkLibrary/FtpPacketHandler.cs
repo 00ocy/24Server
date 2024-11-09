@@ -1,7 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Net.Sockets;
 using System.Text;
-
+using Protocol;
 public class FtpPacketHandler
 {
     private readonly NetworkStream _stream;
