@@ -13,7 +13,6 @@ namespace NetworkLibrary
     public class ClientHandler
     {
         private readonly ClientInfo _clientInfo;
-        private FtpPacketHandler _packetHandler;
         private FTPManager _ftpManager;
         private NetworkStream _stream;
         private Thread _receiveThread;
@@ -31,10 +30,10 @@ namespace NetworkLibrary
         {
             using (_stream = _clientInfo.Client.GetStream())
             {
-                _packetHandler = new FtpPacketHandler(_stream, _packetQueue, _isRunning);
                 _ftpManager = new FTPManager(_stream, new FTP()); // FTP 인스턴스 전달
 
-                _receiveThread = new Thread(_packetHandler.ReceivePackets);
+                // 람다 표현식 사용
+                _receiveThread = new Thread(() => FTP_PacketListener.ReceivePackets(_stream, _packetQueue, _isRunning));
                 _receiveThread.Start();
 
                 try
@@ -43,7 +42,7 @@ namespace NetworkLibrary
 
                     while (isConnected)
                     {
-                        FTP requestProtocol = _packetHandler.WaitForPacket();
+                        FTP requestProtocol = _ftpManager.WaitForPacket(_packetQueue,_isRunning);
 
                         if (requestProtocol == null)
                             break;
@@ -68,27 +67,27 @@ namespace NetworkLibrary
         {
             switch (requestProtocol.OpCode)
             {
-                case OpCode.ConnectionRequest:                         // 접속 요청 0
+                case OpCode.ConnectionRequest:                         // 접속 요청
                     HandleConnectionRequest();                         // 접속 요청을 처리하는 함수
                     break;
 
-                case OpCode.FileTransferRequest:                       // 파일 전송 요청 100
+                case OpCode.FileTransferRequest:                       // 파일 전송 요청
                     HandleFileTransferRequest(requestProtocol);        // 파일 전송 요청을 처리하는 함수
                     break;
 
-                case OpCode.FileListRequest:                           // 파일 리스트 요청 105
+                case OpCode.FileListRequest:                           // 파일 리스트 요청
                     HandleFileListRequest();                           // 파일 리스트 요청을 처리하는 함수
                     break; 
 
-                case OpCode.FileDownloadRequest:                       // 파일 다운로드 요청 110
+                case OpCode.FileDownloadRequest:                       // 파일 다운로드 요청
                     HandleFileDownloadRequest(requestProtocol);        // 파일 다운로드 요청을 처리하는 함수
                     break;
 
-                case OpCode.RequestTerminationAfterProcessing:         // 종료 요청 400
+                case OpCode.RequestTerminationAfterProcessing:         // 종료 요청
                     HandleTerminationRequest(ref isConnected);         // 종료 요청을 처리하는 함수
                     break;
 
-                case OpCode.ReceptionCompletedSuccessfully:            // 전송 완료 300
+                case OpCode.ReceptionCompletedSuccessfully:            // 전송 완료
                     Console.WriteLine($"수신 정상 완료");              // 전송 완료 패킷을 받았음을 출력
                     break;
 
@@ -102,7 +101,7 @@ namespace NetworkLibrary
         {
             // 접속 요청 처리
             Console.WriteLine("클라이언트로부터 연결 요청을 받았습니다.");
-            FTP responseProtocol = new FTP();
+            FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
             byte[] responsePacket = responseProtocol.StartConnectionResponse(true);
             _stream.Write(responsePacket, 0, responsePacket.Length);
         }
@@ -110,7 +109,7 @@ namespace NetworkLibrary
         private void HandleTerminationRequest(ref bool isConnected)
         {
             Console.WriteLine("클라이언트로부터 연결 종료 요청을 받았습니다.");
-            FTP disconnectResponse = new FTP();
+            FTP_ResponsePacket disconnectResponse = new FTP_ResponsePacket(new FTP());
             byte[] disconnectPacket = disconnectResponse.DisconnectionResponse();
             _stream.Write(disconnectPacket, 0, disconnectPacket.Length);
             isConnected = false;
@@ -126,7 +125,7 @@ namespace NetworkLibrary
 
             Console.WriteLine($"파일 전송 요청을 받았습니다. 파일명: {filename}, 크기: {filesize} bytes");
 
-            FTP responseProtocol = new FTP();
+            FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
             byte[] responsePacket = responseProtocol.TransmitFileResponse(true);
             responseProtocol.PrintPacketInfo("보낸 패킷");
 
@@ -151,7 +150,7 @@ namespace NetworkLibrary
             }
 
             string[] files = Directory.GetFiles(currentDirectory).Select(Path.GetFileName).ToArray();
-            FTP responseProtocol = new FTP();
+            FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
             byte[] responsePacket = responseProtocol.GetFileListResponse(files);
             responseProtocol.PrintPacketInfo("보낸 패킷");
 
@@ -172,7 +171,7 @@ namespace NetworkLibrary
                 uint filesize = (uint)fileInfo.Length;
 
                 string fileHash = _ftpManager.CalculateFileHash(filePath);
-                FTP responseProtocol = new FTP();
+                FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
 
                 byte[] responsePacket = responseProtocol.DownloadFileResponse(true, filesize, fileHash);
                 responseProtocol.PrintPacketInfo("보낸 패킷");
@@ -183,7 +182,7 @@ namespace NetworkLibrary
             }
             else
             {
-                FTP responseProtocol = new FTP();
+                FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
                 byte[] responsePacket = responseProtocol.DownloadFileResponse(false);
                 responseProtocol.PrintPacketInfo("보낸 패킷");
 

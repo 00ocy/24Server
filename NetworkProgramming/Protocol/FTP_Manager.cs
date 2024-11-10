@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
@@ -39,7 +40,7 @@ namespace Protocol
                     byte[] dataChunk = new byte[bytesRead];
                     Array.Copy(buffer, dataChunk, bytesRead);
 
-                    byte[] dataPacket = _ftpProtocol.SendFileDataPacket(seqNo, dataChunk, isFinal);
+                    byte[] dataPacket = SendFileDataPacket(seqNo, dataChunk, isFinal);
                     _ftpProtocol.PrintPacketInfo("보낸 패킷");
 
                     _stream.Write(dataPacket, 0, dataPacket.Length);
@@ -50,6 +51,16 @@ namespace Protocol
             Console.WriteLine($"\n[파일 전송 끝] 파일경로: {filePath}");
             Console.WriteLine($"[SHA-256 해시] {fileHash}\n");
         }
+        // 파일 데이터 패킷 전송
+        public byte[] SendFileDataPacket(uint seqNo, byte[] data, bool isFinal)
+        {
+            _ftpProtocol.OpCode = isFinal ? OpCode.FileDownloadDataEnd : OpCode.FileDownloadData;  // 파일 데이터 전송 여부에 따른 OpCode 설정
+            _ftpProtocol.SeqNo = seqNo;  // 순차 번호 설정
+            _ftpProtocol.Body = data;  // 전송할 데이터 설정
+            _ftpProtocol.Length = (uint)(data != null ? data.Length : 0);  // 데이터 길이 설정
+            return _ftpProtocol.GetPacket();  // 패킷 생성 및 반환
+        }
+
 
         // 파일 데이터를 패킷 단위로 수신하고 파일로 저장
         public void ReceiveFileData(string filename, uint filesize, string expectedHash, ConcurrentQueue<FTP> packetQueue, bool isRunning)
@@ -82,9 +93,9 @@ namespace Protocol
                             Console.WriteLine($"\n[파일 수신 완료] 파일명: '{filename}'");
                             Console.WriteLine($"[SHA-256 해시] {receivedFileHash}\n");
 
-                            FTP completionResponse = new FTP();
-                            byte[] responsePacket = completionResponse.TransferCompletionResponse(true);
-                            _stream.Write(responsePacket, 0, responsePacket.Length);
+                            FTP_ResponsePacket completionResponse = new FTP_ResponsePacket(new FTP());
+                            byte[] completionPacket = completionResponse.TransferCompletionResponse(true);
+                            _stream.Write(completionPacket, 0, completionPacket.Length);
                         }
                         else
                         {
@@ -101,18 +112,6 @@ namespace Protocol
                 Console.WriteLine($"파일 데이터 수신 중 오류 발생: {ex.Message}");
             }
         }
-
-        // 파일의 해시 계산
-        public string CalculateFileHash(string filePath)
-        {
-            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] hash = sha256.ComputeHash(fs);
-                return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
-            }
-        }
-
         // 수신된 파일 저장
         private string SaveReceivedFile(string filename, Dictionary<uint, byte[]> fileChunks)
         {
@@ -130,9 +129,38 @@ namespace Protocol
 
             return filePath;
         }
+       
 
+        // 파일의 해시 계산
+        public string CalculateFileHash(string filePath)
+        {
+            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hash = sha256.ComputeHash(fs);
+                return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+            }
+        }
+                
+        
+        // 첫 번째 WaitForPacket 메서드 - 특정 조건 없이 패킷 대기
+        public FTP WaitForPacket(ConcurrentQueue<FTP> packetQueue, bool isRunning)
+        {
+            while (isRunning)
+            {
+                if (packetQueue.TryDequeue(out FTP packet))
+                {
+                    return packet;
+                }
+                else
+                {
+                    Thread.Sleep(10);
+                }
+            }
+            return null;
+        }
         // 패킷 수신 대기 (특정 OpCode에 맞는 패킷)
-        private FTP WaitForPacket(ConcurrentQueue<FTP> packetQueue, bool isRunning, params OpCode[] expectedOpCodes)
+        public FTP WaitForPacket(ConcurrentQueue<FTP> packetQueue, bool isRunning, params OpCode[] expectedOpCodes)
         {
             int timeout = 5000;
             int waited = 0;
@@ -154,6 +182,7 @@ namespace Protocol
             return null;
         }
 
+
         // 더미 파일 생성 메서드
         public static void CreateDummyFile(string filePath, long sizeInBytes)
         {
@@ -174,5 +203,7 @@ namespace Protocol
 
             Console.WriteLine($"{filePath} ({sizeInBytes / 1024 / 1024}MB) 파일이 생성되었습니다.");
         }
+
+
     }
 }
