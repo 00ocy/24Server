@@ -4,7 +4,10 @@ using System.Security.Cryptography;
 namespace Protocol
 {
 
-    // FTP 패킷을 처리하는 클래스
+    // FTP 객체 초기화
+    // FTP OpCode 관리
+    // FTP 헤더 생성
+    // 전체 패킷 생성 함수
     public class FTP
     {
         public byte ProtoVer { get; internal set; }          // 프로토콜 버전

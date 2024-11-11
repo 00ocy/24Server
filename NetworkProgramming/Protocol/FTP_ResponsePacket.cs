@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Protocol
 {
+    // 응답하는 패킷 
     public class FTP_ResponsePacket
     {
         private readonly FTP _ftpProtocol;
@@ -24,7 +25,7 @@ namespace Protocol
             return _ftpProtocol.GetPacket();
         }
 
-        // 파일 전송 응답 패킷 생성
+        // 파일 전송해도 되는지 응답 패킷 생성
         public byte[] TransmitFileResponse(bool ok, OpCode errorCode = OpCode.FileTransferOK)
         {
             _ftpProtocol.OpCode = ok ? OpCode.FileTransferOK : errorCode;
@@ -33,11 +34,12 @@ namespace Protocol
             return _ftpProtocol.GetPacket();
         }
 
-        // 파일 목록 응답 패킷 생성
+        // 파일 목록 보여달라는 응답 패킷 생성
         public byte[] GetFileListResponse(string[] filenames)
         {
+            // 디렉토리의 파일 목록 배열을 받아온 상태
             _ftpProtocol.OpCode = OpCode.FileListResponse;
-            string fileList = string.Join("\0", filenames);
+            string fileList = string.Join("\0", filenames);      // 파일 이름 배열을 file1\0file2\0.. 형태로 바꿈
             _ftpProtocol.Body = Encoding.UTF8.GetBytes(fileList);
             _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
             return _ftpProtocol.GetPacket();

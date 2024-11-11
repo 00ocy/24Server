@@ -10,6 +10,9 @@ using System.Text;
 using System.Threading;
 namespace Protocol
 {
+    // 패킷 단위로 파일 전송 & 저장
+    // 패킷 수신 대기 함수
+    // 해시 계산 함수
     public class FTPManager
     {
         private readonly NetworkStream _stream;
@@ -51,7 +54,7 @@ namespace Protocol
             Console.WriteLine($"\n[파일 전송 끝] 파일경로: {filePath}");
             Console.WriteLine($"[SHA-256 해시] {fileHash}\n");
         }
-        // 파일 데이터 패킷 전송
+        // 파일 데이터 전송 패킷 생성 
         public byte[] SendFileDataPacket(uint seqNo, byte[] data, bool isFinal)
         {
             _ftpProtocol.OpCode = isFinal ? OpCode.FileDownloadDataEnd : OpCode.FileDownloadData;  // 파일 데이터 전송 여부에 따른 OpCode 설정
@@ -112,7 +115,7 @@ namespace Protocol
                 Console.WriteLine($"파일 데이터 수신 중 오류 발생: {ex.Message}");
             }
         }
-        // 수신된 파일 저장
+        // 수신된 파일 저장 함수
         private string SaveReceivedFile(string filename, Dictionary<uint, byte[]> fileChunks)
         {
             string directoryPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DownloadFiles");

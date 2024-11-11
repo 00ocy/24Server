@@ -16,7 +16,10 @@
       },
       "Protocol/1.0.0": {
         "runtime": {
-          "Protocol.dll": {}
+          "Protocol.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

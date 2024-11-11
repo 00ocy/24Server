@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Protocol
 {
+    // 요청하는 FTP 패킷 모음
     public class FTP_RequestPacket
     {
         private readonly FTP _ftpProtocol;
