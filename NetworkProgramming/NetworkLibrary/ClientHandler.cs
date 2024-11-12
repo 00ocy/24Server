@@ -71,8 +71,8 @@ namespace NetworkLibrary
                     HandleConnectionRequest();                         // 접속 요청을 처리하는 함수
                     break;
 
-                case OpCode.FileTransferRequest:                       // 파일 전송 요청
-                    HandleFileTransferRequest(requestProtocol);        // 파일 전송 요청을 처리하는 함수
+                case OpCode.FileTransferRequest:                       // 파일 전송가능여부확인 요청
+                    HandleFileTransferRequest(requestProtocol);        // 파일 전송가능여부확인 요청을 처리하는 함수
                     break;
 
                 case OpCode.FileListRequest:                           // 파일 리스트 요청

@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace Protocol
 {
+    // FTP 패킷 수신 작업
+    // Thread로 호출되어 수신을 담당
+    // 패킷 읽기, 파싱
     public class FTP_PacketListener
     {
         // ReceivePackets 메서드 - 패킷 수신을 위한 작업 실행
