@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\YUHAN\\.nuget\\packages\\": {}
+    "C:\\Users\\chan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
+      "projectUniqueName": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
       "projectName": "Protocol",
-      "projectPath": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
-      "packagesPath": "C:\\Users\\YUHAN\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\obj\\",
+      "projectPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
+      "packagesPath": "C:\\Users\\chan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\YUHAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -66,8 +66,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "캐시 파일 C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\obj\\project.nuget.cache을(를) 읽는 동안 문제가 발생했습니다. Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

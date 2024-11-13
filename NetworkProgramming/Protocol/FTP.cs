@@ -77,6 +77,15 @@ namespace Protocol
         // 002: 접속 Reject
         ConnectionReject = 2,
 
+        // 005: 메세지 모드 변경 요청
+        MessageModeRequest = 5,
+
+        // 006: 메세지 모드 변경 OK
+        MessageModeOK = 6,
+
+        // 006: 메세지 모드 변경 거부
+        MessageModeReject = 7,
+
         // 100: 파일 전송 요청
         FileTransferRequest = 100,
 
@@ -110,11 +119,7 @@ namespace Protocol
         // 113: 파일 다운로드 실패 (SHA-256 해시값이 다름)
         FileDownloadFailed_SHAhashValueDifferent =113,
 
-        // 120: 파일 데이터 전송 (다운로드)
-        FileDownloadData = 120,
-
-        // 121: 파일 데이터 전송 완료 (다운로드)
-        FileDownloadDataEnd = 121,
+     
         //----------------------------------------
 
         // 200: 분할 전송 시작과 전송 중

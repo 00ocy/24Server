@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "ZjwGHL87wpA=",
+  "dgSpecHash": "KYaT4H/QXvU7XIMZWrFBIN2+f00Ma12YvoDOZIC1oMcGE92HeZgVru3g52uE5jBXYzuqn4RtVQxQT2fgiidhvQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\YUHAN\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkProgramming\\NetworkProgramming.csproj",
+  "projectFilePath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkProgramming\\NetworkProgramming.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "캐시 파일 C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkProgramming\\obj\\project.nuget.cache을(를) 읽는 동안 문제가 발생했습니다. Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

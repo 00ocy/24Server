@@ -25,7 +25,10 @@ namespace Protocol
                     FTP packet = ReceivePacket(stream);
 
                     // 패킷 내용 출력
-                    packet.PrintPacketInfo("받은 패킷");
+                    if(packet.OpCode != OpCode.SplitTransferInProgress && packet.OpCode != OpCode.SplitTransferFinal)
+                    {
+                        packet.PrintPacketInfo("받은 패킷");
+                    }
 
                     // 패킷을 큐에 저장 (ConcurrentQueue는 스레드 안전함)
                     packetQueue.Enqueue(packet);

@@ -71,6 +71,10 @@ namespace NetworkLibrary
                     HandleConnectionRequest();                         // 접속 요청을 처리하는 함수
                     break;
 
+                case OpCode.MessageModeRequest:                               // 메세지 모드 변경 요청
+                    HandleChangeToMessageModeRequest();                         // 접속 요청을 처리하는 함수
+                    break;
+
                 case OpCode.FileTransferRequest:                       // 파일 전송가능여부확인 요청
                     HandleFileTransferRequest(requestProtocol);        // 파일 전송가능여부확인 요청을 처리하는 함수
                     break;
@@ -95,6 +99,18 @@ namespace NetworkLibrary
                     Console.WriteLine($"알 수 없는 OpCode를 수신하였습니다: {requestProtocol.OpCode}");
                     break;
             }
+        }
+
+        private void HandleChangeToMessageModeRequest()
+        { 
+            // 메세지 모드 변경 요청 처리
+            Console.WriteLine("메세지 모드 변경 요청을 받았습니다.");
+            FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
+
+
+            // 변경 되었을 경우
+            byte[] responsePacket = responseProtocol.ChangeMessageModeResponse(true);
+            _stream.Write(responsePacket, 0, responsePacket.Length);
         }
 
         private void HandleConnectionRequest() 

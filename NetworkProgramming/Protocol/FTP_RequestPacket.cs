@@ -64,5 +64,13 @@ namespace Protocol
         {
             Console.WriteLine($"[{action}] OpCode: {_ftpProtocol.OpCode} ({(int)_ftpProtocol.OpCode}) / SeqNo: {_ftpProtocol.SeqNo} / Length: {_ftpProtocol.Length}");
         }
+
+        public byte[] ChangeToMessageModeRequest()
+        {
+            _ftpProtocol.OpCode = OpCode.MessageModeRequest;
+            _ftpProtocol.Length = 0;
+            _ftpProtocol.Body = null;
+            return _ftpProtocol.GetPacket();
+        }
     }
 }

@@ -20,18 +20,12 @@
           "Protocol": "1.0.0"
         },
         "runtime": {
-          "NetworkLibrary.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "NetworkLibrary.dll": {}
         }
       },
       "Protocol/1.0.0": {
         "runtime": {
-          "Protocol.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Protocol.dll": {}
         }
       }
     }

@@ -42,9 +42,9 @@ namespace TcpClientTest
                 Console.WriteLine($"Remote-[{_remoteEp.Address}]:[{_remoteEp.Port}]");
                 Console.WriteLine("-------------------------------------------");
 
-                // 수신 쓰레드 시작
                 _isRunning = true;
-                // 람다 표현식 사용
+
+                // 수신 쓰레드 시작
                 _receiveThread = new Thread(() => FTP_PacketListener.ReceivePackets(_stream, _packetQueue, _isRunning));
 
                 _receiveThread.Start();
@@ -59,10 +59,11 @@ namespace TcpClientTest
                 bool exit = false;
                 while (!exit)
                 {
-                    Console.WriteLine("Select File Transfer Mode");
-                    Console.WriteLine("1. File Upload");
-                    Console.WriteLine("2. File Download");
-                    Console.WriteLine("3. Exit");
+                    Console.WriteLine("선택 해주세요");
+                    Console.WriteLine("1. 메세지 모드로 변경");
+                    Console.WriteLine("2. 파일 업로드");
+                    Console.WriteLine("3. 파일 다운로드");
+                    Console.WriteLine("4. 종료");
 
                     int select = 0;
                     bool success = int.TryParse(Console.ReadLine(), out select);
@@ -72,12 +73,15 @@ namespace TcpClientTest
                         switch (select)
                         {
                             case 1:
-                                ShowClientUploadFiles();
+                                ChangeToMessageMode();
                                 break;
                             case 2:
-                                ShowServerDownloadFiles();
+                                ShowClientUploadFiles();
                                 break;
                             case 3:
+                                ShowServerDownloadFiles();
+                                break;
+                            case 4:
                                 exit = true;
                                 break;
                             default:
@@ -113,6 +117,7 @@ namespace TcpClientTest
                 _client?.Close();
             }
         }
+
 
         private bool ConnectionCheck()
         {
@@ -193,6 +198,26 @@ namespace TcpClientTest
                 {
                     Console.WriteLine($"스트림 또는 클라이언트 종료 중 오류 발생: {ex.Message}");
                 }
+            }
+        }
+
+        public void ChangeToMessageMode()
+        {
+            FTP_RequestPacket MessageModeRequest = new FTP_RequestPacket(new FTP());
+
+            byte[] MessageModePacket = MessageModeRequest.ChangeToMessageModeRequest();
+
+            // 패킷 내용 출력
+            MessageModeRequest.PrintPacketInfo("보낸 패킷");
+
+            // 2. 파일 전송 요청 패킷 전송
+            _stream.Write(MessageModePacket, 0, MessageModePacket.Length);
+
+            // 3. 서버로부터 파일 전송 응답 수신 대기
+            FTP responseProtocol = _ftpManager.WaitForPacket(_packetQueue, _isRunning);
+            if (responseProtocol != null && responseProtocol.OpCode == OpCode.MessageModeOK)
+            {
+                Console.WriteLine("메세지 모드로 변경되었습니다.");
             }
         }
         public void ShowClientUploadFiles()

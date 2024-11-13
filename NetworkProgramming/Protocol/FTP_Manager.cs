@@ -8,6 +8,7 @@ using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
+using static System.Collections.Specialized.BitVector32;
 namespace Protocol
 {
     // 패킷 단위로 파일 전송 & 저장
@@ -61,7 +62,7 @@ namespace Protocol
             uint seqNo = 0;
 
             string fileHash = CalculateFileHash(filePath);
-            Console.WriteLine($"\n[파일 전송 시작] 파일경로: {filePath}");
+            Console.WriteLine($"\n[파일 전송 시작] 파일경로: {filePath}\n");
 
             // 파일 크기 계산
             FileInfo fileInfo = new FileInfo(filePath);
@@ -73,7 +74,7 @@ namespace Protocol
                 long totalBytesSent = 0;
 
                 // 진행 상태 출력 (프로그레스 바)
-                Console.WriteLine("파일 전송 진행 상태:");
+                Console.WriteLine("[파일 전송 진행 상태]");
 
                 while ((bytesRead = fs.Read(buffer, 0, bufferSize)) > 0)
                 {
@@ -82,7 +83,7 @@ namespace Protocol
                     Array.Copy(buffer, dataChunk, bytesRead);
 
                     byte[] dataPacket = SendFileDataPacket(seqNo, dataChunk, isFinal);
-                    _ftpProtocol.PrintPacketInfo("보낸 패킷");
+                    
 
                     _stream.Write(dataPacket, 0, dataPacket.Length);
 
@@ -94,24 +95,21 @@ namespace Protocol
 
                     // 프로그레스 바 출력
                     Console.SetCursorPosition(0, Console.CursorTop);  // 같은 줄에 계속 출력
-                    Console.Write($"{totalBytesSent}/{totalFileSize} [{new string('=', barCount)}{new string(' ', 20 - barCount)}] {percent:0.00}%");
-
+                    Console.Write($"[{new string('=', barCount)}{new string(' ', 20 - barCount)}] {percent:0.00}% [보낸 패킷] OpCode: {_ftpProtocol.OpCode} ({(int)_ftpProtocol.OpCode}) / SeqNo: {_ftpProtocol.SeqNo} / Length: {_ftpProtocol.Length}");
                     seqNo++;  // 순차 번호 증가
 
-                    // 잠시 대기 (여기서는 10ms로 설정)
-                    Thread.Sleep(10);
                 }
             }
 
-            Console.WriteLine($"\n[파일 전송 끝] 파일경로: {filePath}");
-            Console.WriteLine($"[SHA-256 해시] {fileHash}\n");
+            Console.WriteLine($"\n\n[파일 전송 끝] 파일경로: {filePath}");
+            Console.WriteLine($"\n[SHA-256 해시] {fileHash}\n");
         }
 
 
         // 파일 데이터 전송 패킷 생성 
         public byte[] SendFileDataPacket(uint seqNo, byte[] data, bool isFinal)
         {
-            _ftpProtocol.OpCode = isFinal ? OpCode.FileDownloadDataEnd : OpCode.FileDownloadData;  // 파일 데이터 전송 여부에 따른 OpCode 설정
+            _ftpProtocol.OpCode = isFinal ? OpCode.SplitTransferFinal : OpCode.SplitTransferInProgress;  // 파일 데이터 전송 여부에 따른 OpCode 설정
             _ftpProtocol.SeqNo = seqNo;  // 순차 번호 설정
             _ftpProtocol.Body = data;  // 전송할 데이터 설정
             _ftpProtocol.Length = (uint)(data != null ? data.Length : 0);  // 데이터 길이 설정
@@ -124,12 +122,15 @@ namespace Protocol
         {
             Dictionary<uint, byte[]> fileChunks = new Dictionary<uint, byte[]>();
             bool isReceiving = true;
+            long totalBytesReceived = 0;
+
+            Console.WriteLine("\n[파일 수신 진행 상태]");
 
             try
             {
                 while (isReceiving && isRunning)
                 {
-                    FTP dataPacket = WaitForPacket(packetQueue, isRunning, OpCode.FileDownloadData, OpCode.FileDownloadDataEnd);
+                    FTP dataPacket = WaitForPacket(packetQueue, isRunning, OpCode.SplitTransferInProgress, OpCode.SplitTransferFinal);
 
                     if (dataPacket == null)
                     {
@@ -138,8 +139,17 @@ namespace Protocol
                     }
 
                     fileChunks[dataPacket.SeqNo] = dataPacket.Body;
+                    totalBytesReceived += dataPacket.Body.Length;
 
-                    if (dataPacket.OpCode == OpCode.FileDownloadDataEnd)
+                    // Calculate and display progress
+                    float percent = (float)totalBytesReceived / filesize * 100;
+                    int barCount = (int)(percent / (100f / 20)); // 20-character progress bar
+
+                    // Update progress bar in the same console line
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.Write($"[{new string('=', barCount)}{new string(' ', 20 - barCount)}] {percent:0.00}% [받은 패킷] OpCode: {dataPacket.OpCode} ({(int)dataPacket.OpCode}) / SeqNo: {dataPacket.SeqNo} / Length: {dataPacket.Body.Length}");
+
+                    if (dataPacket.OpCode == OpCode.SplitTransferFinal)
                     {
                         isReceiving = false;
                         string receivedFilePath = SaveReceivedFile(filename, fileChunks);
@@ -147,16 +157,17 @@ namespace Protocol
                         string receivedFileHash = CalculateFileHash(receivedFilePath);
                         if (receivedFileHash == expectedHash)
                         {
-                            Console.WriteLine($"\n[파일 수신 완료] 파일명: '{filename}'");
-                            Console.WriteLine($"[SHA-256 해시] {receivedFileHash}\n");
+                            Console.WriteLine($"\n\n[파일 수신 완료] 파일명: '{filename}'");
+                            Console.WriteLine($"\n[SHA-256 해시] {receivedFileHash}\n");
 
                             FTP_ResponsePacket completionResponse = new FTP_ResponsePacket(new FTP());
                             byte[] completionPacket = completionResponse.TransferCompletionResponse(true);
+                            completionResponse.PrintPacketInfo("보낸 패킷");
                             _stream.Write(completionPacket, 0, completionPacket.Length);
                         }
                         else
                         {
-                            //FileDownloadFailed_SHAhashValueDifferent
+                            // FileDownloadFailed_SHAhashValueDifferent
                             Console.WriteLine($"[받은 SHA-256 해시] {expectedHash}");
                             Console.WriteLine($"[현재 SHA-256 해시] {receivedFileHash}");
                             Console.WriteLine("파일 다운로드가 완료되었지만 해시값이 일치하지 않습니다. 파일이 손상되었을 수 있습니다.");
@@ -169,6 +180,7 @@ namespace Protocol
                 Console.WriteLine($"파일 데이터 수신 중 오류 발생: {ex.Message}");
             }
         }
+
         // 수신된 파일 저장 함수
         private string SaveReceivedFile(string filename, Dictionary<uint, byte[]> fileChunks)
         {
