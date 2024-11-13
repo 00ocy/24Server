@@ -24,19 +24,57 @@ namespace Protocol
             _ftpProtocol = ftpProtocol;
         }
 
-        // 파일을 읽고 데이터를 패킷 단위로 전송
+        /*  // 파일을 읽고 데이터를 패킷 단위로 전송
+          public void SendFileData(string filePath)
+          {
+              const int bufferSize = 4096;
+              byte[] buffer = new byte[bufferSize];
+              uint seqNo = 0;
+
+              string fileHash = CalculateFileHash(filePath);
+              Console.WriteLine($"\n[파일 전송 시작] 파일경로: {filePath}");
+
+              using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+              {
+                  int bytesRead;
+                  while ((bytesRead = fs.Read(buffer, 0, bufferSize)) > 0)
+                  {
+                      bool isFinal = fs.Position == fs.Length;
+                      byte[] dataChunk = new byte[bytesRead];
+                      Array.Copy(buffer, dataChunk, bytesRead);
+
+                      byte[] dataPacket = SendFileDataPacket(seqNo, dataChunk, isFinal);
+                      _ftpProtocol.PrintPacketInfo("보낸 패킷");
+
+                      _stream.Write(dataPacket, 0, dataPacket.Length);
+                      seqNo++;
+                  }
+              }
+
+              Console.WriteLine($"\n[파일 전송 끝] 파일경로: {filePath}");
+              Console.WriteLine($"[SHA-256 해시] {fileHash}\n");
+          }*/
         public void SendFileData(string filePath)
         {
-            const int bufferSize = 4096;
+            const int bufferSize = 4096; // 한 번에 읽을 데이터 크기
             byte[] buffer = new byte[bufferSize];
             uint seqNo = 0;
 
             string fileHash = CalculateFileHash(filePath);
             Console.WriteLine($"\n[파일 전송 시작] 파일경로: {filePath}");
 
+            // 파일 크기 계산
+            FileInfo fileInfo = new FileInfo(filePath);
+            long totalFileSize = fileInfo.Length;
+
             using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
                 int bytesRead;
+                long totalBytesSent = 0;
+
+                // 진행 상태 출력 (프로그레스 바)
+                Console.WriteLine("파일 전송 진행 상태:");
+
                 while ((bytesRead = fs.Read(buffer, 0, bufferSize)) > 0)
                 {
                     bool isFinal = fs.Position == fs.Length;
@@ -47,13 +85,29 @@ namespace Protocol
                     _ftpProtocol.PrintPacketInfo("보낸 패킷");
 
                     _stream.Write(dataPacket, 0, dataPacket.Length);
-                    seqNo++;
+
+                    totalBytesSent += bytesRead;
+
+                    // 진행률 계산
+                    float percent = (float)totalBytesSent / totalFileSize * 100;
+                    int barCount = (int)(percent / (100f / 20));  // 20개의 프로그레스바로 표시
+
+                    // 프로그레스 바 출력
+                    Console.SetCursorPosition(0, Console.CursorTop);  // 같은 줄에 계속 출력
+                    Console.Write($"{totalBytesSent}/{totalFileSize} [{new string('=', barCount)}{new string(' ', 20 - barCount)}] {percent:0.00}%");
+
+                    seqNo++;  // 순차 번호 증가
+
+                    // 잠시 대기 (여기서는 10ms로 설정)
+                    Thread.Sleep(10);
                 }
             }
 
             Console.WriteLine($"\n[파일 전송 끝] 파일경로: {filePath}");
             Console.WriteLine($"[SHA-256 해시] {fileHash}\n");
         }
+
+
         // 파일 데이터 전송 패킷 생성 
         public byte[] SendFileDataPacket(uint seqNo, byte[] data, bool isFinal)
         {
