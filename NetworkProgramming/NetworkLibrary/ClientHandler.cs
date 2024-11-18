@@ -13,7 +13,7 @@ namespace NetworkLibrary
     public class ClientHandler
     {
         private readonly ClientInfo _clientInfo;
-        private FTPManager _ftpManager;
+        private FTP_Service _ftpService;
         private NetworkStream _stream;
         private Thread _receiveThread;
         private bool _isRunning;
@@ -30,7 +30,7 @@ namespace NetworkLibrary
         {
             using (_stream = _clientInfo.Client.GetStream())
             {
-                _ftpManager = new FTPManager(_stream, new FTP()); // FTP 인스턴스 전달
+                _ftpService = new FTP_Service(_stream, new FTP()); // FTP 인스턴스 전달
 
                 // 람다 표현식 사용
                 _receiveThread = new Thread(() => FTP_PacketListener.ReceivePackets(_stream, _packetQueue, _isRunning));
@@ -42,7 +42,7 @@ namespace NetworkLibrary
 
                     while (isConnected)
                     {
-                        FTP requestProtocol = _ftpManager.WaitForPacket(_packetQueue,_isRunning);
+                        FTP requestProtocol = _ftpService.WaitForPacket(_packetQueue,_isRunning);
 
                         if (requestProtocol == null)
                             break;
@@ -160,7 +160,7 @@ namespace NetworkLibrary
 
             _stream.Write(responsePacket, 0, responsePacket.Length);
 
-            _ftpManager.ReceiveFileData(filename, filesize, clientFileHash, _packetQueue, _isRunning);
+            _ftpService.ReceiveFileData(filename, filesize, clientFileHash, _packetQueue, _isRunning);
         }
 
         private void HandleFileListRequest()
@@ -171,10 +171,10 @@ namespace NetworkLibrary
             {
                 Console.WriteLine($"디렉토리가 존재하지 않으므로 '{currentDirectory}'를 생성합니다.");
                 Directory.CreateDirectory(currentDirectory);
-                FTPManager.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1kb.txt"), 1 * 1024);
-                FTPManager.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1mb.txt"), 1 * 1024 * 1024);
-                FTPManager.CreateDummyFile(Path.Combine(currentDirectory, "dummy_100mb.txt"), 100 * 1024 * 1024);
-                FTPManager.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1gb.txt"), 1L * 1024 * 1024 * 1024);
+                FTP_Service.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1kb.txt"), 1 * 1024);
+                FTP_Service.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1mb.txt"), 1 * 1024 * 1024);
+                FTP_Service.CreateDummyFile(Path.Combine(currentDirectory, "dummy_100mb.txt"), 100 * 1024 * 1024);
+                FTP_Service.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1gb.txt"), 1L * 1024 * 1024 * 1024);
                 Console.WriteLine("더미 파일 생성이 완료되었습니다.");
             }
 
@@ -199,7 +199,7 @@ namespace NetworkLibrary
                 FileInfo fileInfo = new FileInfo(filePath);
                 uint filesize = (uint)fileInfo.Length;
 
-                string fileHash = _ftpManager.CalculateFileHash(filePath);
+                string fileHash = _ftpService.CalculateFileHash(filePath);
                 FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
 
                 byte[] responsePacket = responseProtocol.DownloadFileResponse(true, filesize, fileHash);
@@ -207,7 +207,7 @@ namespace NetworkLibrary
 
                 _stream.Write(responsePacket, 0, responsePacket.Length);
 
-                _ftpManager.SendFileData(filePath);
+                _ftpService.SendFileData(filePath);
             }
             else
             {

@@ -15,7 +15,7 @@ namespace TcpClientTest
     public class FtpClient
     {
         private TcpClient _client;
-        private FTPManager _ftpManager;
+        private FTP_Service _ftpService;
         private NetworkStream _stream;
         private IPEndPoint _remoteEp;
         private Thread _receiveThread;
@@ -36,7 +36,7 @@ namespace TcpClientTest
                 Console.WriteLine("Connecting to Server...");
                 _client.Connect(_remoteEp);
                 _stream = _client.GetStream();
-                _ftpManager = new FTPManager(_stream, new FTP()); // FTP 인스턴스 전달
+                _ftpService = new FTP_Service(_stream, new FTP()); // FTP 인스턴스 전달
 
                 Console.WriteLine("Connected!");
                 Console.WriteLine($"Remote-[{_remoteEp.Address}]:[{_remoteEp.Port}]");
@@ -134,7 +134,7 @@ namespace TcpClientTest
                 _stream.Write(connectionPacket, 0, connectionPacket.Length);
 
                 // 서버로부터 연결 응답 수신 대기
-                FTP responseProtocol = _ftpManager.WaitForPacket(_packetQueue, _isRunning, OpCode.ConnectionOK, OpCode.ConnectionReject);
+                FTP responseProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning, OpCode.ConnectionOK, OpCode.ConnectionReject);
 
                 if (responseProtocol != null && responseProtocol.OpCode == OpCode.ConnectionOK)
                 {
@@ -168,7 +168,7 @@ namespace TcpClientTest
                 _stream.Write(disconnectPacket, 0, disconnectPacket.Length);
 
                 // 서버로부터 연결 종료 응답 수신 대기
-                FTP responseProtocol = _ftpManager.WaitForPacket(_packetQueue,_isRunning,OpCode.TerminationApprovedAndConnectionClosed);
+                FTP responseProtocol = _ftpService.WaitForPacket(_packetQueue,_isRunning,OpCode.TerminationApprovedAndConnectionClosed);
 
                 if (responseProtocol != null && responseProtocol.OpCode == OpCode.TerminationApprovedAndConnectionClosed)
                 {
@@ -210,11 +210,11 @@ namespace TcpClientTest
             // 패킷 내용 출력
             MessageModeRequest.PrintPacketInfo("보낸 패킷");
 
-            // 2. 파일 전송 요청 패킷 전송
+            
             _stream.Write(MessageModePacket, 0, MessageModePacket.Length);
 
             // 3. 서버로부터 파일 전송 응답 수신 대기
-            FTP responseProtocol = _ftpManager.WaitForPacket(_packetQueue, _isRunning);
+            FTP responseProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning);
             if (responseProtocol != null && responseProtocol.OpCode == OpCode.MessageModeOK)
             {
                 HandleMessageMode();
@@ -270,10 +270,10 @@ namespace TcpClientTest
                 Directory.CreateDirectory(currentDirectory);
 
                 // 더미 파일 생성                
-                FTPManager.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1kb.txt"), 1 * 1024);          // 1KB
-                FTPManager.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1mb.txt"), 1 * 1024 * 1024);    // 1MB
-                FTPManager.CreateDummyFile(Path.Combine(currentDirectory, "dummy_100mb.txt"), 100 * 1024 * 1024); // 100MB
-                FTPManager.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1gb.txt"), 1L * 1024 * 1024 * 1024); // 1GB
+                FTP_Service.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1kb.txt"), 1 * 1024);          // 1KB
+                FTP_Service.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1mb.txt"), 1 * 1024 * 1024);    // 1MB
+                FTP_Service.CreateDummyFile(Path.Combine(currentDirectory, "dummy_100mb.txt"), 100 * 1024 * 1024); // 100MB
+                FTP_Service.CreateDummyFile(Path.Combine(currentDirectory, "dummy_1gb.txt"), 1L * 1024 * 1024 * 1024); // 1GB
 
                 Console.WriteLine("더미 파일 생성이 완료되었습니다.");
             }
@@ -334,7 +334,7 @@ namespace TcpClientTest
                 uint filesize = (uint)fileInfo.Length;
 
                 // 1. SHA-256 해시값 생성
-                string fileHash = _ftpManager.CalculateFileHash(filePath);
+                string fileHash = _ftpService.CalculateFileHash(filePath);
                 FTP_RequestPacket fileTransferRequest = new FTP_RequestPacket(new FTP());
 
                 byte[] fileTransferPacket = fileTransferRequest.TransmitFileRequest(filename, filesize, fileHash);
@@ -346,17 +346,17 @@ namespace TcpClientTest
                 _stream.Write(fileTransferPacket, 0, fileTransferPacket.Length);
 
                 // 3. 서버로부터 파일 전송 응답 수신 대기
-                FTP responseProtocol = _ftpManager.WaitForPacket(_packetQueue, _isRunning, OpCode.FileTransferOK, OpCode.FileTransferFailed_FileName, OpCode.FileTransferFailed_FileSize);
+                FTP responseProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning, OpCode.FileTransferOK, OpCode.FileTransferFailed_FileName, OpCode.FileTransferFailed_FileSize);
 
                 if (responseProtocol != null && responseProtocol.OpCode == OpCode.FileTransferOK)
                 {
                     Console.WriteLine("서버가 파일 전송 요청을 승인하였습니다.");
 
                     // 4. 파일 데이터 전송
-                    _ftpManager.SendFileData(filePath);
+                    _ftpService.SendFileData(filePath);
 
                     // 5. 서버로부터 전송 완료 응답 수신 대기 및 해시 검증
-                    responseProtocol = _ftpManager.WaitForPacket(_packetQueue, _isRunning, OpCode.ReceptionCompletedSuccessfully, OpCode.ReceptionFailedAndConnectionClosed);
+                    responseProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning, OpCode.ReceptionCompletedSuccessfully, OpCode.ReceptionFailedAndConnectionClosed);
                     if (responseProtocol != null && responseProtocol.OpCode == OpCode.ReceptionCompletedSuccessfully)
                     {
                         // 서버가 파일 해시를 확인하고 전송이 성공했음을 알림
@@ -391,7 +391,7 @@ namespace TcpClientTest
             _stream.Write(fileListPacket, 0, fileListPacket.Length);
 
             // 서버로부터 파일 목록 응답 수신 대기
-            FTP responseProtocol = _ftpManager.WaitForPacket(_packetQueue, _isRunning,OpCode.FileListResponse);
+            FTP responseProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning,OpCode.FileListResponse);
 
             if (responseProtocol != null && responseProtocol.OpCode == OpCode.FileListResponse)
             {
@@ -465,7 +465,7 @@ namespace TcpClientTest
                 _stream.Write(downloadPacket, 0, downloadPacket.Length);
 
                 // 서버로부터 다운로드 응답 수신 대기
-                FTP responseProtocol = _ftpManager.WaitForPacket(_packetQueue, _isRunning, OpCode.FileDownloadOK, OpCode.FileDownloadFailed_FileNotFound);
+                FTP responseProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning, OpCode.FileDownloadOK, OpCode.FileDownloadFailed_FileNotFound);
 
                 if (responseProtocol != null && responseProtocol.OpCode == OpCode.FileDownloadOK)
                 {
@@ -476,7 +476,7 @@ namespace TcpClientTest
                     string serverFileHash = Encoding.UTF8.GetString(responseProtocol.Body, 4, 64); // 서버가 전송한 해시값 추출
 
                     // 파일 데이터 수신 및 해시 검증
-                    _ftpManager.ReceiveFileData(filename, filesize, serverFileHash, _packetQueue, _isRunning);
+                    _ftpService.ReceiveFileData(filename, filesize, serverFileHash, _packetQueue, _isRunning);
                 }
                 else
                 {

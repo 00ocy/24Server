@@ -15,12 +15,12 @@ namespace Protocol
     // 패킷 단위로 파일 전송 & 저장
     // 패킷 수신 대기 함수
     // 해시 계산 함수
-    public class FTPManager
+    public class FTP_Service
     {
         private readonly NetworkStream _stream;
         private readonly FTP _ftpProtocol;
 
-        public FTPManager(NetworkStream stream, FTP ftpProtocol)
+        public FTP_Service(NetworkStream stream, FTP ftpProtocol)
         {
             _stream = stream;
             _ftpProtocol = ftpProtocol;
