@@ -83,8 +83,11 @@ namespace Protocol
         // 006: 메세지 모드 변경 OK
         MessageModeOK = 6,
 
-        // 006: 메세지 모드 변경 거부
+        // 007: 메세지 모드 변경 거부
         MessageModeReject = 7,
+
+        // 008: 메세지 전송 요청
+        MessageRequest = 8, 
 
         // 100: 파일 전송 요청
         FileTransferRequest = 100,

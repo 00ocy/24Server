@@ -217,7 +217,44 @@ namespace TcpClientTest
             FTP responseProtocol = _ftpManager.WaitForPacket(_packetQueue, _isRunning);
             if (responseProtocol != null && responseProtocol.OpCode == OpCode.MessageModeOK)
             {
-                Console.WriteLine("메세지 모드로 변경되었습니다.");
+                HandleMessageMode();
+            } 
+        }
+        public void HandleMessageMode()
+        {
+            Console.WriteLine("메시지 모드로 진입하였습니다. '/EXIT'를 입력하면 종료됩니다.");
+            string userInput;
+
+            while (true)
+            {
+                Console.Write("입력: ");
+                userInput = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(userInput))
+                {
+                    Console.WriteLine("빈 메시지는 전송할 수 없습니다.");
+                    continue;
+                }
+
+                if (userInput.Equals("/EXIT", StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("메시지 모드에서 나갑니다.");
+                    break;
+                }
+
+                try
+                {
+                    // 메시지 송신
+                    FTP_RequestPacket messageRequest = new FTP_RequestPacket(new FTP());
+                    byte[] messagePacket = messageRequest.MessageSendRequest(userInput);
+
+                    _stream.Write(messagePacket, 0, messagePacket.Length);
+                    Console.WriteLine("메시지를 서버로 전송하였습니다.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"메시지 전송 중 오류 발생: {ex.Message}");
+                }
             }
         }
         public void ShowClientUploadFiles()

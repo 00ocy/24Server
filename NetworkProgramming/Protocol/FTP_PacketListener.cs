@@ -58,19 +58,41 @@ namespace Protocol
 
             FTP protocol = ParsePacket(headerBuffer);
 
-            // 바디가 있는 경우 바디 읽기
-            if (protocol.Length > 0)
+            // 메시지 모드 처리
+            if (protocol.ProtoVer == 2) // 메시지 모드
             {
-                byte[] bodyBuffer = new byte[protocol.Length];
-                int totalBytesRead = 0;
-                while (totalBytesRead < protocol.Length)
+                // 메시지 데이터 읽기
+                using (MemoryStream ms = new MemoryStream())
                 {
-                    int read = stream.Read(bodyBuffer, totalBytesRead, (int)(protocol.Length - totalBytesRead));
-                    if (read <= 0)
-                        throw new Exception("패킷 바디를 읽는 중 오류 발생");
-                    totalBytesRead += read;
+                    byte[] buffer = new byte[1024];
+                    int read;
+                    while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        ms.Write(buffer, 0, read);
+                        if (stream.DataAvailable == false) break;
+                    }
+                    protocol.Body = ms.ToArray();
                 }
-                protocol.Body = bodyBuffer;
+
+                // OpCode를 메시지 전송 요청으로 설정
+                protocol.OpCode = OpCode.MessageRequest;
+            }
+            else
+            {
+                // 기존 방식으로 바디 읽기
+                if (protocol.Length > 0)
+                {
+                    byte[] bodyBuffer = new byte[protocol.Length];
+                    int totalBytesRead = 0;
+                    while (totalBytesRead < protocol.Length)
+                    {
+                        int read = stream.Read(bodyBuffer, totalBytesRead, (int)(protocol.Length - totalBytesRead));
+                        if (read <= 0)
+                            throw new Exception("패킷 바디를 읽는 중 오류 발생");
+                        totalBytesRead += read;
+                    }
+                    protocol.Body = bodyBuffer;
+                }
             }
 
             return protocol;

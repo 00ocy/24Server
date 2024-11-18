@@ -67,32 +67,36 @@ namespace NetworkLibrary
         {
             switch (requestProtocol.OpCode)
             {
-                case OpCode.ConnectionRequest:                         // 접속 요청
-                    HandleConnectionRequest();                         // 접속 요청을 처리하는 함수
+                case OpCode.ConnectionRequest:
+                    HandleConnectionRequest();
                     break;
 
-                case OpCode.MessageModeRequest:                               // 메세지 모드 변경 요청
-                    HandleChangeToMessageModeRequest();                         // 접속 요청을 처리하는 함수
+                case OpCode.MessageModeRequest:
+                    HandleChangeToMessageModeRequest();
                     break;
 
-                case OpCode.FileTransferRequest:                       // 파일 전송가능여부확인 요청
-                    HandleFileTransferRequest(requestProtocol);        // 파일 전송가능여부확인 요청을 처리하는 함수
+                case OpCode.MessageRequest: // 메시지 전송 요청
+                    HandleMessageRequest(requestProtocol);
                     break;
 
-                case OpCode.FileListRequest:                           // 파일 리스트 요청
-                    HandleFileListRequest();                           // 파일 리스트 요청을 처리하는 함수
-                    break; 
-
-                case OpCode.FileDownloadRequest:                       // 파일 다운로드 요청
-                    HandleFileDownloadRequest(requestProtocol);        // 파일 다운로드 요청을 처리하는 함수
+                case OpCode.FileTransferRequest:
+                    HandleFileTransferRequest(requestProtocol);
                     break;
 
-                case OpCode.RequestTerminationAfterProcessing:         // 종료 요청
-                    HandleTerminationRequest(ref isConnected);         // 종료 요청을 처리하는 함수
+                case OpCode.FileListRequest:
+                    HandleFileListRequest();
                     break;
 
-                case OpCode.ReceptionCompletedSuccessfully:            // 전송 완료
-                    Console.WriteLine($"수신 정상 완료");              // 전송 완료 패킷을 받았음을 출력
+                case OpCode.FileDownloadRequest:
+                    HandleFileDownloadRequest(requestProtocol);
+                    break;
+
+                case OpCode.RequestTerminationAfterProcessing:
+                    HandleTerminationRequest(ref isConnected);
+                    break;
+
+                case OpCode.ReceptionCompletedSuccessfully:
+                    Console.WriteLine($"수신 정상 완료");
                     break;
 
                 default:
@@ -111,6 +115,15 @@ namespace NetworkLibrary
             // 변경 되었을 경우
             byte[] responsePacket = responseProtocol.ChangeMessageModeResponse(true);
             _stream.Write(responsePacket, 0, responsePacket.Length);
+        }
+
+        // 메시지 요청 처리
+        private void HandleMessageRequest(FTP requestProtocol)
+        {
+            string message = Encoding.UTF8.GetString(requestProtocol.Body);
+            Console.WriteLine($"클라이언트 메시지: {message}");
+
+            // 나머지 로직 구현
         }
 
         private void HandleConnectionRequest() 

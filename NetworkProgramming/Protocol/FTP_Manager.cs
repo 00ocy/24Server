@@ -8,6 +8,7 @@ using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
+using System.Diagnostics;
 using static System.Collections.Specialized.BitVector32;
 namespace Protocol
 {
@@ -25,36 +26,6 @@ namespace Protocol
             _ftpProtocol = ftpProtocol;
         }
 
-        /*  // 파일을 읽고 데이터를 패킷 단위로 전송
-          public void SendFileData(string filePath)
-          {
-              const int bufferSize = 4096;
-              byte[] buffer = new byte[bufferSize];
-              uint seqNo = 0;
-
-              string fileHash = CalculateFileHash(filePath);
-              Console.WriteLine($"\n[파일 전송 시작] 파일경로: {filePath}");
-
-              using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-              {
-                  int bytesRead;
-                  while ((bytesRead = fs.Read(buffer, 0, bufferSize)) > 0)
-                  {
-                      bool isFinal = fs.Position == fs.Length;
-                      byte[] dataChunk = new byte[bytesRead];
-                      Array.Copy(buffer, dataChunk, bytesRead);
-
-                      byte[] dataPacket = SendFileDataPacket(seqNo, dataChunk, isFinal);
-                      _ftpProtocol.PrintPacketInfo("보낸 패킷");
-
-                      _stream.Write(dataPacket, 0, dataPacket.Length);
-                      seqNo++;
-                  }
-              }
-
-              Console.WriteLine($"\n[파일 전송 끝] 파일경로: {filePath}");
-              Console.WriteLine($"[SHA-256 해시] {fileHash}\n");
-          }*/
         public void SendFileData(string filePath)
         {
             const int bufferSize = 4096; // 한 번에 읽을 데이터 크기
