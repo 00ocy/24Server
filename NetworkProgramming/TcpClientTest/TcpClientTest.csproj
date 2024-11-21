@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NetworkLibrary\NetworkLibrary.csproj" />
     <ProjectReference Include="..\Protocol\Protocol.csproj" />
+    <ProjectReference Include="..\Security\SecurityLibrary.csproj" />
   </ItemGroup>
 
 </Project>

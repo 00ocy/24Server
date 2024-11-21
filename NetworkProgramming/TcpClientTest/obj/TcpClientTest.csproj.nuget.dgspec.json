@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\TcpClientTest.csproj": {}
+    "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\TcpClientTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj": {
+    "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj",
         "projectName": "NetworkLibrary",
-        "projectPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj",
-        "packagesPath": "C:\\Users\\chan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\obj\\",
+        "projectPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj",
+        "packagesPath": "C:\\Users\\오찬영\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\오찬영\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj": {
-                "projectPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj"
+              "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj": {
+                "projectPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj"
               }
             }
           }
@@ -64,21 +68,93 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj": {
+    "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
+        "projectUniqueName": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
         "projectName": "Protocol",
-        "projectPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
-        "packagesPath": "C:\\Users\\chan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\obj\\",
+        "projectPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
+        "packagesPath": "C:\\Users\\오찬영\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\오찬영\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj": {
+                "projectPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj",
+        "projectName": "SecurityLibrary",
+        "projectPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj",
+        "packagesPath": "C:\\Users\\오찬영\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\오찬영\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -124,21 +200,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\TcpClientTest.csproj": {
+    "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\TcpClientTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\TcpClientTest.csproj",
+        "projectUniqueName": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\TcpClientTest.csproj",
         "projectName": "TcpClientTest",
-        "projectPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\TcpClientTest.csproj",
-        "packagesPath": "C:\\Users\\chan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\obj\\",
+        "projectPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\TcpClientTest.csproj",
+        "packagesPath": "C:\\Users\\오찬영\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\오찬영\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -152,11 +232,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj": {
-                "projectPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj"
+              "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj": {
+                "projectPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\NetworkLibrary.csproj"
               },
-              "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj": {
-                "projectPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj"
+              "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj": {
+                "projectPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj"
+              },
+              "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj": {
+                "projectPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj"
               }
             }
           }
@@ -191,7 +274,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

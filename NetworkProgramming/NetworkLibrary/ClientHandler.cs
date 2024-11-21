@@ -1,13 +1,8 @@
 ﻿using Protocol;
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
-
+using SecurityLibrary;
 namespace NetworkLibrary
 {
     public class ClientHandler
@@ -79,6 +74,10 @@ namespace NetworkLibrary
                     HandleMessageRequest(requestProtocol);
                     break;
 
+                case OpCode.LoginRequest: // 메시지 전송 요청
+                    Handle로그인Request(requestProtocol);
+                    break;
+
                 case OpCode.FileTransferRequest:
                     HandleFileTransferRequest(requestProtocol);
                     break;
@@ -124,6 +123,19 @@ namespace NetworkLibrary
             Console.WriteLine($"클라이언트 메시지: {message}");
 
             // 나머지 로직 구현
+        }
+        // 로그인 요청 처리
+        private void Handle로그인Request(FTP requestProtocol)
+        {
+            // user 폴더에 id 폴더들 중 받아온 바디에서 파싱한 id와 일치하는 폴더가 있는지 확인하고 그 안에 pw와 바디에서 파싱한 pw가 일치하는지 확인한 후
+            // 리스폰패킷에서 로그인 성공 여부 리스폰
+            bool res;
+
+            FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
+
+            byte[] responsePacket = responseProtocol.LoginResoponse(res,OpCode.LoginFailed_ID);
+            _stream.Write(responsePacket, 0, responsePacket.Length);
+
         }
 
         private void HandleConnectionRequest() 
@@ -199,7 +211,7 @@ namespace NetworkLibrary
                 FileInfo fileInfo = new FileInfo(filePath);
                 uint filesize = (uint)fileInfo.Length;
 
-                string fileHash = _ftpService.CalculateFileHash(filePath);
+                string fileHash = Hashing.CalculateFileHash(filePath);
                 FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
 
                 byte[] responsePacket = responseProtocol.DownloadFileResponse(true, filesize, fileHash);

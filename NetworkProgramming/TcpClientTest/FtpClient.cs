@@ -1,14 +1,9 @@
 ﻿using Protocol;
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
-using System.Security.Cryptography;
-
+using SecurityLibrary;
 namespace TcpClientTest
 {
     //
@@ -36,7 +31,7 @@ namespace TcpClientTest
                 Console.WriteLine("Connecting to Server...");
                 _client.Connect(_remoteEp);
                 _stream = _client.GetStream();
-                _ftpService = new FTP_Service(_stream, new FTP()); // FTP 인스턴스 전달
+                _ftpService = new FTP_Service(_stream, new FTP());
 
                 Console.WriteLine("Connected!");
                 Console.WriteLine($"Remote-[{_remoteEp.Address}]:[{_remoteEp.Port}]");
@@ -46,57 +41,44 @@ namespace TcpClientTest
 
                 // 수신 쓰레드 시작
                 _receiveThread = new Thread(() => FTP_PacketListener.ReceivePackets(_stream, _packetQueue, _isRunning));
-
                 _receiveThread.Start();
 
-                // 연결 요청 및 응답 처리
-                if (!ConnectionCheck())
+                // 로그인 및 회원가입 처리
+                bool authenticated = false;
+
+                while (!authenticated)
                 {
-                    Console.WriteLine("서버와의 연결에 실패하였습니다.");
-                    return;
-                }
+                    Console.WriteLine("1. 로그인");
+                    Console.WriteLine("2. 회원가입");
+                    Console.WriteLine("3. 종료");
 
-                bool exit = false;
-                while (!exit)
-                {
-                    Console.WriteLine("선택 해주세요");
-                    Console.WriteLine("1. 메세지 모드로 변경");
-                    Console.WriteLine("2. 파일 업로드");
-                    Console.WriteLine("3. 파일 다운로드");
-                    Console.WriteLine("4. 종료");
-
-                    int select = 0;
-                    bool success = int.TryParse(Console.ReadLine(), out select);
-
-                    if (success)
+                    int option;
+                    if (int.TryParse(Console.ReadLine(), out option))
                     {
-                        switch (select)
+                        switch (option)
                         {
                             case 1:
-                                ChangeToMessageMode();
+                                authenticated = Login(); // 모든 파일을 암호화 할 거라서 일단 ㄱㄷ 패킷만 보내면 패킷리스너 -> 클라이언트 핸들러 순으로 처리함 그니까 웨잇포패킷인가 써서 기다려서 bool값 체크
                                 break;
                             case 2:
-                                ShowClientUploadFiles();
+                                Register(); // 패킷만 보내면 웨잇포패킷으로 처리하면 됨 응답 받으며 회원가입 완료표시
                                 break;
                             case 3:
-                                ShowServerDownloadFiles();
-                                break;
-                            case 4:
-                                exit = true;
-                                break;
+                                DisconnectServer();
+                                return;
                             default:
-                                Console.WriteLine("Invalid selection. Please try again.");
+                                Console.WriteLine("잘못된 선택입니다. 다시 시도해주세요.");
                                 break;
                         }
                     }
                     else
                     {
-                        Console.WriteLine("Error. Please enter a valid number.");
+                        Console.WriteLine("숫자를 입력해주세요.");
                     }
                 }
 
-                // 연결 종료 요청
-                DisconnectServer();
+                // ChooseAction 실행
+                ChooseAction();
             }
             catch (Exception ex)
             {
@@ -115,6 +97,47 @@ namespace TcpClientTest
                 }
                 _stream?.Close();
                 _client?.Close();
+            }
+        }
+        private void ChooseAction()
+        {
+            bool exit = false;
+            while (!exit)
+            {
+                Console.WriteLine("선택 해주세요");
+                Console.WriteLine("1. 메세지 모드로 변경");
+                Console.WriteLine("2. 파일 업로드");
+                Console.WriteLine("3. 파일 다운로드");
+                Console.WriteLine("4. 종료");
+
+                int select = 0;
+                bool success = int.TryParse(Console.ReadLine(), out select);
+
+                if (success)
+                {
+                    switch (select)
+                    {
+                        case 1:
+                            ChangeToMessageMode();
+                            break;
+                        case 2:
+                            ShowClientUploadFiles();
+                            break;
+                        case 3:
+                            ShowServerDownloadFiles();
+                            break;
+                        case 4:
+                            exit = true;
+                            break;
+                        default:
+                            Console.WriteLine("잘못된 선택입니다.");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("숫자를 입력해주세요.");
+                }
             }
         }
 
@@ -334,7 +357,7 @@ namespace TcpClientTest
                 uint filesize = (uint)fileInfo.Length;
 
                 // 1. SHA-256 해시값 생성
-                string fileHash = _ftpService.CalculateFileHash(filePath);
+                string fileHash = Hashing.CalculateFileHash(filePath);
                 FTP_RequestPacket fileTransferRequest = new FTP_RequestPacket(new FTP());
 
                 byte[] fileTransferPacket = fileTransferRequest.TransmitFileRequest(filename, filesize, fileHash);

@@ -59,7 +59,7 @@ namespace Protocol
             FTP protocol = ParsePacket(headerBuffer);
 
             // 메시지 모드 처리
-            if (protocol.ProtoVer == 2) // 메시지 모드
+            if (protocol.OpCode == OpCode.MessageRequest) // 메시지 모드
             {
                 // 메시지 데이터 읽기
                 using (MemoryStream ms = new MemoryStream())
@@ -74,8 +74,6 @@ namespace Protocol
                     protocol.Body = ms.ToArray();
                 }
 
-                // OpCode를 메시지 전송 요청으로 설정
-                protocol.OpCode = OpCode.MessageRequest;
             }
             else
             {

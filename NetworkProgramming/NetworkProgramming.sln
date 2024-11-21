@@ -14,6 +14,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TcpClientTest", "TcpClientT
 		{D7402275-F1F5-4920-9C7A-EDFC7161F846} = {D7402275-F1F5-4920-9C7A-EDFC7161F846}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityLibrary", "Security\SecurityLibrary.csproj", "{0C058343-6285-4F91-B703-5BE7BBBBA5C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{14B32357-8863-4969-8D30-1B71887C9940}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14B32357-8863-4969-8D30-1B71887C9940}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14B32357-8863-4969-8D30-1B71887C9940}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C058343-6285-4F91-B703-5BE7BBBBA5C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C058343-6285-4F91-B703-5BE7BBBBA5C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C058343-6285-4F91-B703-5BE7BBBBA5C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C058343-6285-4F91-B703-5BE7BBBBA5C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

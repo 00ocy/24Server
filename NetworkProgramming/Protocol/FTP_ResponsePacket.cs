@@ -33,6 +33,17 @@ namespace Protocol
             _ftpProtocol.Body = null;
             return _ftpProtocol.GetPacket();
         }
+
+        // 로그인 요청 응답 패킷 생성
+        public byte[] LoginResoponse(bool ok, OpCode errorCode = OpCode.LoginFailed_PW)
+        {
+            _ftpProtocol.OpCode = ok ? OpCode.LoginRequest : errorCode;
+            _ftpProtocol.Length = 0;
+            _ftpProtocol.Body = null;
+
+            return _ftpProtocol.GetPacket();
+        }
+
         // 파일 전송해도 되는지 응답 패킷 생성
         public byte[] TransmitFileResponse(bool ok, OpCode errorCode = OpCode.FileTransferOK)
         {

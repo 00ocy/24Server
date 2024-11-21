@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
+﻿using System.Collections.Concurrent;
 using System.Net.Sockets;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading;
-using System.Diagnostics;
-using static System.Collections.Specialized.BitVector32;
+using SecurityLibrary;
 namespace Protocol
 {
     // 패킷 단위로 파일 전송 & 저장
@@ -32,7 +23,7 @@ namespace Protocol
             byte[] buffer = new byte[bufferSize];
             uint seqNo = 0;
 
-            string fileHash = CalculateFileHash(filePath);
+            string fileHash = Hashing.CalculateFileHash(filePath);
             Console.WriteLine($"\n[파일 전송 시작] 파일경로: {filePath}\n");
 
             // 파일 크기 계산
@@ -125,7 +116,7 @@ namespace Protocol
                         isReceiving = false;
                         string receivedFilePath = SaveReceivedFile(filename, fileChunks);
 
-                        string receivedFileHash = CalculateFileHash(receivedFilePath);
+                        string receivedFileHash = Hashing.CalculateFileHash(receivedFilePath);
                         if (receivedFileHash == expectedHash)
                         {
                             Console.WriteLine($"\n\n[파일 수신 완료] 파일명: '{filename}'");
@@ -171,17 +162,6 @@ namespace Protocol
         }
        
 
-        // 파일의 해시 계산
-        public string CalculateFileHash(string filePath)
-        {
-            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] hash = sha256.ComputeHash(fs);
-                return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
-            }
-        }
-                
         
         // 첫 번째 WaitForPacket 메서드 - 특정 조건 없이 패킷 대기
         public FTP WaitForPacket(ConcurrentQueue<FTP> packetQueue, bool isRunning)

@@ -77,7 +77,17 @@ namespace Protocol
         // 메세지 모드 메세지 전송
         public byte[] MessageSendRequest(string userInput)
         {
-            _ftpProtocol.ProtoVer = 2;
+            _ftpProtocol.OpCode = OpCode.MessageRequest;
+            _ftpProtocol.Body = Encoding.UTF8.GetBytes(userInput);
+            _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
+            return _ftpProtocol.GetPacket();
+        }
+
+        // 로그인 요청 전송
+        public byte[] LoginRequest()
+        {
+            // 여기서 이제 사용자 입력을 받아서 보낼 패킷인거임
+            _ftpProtocol.OpCode = OpCode.MessageRequest;
             _ftpProtocol.Body = Encoding.UTF8.GetBytes(userInput);
             _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
             return _ftpProtocol.GetPacket();

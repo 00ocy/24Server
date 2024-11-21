@@ -1,26 +1,50 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "SecurityLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/SecurityLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SecurityLibrary.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "SecurityLibrary/1.0.0": {
+      "type": "project",
+      "path": "../Security/SecurityLibrary.csproj",
+      "msbuildProject": "../Security/SecurityLibrary.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "SecurityLibrary >= 1.0.0"
+    ]
   },
   "packageFolders": {
-    "C:\\Users\\chan\\.nuget\\packages\\": {}
+    "C:\\Users\\오찬영\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
+      "projectUniqueName": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
       "projectName": "Protocol",
-      "projectPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
-      "packagesPath": "C:\\Users\\chan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\obj\\",
+      "projectPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\Protocol.csproj",
+      "packagesPath": "C:\\Users\\오찬영\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\오찬영\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -33,7 +57,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj": {
+              "projectPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -66,7 +94,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

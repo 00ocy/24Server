@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NetworkLibrary\NetworkLibrary.csproj" />
+    <ProjectReference Include="..\Security\SecurityLibrary.csproj" />
   </ItemGroup>
 
 </Project>

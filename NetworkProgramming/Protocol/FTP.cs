@@ -89,6 +89,12 @@ namespace Protocol
         // 008: 메세지 전송 요청
         MessageRequest = 8, 
 
+        // 010 : 로그인 요청
+        LoginRequest =10,
+        // 011 : 로그인 실패_아이디
+        LoginFailed_ID = 11,
+        // 012 : 로그인 실패_비밀번호
+        LoginFailed_PW = 12,
         // 100: 파일 전송 요청
         FileTransferRequest = 100,
 
