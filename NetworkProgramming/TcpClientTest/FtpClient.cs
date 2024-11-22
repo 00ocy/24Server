@@ -58,10 +58,10 @@ namespace TcpClientTest
                         switch (option)
                         {
                             case 1:
-                                authenticated = Login(); // 모든 파일을 암호화 할 거라서 일단 ㄱㄷ 패킷만 보내면 패킷리스너 -> 클라이언트 핸들러 순으로 처리함 그니까 웨잇포패킷인가 써서 기다려서 bool값 체크
+                                authenticated = userLogin(); 
                                 break;
                             case 2:
-                                Register(); // 패킷만 보내면 웨잇포패킷으로 처리하면 됨 응답 받으며 회원가입 완료표시
+                                userRegister(); 
                                 break;
                             case 3:
                                 DisconnectServer();
@@ -99,6 +99,106 @@ namespace TcpClientTest
                 _client?.Close();
             }
         }
+
+        private bool userLogin()
+        {
+            Console.WriteLine("아이디를 입력하세요:");
+            string userId = Console.ReadLine();
+
+            Console.WriteLine("비밀번호를 입력하세요:");
+            string password = Console.ReadLine();
+            string encryptedPassword = AESHelper.Encrypt(password);
+
+            // ID, PW를 ':'로 결합
+            string encryptedIDPW = $"{userId}:{encryptedPassword}";
+
+            // 패킷에 담아 보내기
+            FTP_RequestPacket loginRequest = new FTP_RequestPacket(new FTP());
+            byte[] loginnPacket = loginRequest.LoginRequest(encryptedIDPW);
+
+            // 패킷 내용 출력
+            loginRequest.PrintPacketInfo("보낸 패킷");
+
+            _stream.Write(loginnPacket, 0, loginnPacket.Length);
+
+            // 서버로부터 로그인 결과 수신 대기
+            FTP responseProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning);
+            if (responseProtocol != null && responseProtocol.OpCode == OpCode.LoginOK)
+            {
+                Console.WriteLine("로그인 성공");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine($"로그인 실패");
+                return false;
+            }
+        }
+
+        private void userRegister()
+        {
+            Console.WriteLine("아이디를 입력하세요:");
+            string userId = Console.ReadLine();
+            //string encryptedId = AESHelper.Encrypt(userId);
+
+            // id를 담은 패킷을 보내 서버에서 중복 확인
+            if(!userDuplicateCheck(userId))
+            {
+                return;
+            }
+
+            // PW 생성 후 암호화
+            Console.WriteLine("비밀번호를 입력하세요:");
+            string password = Console.ReadLine();
+            string encryptedPassword = AESHelper.Encrypt(password);
+
+            // ID,PW를':'로 결합
+            string encryptedIDPW = $"{userId}:{encryptedPassword}";
+
+            // 패킷에 담아 전송
+            FTP_RequestPacket registerRequest = new FTP_RequestPacket(new FTP());
+            byte[] registerPacket = registerRequest.RegisterRequest(encryptedIDPW);
+            _stream.Write(registerPacket, 0, registerPacket.Length);
+
+
+            // 서버로부터 회원가입 결과 대기
+            FTP responseProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning);
+            if (responseProtocol != null && responseProtocol.OpCode == OpCode.RegisterOK)
+            {
+                Console.WriteLine("회원가입 성공");
+            }
+            else
+            {
+                Console.WriteLine($"회원가입 실패");
+            }
+        }
+
+        public bool userDuplicateCheck(string userId)
+        {
+            FTP_RequestPacket DuplicateCheckRequest = new FTP_RequestPacket(new FTP());
+            byte[] DuplicateCheckPacket = DuplicateCheckRequest.DuplicateCheckRequest(userId);
+
+            // 패킷 내용 출력
+            DuplicateCheckRequest.PrintPacketInfo("보낸 패킷");
+
+            _stream.Write(DuplicateCheckPacket, 0, DuplicateCheckPacket.Length);
+
+            // 서버로부터 연결 응답 수신 대기
+            FTP responseProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning);
+            if (responseProtocol != null && responseProtocol.OpCode == OpCode.DuplicateCheckOK)
+            {
+                Console.WriteLine("사용할 수 있는 아이디입니다.");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine($"사용할 수 없는 아이디입니다.");
+                return false;
+            }
+        }
+
+       
+
         private void ChooseAction()
         {
             bool exit = false;

@@ -37,7 +37,27 @@ namespace Protocol
         // 로그인 요청 응답 패킷 생성
         public byte[] LoginResoponse(bool ok, OpCode errorCode = OpCode.LoginFailed_PW)
         {
-            _ftpProtocol.OpCode = ok ? OpCode.LoginRequest : errorCode;
+            _ftpProtocol.OpCode = ok ? OpCode.LoginOK : errorCode;
+            _ftpProtocol.Length = 0;
+            _ftpProtocol.Body = null;
+
+            return _ftpProtocol.GetPacket();
+        }
+
+        // 회원가입 요청 응답 패킷 생성
+        public byte[] RegisterResoponse(bool ok, OpCode errorCode = OpCode.RegisterFailed)
+        {
+            _ftpProtocol.OpCode = ok ? OpCode.RegisterOK : errorCode;
+            _ftpProtocol.Length = 0;
+            _ftpProtocol.Body = null;
+
+            return _ftpProtocol.GetPacket();
+        }
+
+        // 아이디 중복 확인 응답 패킷 생성
+        public byte[] DuplicateCheckResoponse(bool ok, OpCode errorCode = OpCode.DuplicateCheckFailed)
+        {
+            _ftpProtocol.OpCode = ok ? OpCode.DuplicateCheckOK : errorCode;
             _ftpProtocol.Length = 0;
             _ftpProtocol.Body = null;
 
@@ -110,5 +130,6 @@ namespace Protocol
             Console.WriteLine($"[{action}] OpCode: {_ftpProtocol.OpCode} ({(int)_ftpProtocol.OpCode}) / SeqNo: {_ftpProtocol.SeqNo} / Length: {_ftpProtocol.Length}");
         }
 
+       
     }
 }

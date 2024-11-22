@@ -84,11 +84,31 @@ namespace Protocol
         }
 
         // 로그인 요청 전송
-        public byte[] LoginRequest()
+        public byte[] LoginRequest(string encryptedIDPW)
         {
-            // 여기서 이제 사용자 입력을 받아서 보낼 패킷인거임
-            _ftpProtocol.OpCode = OpCode.MessageRequest;
-            _ftpProtocol.Body = Encoding.UTF8.GetBytes(userInput);
+            // 암호화 된 유저 IDPW 담은 패킷
+            _ftpProtocol.OpCode = OpCode.LoginRequest;
+            _ftpProtocol.Body = Encoding.UTF8.GetBytes(encryptedIDPW);
+            _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
+            return _ftpProtocol.GetPacket();
+        }
+
+        // 회원가입 요청 전송
+        public byte[] RegisterRequest(string encryptedIDPW)
+        {
+            // 암호화 된 유저 IDPW 담은 패킷
+            _ftpProtocol.OpCode = OpCode.RegisterRequest;
+            _ftpProtocol.Body = Encoding.UTF8.GetBytes(encryptedIDPW);
+            _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
+            return _ftpProtocol.GetPacket();
+        }
+
+        // 아이디 중복 확인 요청 전송
+        public byte[] DuplicateCheckRequest(string encryptedId)
+        {
+            // 암호화 된 유저 ID 담은 패킷
+            _ftpProtocol.OpCode = OpCode.DuplicateCheckRequest;
+            _ftpProtocol.Body = Encoding.UTF8.GetBytes(encryptedId);
             _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
             return _ftpProtocol.GetPacket();
         }

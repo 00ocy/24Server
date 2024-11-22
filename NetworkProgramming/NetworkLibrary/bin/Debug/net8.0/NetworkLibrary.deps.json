@@ -15,11 +15,16 @@
         }
       },
       "Protocol/1.0.0": {
+        "dependencies": {
+          "SecurityLibrary": "1.0.0"
+        },
         "runtime": {
-          "Protocol.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Protocol.dll": {}
+        }
+      },
+      "SecurityLibrary/1.0.0": {
+        "runtime": {
+          "SecurityLibrary.dll": {}
         }
       }
     }
@@ -31,6 +36,11 @@
       "sha512": ""
     },
     "Protocol/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SecurityLibrary/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

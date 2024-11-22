@@ -58,10 +58,17 @@ namespace Protocol
 
             FTP protocol = ParsePacket(headerBuffer);
 
+            // 메시지 모드로 처리할 OpCode 집합 정의
+            var messageModeOpCodes = new HashSet<OpCode> 
+            { 
+                OpCode.MessageRequest,
+                OpCode.LoginRequest,
+                OpCode.RegisterRequest
+            };
+
             // 메시지 모드 처리
-            if (protocol.OpCode == OpCode.MessageRequest) // 메시지 모드
+            if (messageModeOpCodes.Contains(protocol.OpCode)) // 메시지 모드 조건
             {
-                // 메시지 데이터 읽기
                 using (MemoryStream ms = new MemoryStream())
                 {
                     byte[] buffer = new byte[1024];
@@ -69,11 +76,10 @@ namespace Protocol
                     while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
                     {
                         ms.Write(buffer, 0, read);
-                        if (stream.DataAvailable == false) break;
+                        if (!stream.DataAvailable) break;
                     }
                     protocol.Body = ms.ToArray();
                 }
-
             }
             else
             {

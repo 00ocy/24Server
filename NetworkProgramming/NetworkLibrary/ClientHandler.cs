@@ -74,10 +74,18 @@ namespace NetworkLibrary
                     HandleMessageRequest(requestProtocol);
                     break;
 
-                case OpCode.LoginRequest: // 메시지 전송 요청
-                    Handle로그인Request(requestProtocol);
+                case OpCode.LoginRequest: // 로그인 요청
+                    HandleLoginRequest(requestProtocol);
                     break;
 
+                case OpCode.RegisterRequest: // 회원가입 요청
+                    HandleRegisterRequest(requestProtocol);
+                    break;
+
+                case OpCode.DuplicateCheckRequest: // 아이디 중복 확인 요청
+                    HandleDuplicateCheckRequest(requestProtocol);
+                    break;
+                    
                 case OpCode.FileTransferRequest:
                     HandleFileTransferRequest(requestProtocol);
                     break;
@@ -121,26 +129,46 @@ namespace NetworkLibrary
         {
             string message = Encoding.UTF8.GetString(requestProtocol.Body);
             Console.WriteLine($"클라이언트 메시지: {message}");
-
-            // 나머지 로직 구현
         }
-        // 로그인 요청 처리
-        private void Handle로그인Request(FTP requestProtocol)
-        {
-            // user 폴더에 id 폴더들 중 받아온 바디에서 파싱한 id와 일치하는 폴더가 있는지 확인하고 그 안에 pw와 바디에서 파싱한 pw가 일치하는지 확인한 후
-            // 리스폰패킷에서 로그인 성공 여부 리스폰
-            bool res;
 
+        // 회원가입 요청 처리
+        private void HandleRegisterRequest(FTP requestProtocol)
+        {
             FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
 
-            byte[] responsePacket = responseProtocol.LoginResoponse(res,OpCode.LoginFailed_ID);
+            bool registerResult = Auth.Register(requestProtocol.Body);
+
+            byte[] responsePacket = responseProtocol.RegisterResoponse(registerResult, OpCode.RegisterFailed);
+            _stream.Write(responsePacket, 0, responsePacket.Length);
+        }
+
+        // 아이디 중복 확인 요청 처리
+        private void HandleDuplicateCheckRequest(FTP requestProtocol)
+        {
+            FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
+
+            bool duplicaterResult = Auth.DuplicateCheck(requestProtocol.Body);
+
+            byte[] responsePacket = responseProtocol.DuplicateCheckResoponse(duplicaterResult, OpCode.DuplicateCheckFailed);
+            _stream.Write(responsePacket, 0, responsePacket.Length);
+
+        }
+
+        // 로그인 요청 처리
+        private void HandleLoginRequest(FTP requestProtocol)
+        {
+            FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
+
+            bool loginResult = Auth.LoginCheck(requestProtocol.Body);
+
+            byte[] responsePacket = responseProtocol.LoginResoponse(loginResult, OpCode.LoginFailed_ID);
             _stream.Write(responsePacket, 0, responsePacket.Length);
 
         }
 
         private void HandleConnectionRequest() 
         {
-            // 접속 요청 처리
+            // 접속 요청 처리++
             Console.WriteLine("클라이언트로부터 연결 요청을 받았습니다.");
             FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
             byte[] responsePacket = responseProtocol.StartConnectionResponse(true);

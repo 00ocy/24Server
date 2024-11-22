@@ -91,10 +91,34 @@ namespace Protocol
 
         // 010 : 로그인 요청
         LoginRequest =10,
-        // 011 : 로그인 실패_아이디
-        LoginFailed_ID = 11,
-        // 012 : 로그인 실패_비밀번호
-        LoginFailed_PW = 12,
+
+        // 011 : 로그인 OK
+        LoginOK = 11,
+
+        // 012 : 로그인 실패_아이디
+        LoginFailed_ID = 12,
+
+        // 013 : 로그인 실패_비밀번호
+        LoginFailed_PW = 13,
+
+        // 020 : 아이디 중복 확인 요청
+        DuplicateCheckRequest = 20,
+
+        // 020 : 아이디 중복 확인 OK
+        DuplicateCheckOK = 21,
+
+        // 020 : 아이디 중복 확인 실패
+        DuplicateCheckFailed = 22,
+
+        // 030 : 회원가입 요청
+        RegisterRequest = 30,
+
+        // 031 : 회원가입 OK
+        RegisterOK = 31,
+
+        // 031 : 회원가입 실패
+        RegisterFailed = 32,
+
         // 100: 파일 전송 요청
         FileTransferRequest = 100,
 
