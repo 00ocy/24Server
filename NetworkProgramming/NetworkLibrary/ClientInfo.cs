@@ -11,7 +11,7 @@ namespace NetworkLibrary
     public class ClientInfo
     {
         public TcpClient Client { get; }
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string IpAddress { get; }
         public int Port { get; }
         public bool IsConnected { get; set; }

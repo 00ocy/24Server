@@ -62,15 +62,15 @@ namespace NetworkLibrary
         {
             switch (requestProtocol.OpCode)
             {
-                case OpCode.ConnectionRequest:
+                case OpCode.ConnectionRequest: // 연결 요청
                     HandleConnectionRequest();
                     break;
 
-                case OpCode.MessageModeRequest:
+                case OpCode.MessageModeRequest: // 메세지 모드 변경 요청
                     HandleChangeToMessageModeRequest();
                     break;
 
-                case OpCode.MessageRequest: // 메시지 전송 요청
+                case OpCode.MessageRequest: // 메세지 전송 요청
                     HandleMessageRequest(requestProtocol);
                     break;
 
@@ -86,23 +86,23 @@ namespace NetworkLibrary
                     HandleDuplicateCheckRequest(requestProtocol);
                     break;
                     
-                case OpCode.FileTransferRequest:
+                case OpCode.FileTransferRequest: // 파일 전송 요청
                     HandleFileTransferRequest(requestProtocol);
                     break;
 
-                case OpCode.FileListRequest:
+                case OpCode.FileListRequest: // 파일 리스트 달라는 요청
                     HandleFileListRequest();
                     break;
 
-                case OpCode.FileDownloadRequest:
+                case OpCode.FileDownloadRequest: // 파일 보내달라 처리 요청
                     HandleFileDownloadRequest(requestProtocol);
                     break;
 
-                case OpCode.RequestTerminationAfterProcessing:
+                case OpCode.RequestTerminationAfterProcessing: // 종료 할거라는 요청
                     HandleTerminationRequest(ref isConnected);
                     break;
 
-                case OpCode.ReceptionCompletedSuccessfully:
+                case OpCode.ReceptionCompletedSuccessfully: // 수신 잘 받았다는 요청
                     Console.WriteLine($"수신 정상 완료");
                     break;
 
@@ -128,7 +128,13 @@ namespace NetworkLibrary
         private void HandleMessageRequest(FTP requestProtocol)
         {
             string message = Encoding.UTF8.GetString(requestProtocol.Body);
-            Console.WriteLine($"클라이언트 메시지: {message}");
+            Console.WriteLine($"{_clientInfo.Id}: {message}");
+
+            // 수신 메시지 카운트 증가
+            _clientInfo.IncreaseReciveMessagCount();
+            _clientInfo.LastSendMessageTime = DateTime.Now;
+
+            Logger.LogMessage(message, _clientInfo); // 메시지 로그 기록
         }
 
         // 회원가입 요청 처리
@@ -160,21 +166,31 @@ namespace NetworkLibrary
             FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
 
             bool loginResult = Auth.LoginCheck(requestProtocol.Body);
-
             byte[] responsePacket = responseProtocol.LoginResoponse(loginResult, OpCode.LoginFailed_ID);
-            _stream.Write(responsePacket, 0, responsePacket.Length);
+            // ID 추출
+            if(loginResult)
+            {
+                // 바디를 문자열로 변환 후 ':'로 분리
+                string bodyString = Encoding.UTF8.GetString(requestProtocol.Body);
+                string[] parts = bodyString.Split(':');
 
+                _clientInfo.Id = parts[0]; // ID
+                Console.WriteLine($"{_clientInfo.Id}님이 로그인 하셨습니다.");
+                Logger.LogLogin(_clientInfo.Id, _clientInfo); // 로그인 로그 기록
+            }
+            _stream.Write(responsePacket, 0, responsePacket.Length);
         }
 
+        // 접속 요청 처리
         private void HandleConnectionRequest() 
         {
-            // 접속 요청 처리++
             Console.WriteLine("클라이언트로부터 연결 요청을 받았습니다.");
             FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
             byte[] responsePacket = responseProtocol.StartConnectionResponse(true);
             _stream.Write(responsePacket, 0, responsePacket.Length);
         }
 
+        // 연결 요청 처리
         private void HandleTerminationRequest(ref bool isConnected)
         {
             Console.WriteLine("클라이언트로부터 연결 종료 요청을 받았습니다.");
@@ -185,6 +201,7 @@ namespace NetworkLibrary
             _isRunning = false;
         }
 
+        // 파일 전송 요청 처리
         private void HandleFileTransferRequest(FTP requestProtocol)
         {
             string[] bodyParts = Encoding.UTF8.GetString(requestProtocol.Body).Split('\0');
@@ -193,16 +210,24 @@ namespace NetworkLibrary
             string clientFileHash = bodyParts[2];
 
             Console.WriteLine($"파일 전송 요청을 받았습니다. 파일명: {filename}, 크기: {filesize} bytes");
-
+            if(true)
+            {
+                // 파일명, 크기 제한 조건문 필요시 작성
+            }
             FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
             byte[] responsePacket = responseProtocol.TransmitFileResponse(true);
             responseProtocol.PrintPacketInfo("보낸 패킷");
 
             _stream.Write(responsePacket, 0, responsePacket.Length);
 
-            _ftpService.ReceiveFileData(filename, filesize, clientFileHash, _packetQueue, _isRunning);
+            bool result = _ftpService.ReceiveFileData(filename, filesize, clientFileHash, _packetQueue, _isRunning);
+            if(result)
+            {
+                Logger.LogFileTransfer(filename, filesize, _clientInfo); // 파일 전송 로그 기록
+            }
         }
 
+        // 파일 목록 요청 처리
         private void HandleFileListRequest()
         {
             string currentDirectory = Path.Combine(Directory.GetCurrentDirectory(), "S_UploadFiles");
@@ -226,6 +251,7 @@ namespace NetworkLibrary
             _stream.Write(responsePacket, 0, responsePacket.Length);
         }
 
+        // 파일 보내달라 요청 처리
         private void HandleFileDownloadRequest(FTP requestProtocol)
         {
             requestProtocol.PrintPacketInfo("받은 패킷");

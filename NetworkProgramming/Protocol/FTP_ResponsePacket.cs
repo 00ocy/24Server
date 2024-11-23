@@ -65,7 +65,7 @@ namespace Protocol
         }
 
         // 파일 전송해도 되는지 응답 패킷 생성
-        public byte[] TransmitFileResponse(bool ok, OpCode errorCode = OpCode.FileTransferOK)
+        public byte[] TransmitFileResponse(bool ok, OpCode errorCode = OpCode.FileTransferFailed_FileName)
         {
             _ftpProtocol.OpCode = ok ? OpCode.FileTransferOK : errorCode;
             _ftpProtocol.Length = 0;

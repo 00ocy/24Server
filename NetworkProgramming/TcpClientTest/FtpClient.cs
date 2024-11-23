@@ -6,7 +6,6 @@ using System.Text;
 using SecurityLibrary;
 namespace TcpClientTest
 {
-    //
     public class FtpClient
     {
         private TcpClient _client;
@@ -43,6 +42,21 @@ namespace TcpClientTest
                 _receiveThread = new Thread(() => FTP_PacketListener.ReceivePackets(_stream, _packetQueue, _isRunning));
                 _receiveThread.Start();
 
+                while (_isRunning)
+                {
+                    FTP requestProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning);
+
+                    if (requestProtocol == null)
+                        break;
+
+                }
+
+                // 연결 요청 및 응답 처리
+                if (!ConnectionCheck())
+                {
+                    Console.WriteLine("서버와의 연결에 실패하였습니다.");
+                    return;
+                }
                 // 로그인 및 회원가입 처리
                 bool authenticated = false;
 
@@ -58,10 +72,10 @@ namespace TcpClientTest
                         switch (option)
                         {
                             case 1:
-                                authenticated = userLogin(); 
+                                authenticated = userLogin();
                                 break;
                             case 2:
-                                userRegister(); 
+                                userRegister();
                                 break;
                             case 3:
                                 DisconnectServer();
@@ -142,7 +156,7 @@ namespace TcpClientTest
             //string encryptedId = AESHelper.Encrypt(userId);
 
             // id를 담은 패킷을 보내 서버에서 중복 확인
-            if(!userDuplicateCheck(userId))
+            if (!userDuplicateCheck(userId))
             {
                 return;
             }
@@ -197,7 +211,6 @@ namespace TcpClientTest
             }
         }
 
-       
 
         private void ChooseAction()
         {
@@ -291,7 +304,7 @@ namespace TcpClientTest
                 _stream.Write(disconnectPacket, 0, disconnectPacket.Length);
 
                 // 서버로부터 연결 종료 응답 수신 대기
-                FTP responseProtocol = _ftpService.WaitForPacket(_packetQueue,_isRunning,OpCode.TerminationApprovedAndConnectionClosed);
+                FTP responseProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning, OpCode.TerminationApprovedAndConnectionClosed);
 
                 if (responseProtocol != null && responseProtocol.OpCode == OpCode.TerminationApprovedAndConnectionClosed)
                 {
@@ -333,7 +346,7 @@ namespace TcpClientTest
             // 패킷 내용 출력
             MessageModeRequest.PrintPacketInfo("보낸 패킷");
 
-            
+
             _stream.Write(MessageModePacket, 0, MessageModePacket.Length);
 
             // 3. 서버로부터 파일 전송 응답 수신 대기
@@ -341,7 +354,7 @@ namespace TcpClientTest
             if (responseProtocol != null && responseProtocol.OpCode == OpCode.MessageModeOK)
             {
                 HandleMessageMode();
-            } 
+            }
         }
         public void HandleMessageMode()
         {
@@ -514,7 +527,7 @@ namespace TcpClientTest
             _stream.Write(fileListPacket, 0, fileListPacket.Length);
 
             // 서버로부터 파일 목록 응답 수신 대기
-            FTP responseProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning,OpCode.FileListResponse);
+            FTP responseProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning, OpCode.FileListResponse);
 
             if (responseProtocol != null && responseProtocol.OpCode == OpCode.FileListResponse)
             {
@@ -613,7 +626,7 @@ namespace TcpClientTest
         }
 
 
-        
+
 
 
 

@@ -80,7 +80,7 @@ namespace Protocol
 
 
         // 파일 데이터를 패킷 단위로 수신하고 파일로 저장
-        public void ReceiveFileData(string filename, uint filesize, string expectedHash, ConcurrentQueue<FTP> packetQueue, bool isRunning)
+        public bool ReceiveFileData(string filename, uint filesize, string expectedHash, ConcurrentQueue<FTP> packetQueue, bool isRunning)
         {
             Dictionary<uint, byte[]> fileChunks = new Dictionary<uint, byte[]>();
             bool isReceiving = true;
@@ -97,7 +97,7 @@ namespace Protocol
                     if (dataPacket == null)
                     {
                         Console.WriteLine("파일 데이터 수신 타임아웃 또는 연결 종료.");
-                        break;
+                        return false;
                     }
 
                     fileChunks[dataPacket.SeqNo] = dataPacket.Body;
@@ -126,6 +126,7 @@ namespace Protocol
                             byte[] completionPacket = completionResponse.TransferCompletionResponse(true);
                             completionResponse.PrintPacketInfo("보낸 패킷");
                             _stream.Write(completionPacket, 0, completionPacket.Length);
+                            return true;
                         }
                         else
                         {
@@ -133,6 +134,7 @@ namespace Protocol
                             Console.WriteLine($"[받은 SHA-256 해시] {expectedHash}");
                             Console.WriteLine($"[현재 SHA-256 해시] {receivedFileHash}");
                             Console.WriteLine("파일 다운로드가 완료되었지만 해시값이 일치하지 않습니다. 파일이 손상되었을 수 있습니다.");
+                            return false;
                         }
                     }
                 }
@@ -140,7 +142,9 @@ namespace Protocol
             catch (Exception ex)
             {
                 Console.WriteLine($"파일 데이터 수신 중 오류 발생: {ex.Message}");
+                return false;
             }
+            return false;
         }
 
         // 수신된 파일 저장 함수

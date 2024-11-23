@@ -22,7 +22,7 @@ namespace SecurityLibrary
                 return false;
             }
 
-            string ID = parts[0]; // 암호화된 ID
+            string ID = parts[0]; // ID
             string encryptedPw = parts[1]; // 암호화된 PW
 
             try

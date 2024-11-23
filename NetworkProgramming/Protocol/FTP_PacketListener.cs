@@ -51,10 +51,10 @@ namespace Protocol
             byte[] headerBuffer = new byte[11]; // 헤더 크기 (ProtoVer(1) + OpCode(2) + SeqNo(4) + Length(4))
             int bytesRead = stream.Read(headerBuffer, 0, headerBuffer.Length);
             if (bytesRead == 0)
-                throw new Exception("패킷 헤더를 읽는 중 오류 발생");
+                throw new Exception("패킷 헤더를 읽는 중 오류 발생1");
 
             if (bytesRead < headerBuffer.Length)
-                throw new Exception("패킷 헤더를 읽는 중 오류 발생");
+                throw new Exception("패킷 헤더를 읽는 중 오류 발생2");
 
             FTP protocol = ParsePacket(headerBuffer);
 
