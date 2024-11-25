@@ -78,14 +78,16 @@ namespace NetworkLibrary
                 // 메시지 전송
                 NetworkStream stream = clientInfo.Client.GetStream();
                 
-                    stream.Write(messagePacket, 0, messagePacket.Length);
+                stream.Write(messagePacket, 0, messagePacket.Length);
 
-                    // 전송 카운트 업데이트
-                    clientInfo.IncreaseSendMessageCount();
-                    clientInfo.LastSendMessageTime = DateTime.Now;
+                // 전송 카운트 업데이트
+                clientInfo.IncreaseSendMessageCount();
+                clientInfo.LastSendMessageTime = DateTime.Now;
 
-                    Console.WriteLine($"Message sent to {clientInfo.Id}: {message}");
+                Logger.LogMessage("Server: "+message, clientInfo); // 메시지 로그 기록
 
+                Console.WriteLine($"Message sent to {clientInfo.Id}: {message}");
+                
             }
             catch (Exception ex)
             {

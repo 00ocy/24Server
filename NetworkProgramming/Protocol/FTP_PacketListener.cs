@@ -16,22 +16,28 @@ namespace Protocol
     public class FTP_PacketListener
     {
         // ReceivePackets 메서드 - 패킷 수신을 위한 작업 실행
-        public static void ReceivePackets(NetworkStream stream ,ConcurrentQueue<FTP> packetQueue, bool isRunning)
+        public static void ReceivePackets(NetworkStream stream ,ConcurrentQueue<FTP> packetQueue, ConcurrentQueue<FTP> messageQueue, bool isRunning)
         {
             try
             {
                 while (isRunning)
                 {
+
                     FTP packet = ReceivePacket(stream);
-
-                    // 패킷 내용 출력
-                    if(packet.OpCode != OpCode.SplitTransferInProgress && packet.OpCode != OpCode.SplitTransferFinal)
+                    
+                    // 메시지 모드 패킷은 별도 메시지 큐로 이동
+                    if (packet.OpCode == OpCode.MessageRequest)
                     {
-                        packet.PrintPacketInfo("받은 패킷");
+                        messageQueue.Enqueue(packet);
                     }
-
-                    // 패킷을 큐에 저장 (ConcurrentQueue는 스레드 안전함)
-                    packetQueue.Enqueue(packet);
+                    else
+                    {   // 패킷 내용 출력
+                        if (packet.OpCode != OpCode.SplitTransferInProgress && packet.OpCode != OpCode.SplitTransferFinal)
+                        {
+                            packet.PrintPacketInfo("받은 패킷");
+                        }
+                        packetQueue.Enqueue(packet);
+                    }
                 }
             }
             catch (IOException ioEx)

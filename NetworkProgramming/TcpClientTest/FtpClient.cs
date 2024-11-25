@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Text;
 using SecurityLibrary;
+using NetworkLibrary;
 namespace TcpClientTest
 {
     public class FtpClient
@@ -15,12 +16,14 @@ namespace TcpClientTest
         private Thread _receiveThread;
         private bool _isRunning;
         private ConcurrentQueue<FTP> _packetQueue;
+        private ConcurrentQueue<FTP> _messageQueue; // 메시지 전용 큐
 
         public FtpClient(string serverIp, int serverPort)
         {
             _client = new TcpClient();
             _remoteEp = new IPEndPoint(IPAddress.Parse(serverIp), serverPort);
             _packetQueue = new ConcurrentQueue<FTP>();
+            _messageQueue = new ConcurrentQueue<FTP>();
         }
 
         public void ConnectServer()
@@ -39,17 +42,13 @@ namespace TcpClientTest
                 _isRunning = true;
 
                 // 수신 쓰레드 시작
-                _receiveThread = new Thread(() => FTP_PacketListener.ReceivePackets(_stream, _packetQueue, _isRunning));
+                _receiveThread = new Thread(() => FTP_PacketListener.ReceivePackets(_stream, _packetQueue, _messageQueue, _isRunning));
                 _receiveThread.Start();
+                _isRunning = true;
 
-                while (_isRunning)
-                {
-                    FTP requestProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning);
+                // 메시지 수신 처리 비동기 루프 시작
+                _ = Task.Run(() => ProcessMessagePacketsAsync());
 
-                    if (requestProtocol == null)
-                        break;
-
-                }
 
                 // 연결 요청 및 응답 처리
                 if (!ConnectionCheck())
@@ -111,6 +110,29 @@ namespace TcpClientTest
                 }
                 _stream?.Close();
                 _client?.Close();
+            }
+        }
+        private async Task ProcessMessagePacketsAsync()
+        {
+            while (_isRunning)
+            {
+                try
+                {
+                    if (_messageQueue.TryDequeue(out FTP messageProtocol))
+                    {
+                        if (messageProtocol.OpCode == OpCode.MessageRequest)
+                        {
+                            string message = Encoding.UTF8.GetString(messageProtocol.Body);
+                            Console.WriteLine($"Server: {message}");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"메시지 처리 중 오류 발생: {ex.Message}");
+                }
+
+                await Task.Delay(10); // CPU 과부하 방지
             }
         }
 

@@ -13,11 +13,13 @@ namespace NetworkLibrary
         private Thread _receiveThread;
         private bool _isRunning;
         private ConcurrentQueue<FTP> _packetQueue;
+        private ConcurrentQueue<FTP> _messageQueue;
 
         public ClientHandler(ClientInfo clientInfo)
         {
             _clientInfo = clientInfo;
             _packetQueue = new ConcurrentQueue<FTP>();
+            _messageQueue = new ConcurrentQueue<FTP>();
             _isRunning = true;
         }
 
@@ -28,8 +30,11 @@ namespace NetworkLibrary
                 _ftpService = new FTP_Service(_stream, new FTP()); // FTP 인스턴스 전달
 
                 // 람다 표현식 사용
-                _receiveThread = new Thread(() => FTP_PacketListener.ReceivePackets(_stream, _packetQueue, _isRunning));
+                _receiveThread = new Thread(() => FTP_PacketListener.ReceivePackets(_stream, _packetQueue, _messageQueue, _isRunning));
                 _receiveThread.Start();
+
+                // 메시지 처리 루프 비동기 시작
+                _ = Task.Run(() => ProcessMessagePacketsAsync());
 
                 try
                 {
@@ -57,7 +62,35 @@ namespace NetworkLibrary
                 }
             }
         }
+        private async Task ProcessMessagePacketsAsync()
+        {
+            while (_isRunning)
+            {
+                try
+                {
+                    // `_messageQueue`에서 메시지 패킷 가져오기
+                    FTP messageProtocol = _ftpService.WaitForPacket(_messageQueue, _isRunning, OpCode.MessageRequest);
 
+                    if (messageProtocol != null)
+                    {
+                        string message = Encoding.UTF8.GetString(messageProtocol.Body);
+                        Console.WriteLine($"{_clientInfo.Id}: {message}");
+
+                        // 수신 메시지 카운트 증가
+                        _clientInfo.IncreaseReciveMessagCount();
+                        _clientInfo.LastSendMessageTime = DateTime.Now;
+
+                        Logger.LogMessage(message, _clientInfo); // 메시지 로그 기록
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"메시지 처리 중 오류 발생: {ex.Message}");
+                }
+
+                await Task.Delay(10); // CPU 과부하 방지
+            }
+        }
         private void HandleRequest(FTP requestProtocol, ref bool isConnected)
         {
             switch (requestProtocol.OpCode)
@@ -68,10 +101,6 @@ namespace NetworkLibrary
 
                 case OpCode.MessageModeRequest: // 메세지 모드 변경 요청
                     HandleChangeToMessageModeRequest();
-                    break;
-
-                case OpCode.MessageRequest: // 메세지 전송 요청
-                    HandleMessageRequest(requestProtocol);
                     break;
 
                 case OpCode.LoginRequest: // 로그인 요청
@@ -122,19 +151,6 @@ namespace NetworkLibrary
             // 변경 되었을 경우
             byte[] responsePacket = responseProtocol.ChangeMessageModeResponse(true);
             _stream.Write(responsePacket, 0, responsePacket.Length);
-        }
-
-        // 메시지 요청 처리
-        private void HandleMessageRequest(FTP requestProtocol)
-        {
-            string message = Encoding.UTF8.GetString(requestProtocol.Body);
-            Console.WriteLine($"{_clientInfo.Id}: {message}");
-
-            // 수신 메시지 카운트 증가
-            _clientInfo.IncreaseReciveMessagCount();
-            _clientInfo.LastSendMessageTime = DateTime.Now;
-
-            Logger.LogMessage(message, _clientInfo); // 메시지 로그 기록
         }
 
         // 회원가입 요청 처리

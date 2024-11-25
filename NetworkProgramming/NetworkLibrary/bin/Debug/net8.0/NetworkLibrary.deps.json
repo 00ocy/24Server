@@ -19,12 +19,18 @@
           "SecurityLibrary": "1.0.0"
         },
         "runtime": {
-          "Protocol.dll": {}
+          "Protocol.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "SecurityLibrary/1.0.0": {
         "runtime": {
-          "SecurityLibrary.dll": {}
+          "SecurityLibrary.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

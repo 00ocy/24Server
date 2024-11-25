@@ -168,11 +168,11 @@ namespace Protocol
 
         
         // 첫 번째 WaitForPacket 메서드 - 특정 조건 없이 패킷 대기
-        public FTP WaitForPacket(ConcurrentQueue<FTP> packetQueue, bool isRunning)
+        public FTP WaitForPacket(ConcurrentQueue<FTP> targetQueue, bool isRunning)
         {
             while (isRunning)
             {
-                if (packetQueue.TryDequeue(out FTP packet))
+                if (targetQueue.TryDequeue(out FTP packet))
                 {
                     return packet;
                 }
@@ -184,13 +184,13 @@ namespace Protocol
             return null;
         }
         // 패킷 수신 대기 (특정 OpCode에 맞는 패킷)
-        public FTP WaitForPacket(ConcurrentQueue<FTP> packetQueue, bool isRunning, params OpCode[] expectedOpCodes)
+        public FTP WaitForPacket(ConcurrentQueue<FTP> targetQueue, bool isRunning, params OpCode[] expectedOpCodes)
         {
             int timeout = 5000;
             int waited = 0;
             while (isRunning && waited < timeout)
             {
-                if (packetQueue.TryDequeue(out FTP packet))
+                if (targetQueue.TryDequeue(out FTP packet))
                 {
                     if (Array.Exists(expectedOpCodes, op => op == packet.OpCode))
                     {
@@ -204,8 +204,8 @@ namespace Protocol
                 }
             }
             return null;
+         
         }
-
 
         // 더미 파일 생성 메서드
         public static void CreateDummyFile(string filePath, long sizeInBytes)
