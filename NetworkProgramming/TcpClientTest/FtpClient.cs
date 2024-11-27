@@ -143,7 +143,7 @@ namespace TcpClientTest
 
             Console.WriteLine("비밀번호를 입력하세요:");
             string password = Console.ReadLine();
-            string encryptedPassword = AESHelper.Encrypt(password);
+            byte[] encryptedPassword = AESHelper.Encrypt(Encoding.UTF8.GetBytes(password));
 
             // ID, PW를 ':'로 결합
             string encryptedIDPW = $"{userId}:{encryptedPassword}";
@@ -186,7 +186,7 @@ namespace TcpClientTest
             // PW 생성 후 암호화
             Console.WriteLine("비밀번호를 입력하세요:");
             string password = Console.ReadLine();
-            string encryptedPassword = AESHelper.Encrypt(password);
+    byte[] encryptedPassword = AESHelper.Encrypt(Encoding.UTF8.GetBytes(password));
 
             // ID,PW를':'로 결합
             string encryptedIDPW = $"{userId}:{encryptedPassword}";

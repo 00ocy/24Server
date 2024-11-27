@@ -25,15 +25,12 @@ namespace Protocol
             return _ftpProtocol.GetPacket();                 // 패킷 생성 및 반환
         }
 
-        // 파일 전송 요청 패킷 생성 (해시 추가)
+       // 파일 전송 요청 패킷 생성 (해시 추가)
         public byte[] TransmitFileRequest(string filename, uint filesize, string fileHash)
         {
             _ftpProtocol.OpCode = OpCode.FileTransferRequest;
-            string fileInfo = filename + "\0" + filesize.ToString() + "\0" + fileHash;
-           
-            // Body 데이터 암호화
-            string encryptedBody = AESHelper.Encrypt(fileInfo);
-            _ftpProtocol.Body = Encoding.UTF8.GetBytes(encryptedBody);
+            string fileInfo = $"{filename}\0{filesize}\0{fileHash}";
+            _ftpProtocol.Body = AESHelper.Encrypt(Encoding.UTF8.GetBytes(fileInfo));
             _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
             return _ftpProtocol.GetPacket();
         }
@@ -52,10 +49,7 @@ namespace Protocol
         public byte[] DownloadFileRequest(string filename)
         {
             _ftpProtocol.OpCode = OpCode.FileDownloadRequest;
-
-            // Body 데이터 암호화
-            string encryptedBody = AESHelper.Encrypt(filename);
-            _ftpProtocol.Body = Encoding.UTF8.GetBytes(encryptedBody);
+            _ftpProtocol.Body = AESHelper.Encrypt(Encoding.UTF8.GetBytes(filename));
             _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
             return _ftpProtocol.GetPacket();
         }
@@ -88,8 +82,7 @@ namespace Protocol
         {
             _ftpProtocol.OpCode = OpCode.MessageRequest;
             // Body 데이터 암호화
-            string encryptedBody = AESHelper.Encrypt(userInput);
-            _ftpProtocol.Body = Encoding.UTF8.GetBytes(encryptedBody);
+            _ftpProtocol.Body = AESHelper.Encrypt(Encoding.UTF8.GetBytes(userInput));
             _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
             return _ftpProtocol.GetPacket();
         }
@@ -101,8 +94,7 @@ namespace Protocol
             _ftpProtocol.OpCode = OpCode.LoginRequest;
 
             // Body 데이터 암호화
-            string encryptedBody = AESHelper.Encrypt(encryptedIDPW);
-            _ftpProtocol.Body = Encoding.UTF8.GetBytes(encryptedBody);
+            _ftpProtocol.Body = AESHelper.Encrypt(Encoding.UTF8.GetBytes(encryptedIDPW));
             _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
             return _ftpProtocol.GetPacket();
         }
@@ -113,8 +105,7 @@ namespace Protocol
             // 암호화 된 유저 IDPW 담은 패킷
             _ftpProtocol.OpCode = OpCode.RegisterRequest;
             // Body 데이터 암호화
-            string encryptedBody = AESHelper.Encrypt(encryptedIDPW);
-            _ftpProtocol.Body = Encoding.UTF8.GetBytes(encryptedBody);
+            _ftpProtocol.Body = AESHelper.Encrypt(Encoding.UTF8.GetBytes(encryptedIDPW));
             _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
             return _ftpProtocol.GetPacket();
         }
@@ -125,8 +116,7 @@ namespace Protocol
             // 암호화 된 유저 ID 담은 패킷
             _ftpProtocol.OpCode = OpCode.DuplicateCheckRequest;
             // Body 데이터 암호화
-            string encryptedBody = AESHelper.Encrypt(encryptedId);
-            _ftpProtocol.Body = Encoding.UTF8.GetBytes(encryptedBody);
+            _ftpProtocol.Body = AESHelper.Encrypt(Encoding.UTF8.GetBytes(encryptedId));
             _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
             return _ftpProtocol.GetPacket();
         }

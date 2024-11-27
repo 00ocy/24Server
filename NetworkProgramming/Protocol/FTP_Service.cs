@@ -1,5 +1,7 @@
 ﻿using System.Collections.Concurrent;
+using System.IO;
 using System.Net.Sockets;
+using System.Text;
 using SecurityLibrary;
 namespace Protocol
 {
@@ -71,11 +73,14 @@ namespace Protocol
         // 파일 데이터 전송 패킷 생성 
         public byte[] SendFileDataPacket(uint seqNo, byte[] data, bool isFinal)
         {
-            _ftpProtocol.OpCode = isFinal ? OpCode.SplitTransferFinal : OpCode.SplitTransferInProgress;  // 파일 데이터 전송 여부에 따른 OpCode 설정
-            _ftpProtocol.SeqNo = seqNo;  // 순차 번호 설정
-            _ftpProtocol.Body = data;  // 전송할 데이터 설정
-            _ftpProtocol.Length = (uint)(data != null ? data.Length : 0);  // 데이터 길이 설정
-            return _ftpProtocol.GetPacket();  // 패킷 생성 및 반환
+            _ftpProtocol.OpCode = isFinal ? OpCode.SplitTransferFinal : OpCode.SplitTransferInProgress;
+            _ftpProtocol.SeqNo = seqNo;
+
+            // Body 데이터를 암호화하여 설정
+            _ftpProtocol.Body = AESHelper.Encrypt(data);
+            _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
+
+            return _ftpProtocol.GetPacket();
         }
 
 
@@ -100,14 +105,14 @@ namespace Protocol
                         return false;
                     }
 
+                    // 이미 복호화된 데이터를 사용
                     fileChunks[dataPacket.SeqNo] = dataPacket.Body;
                     totalBytesReceived += dataPacket.Body.Length;
 
-                    // Calculate and display progress
+                    // 진행률 출력
                     float percent = (float)totalBytesReceived / filesize * 100;
-                    int barCount = (int)(percent / (100f / 20)); // 20-character progress bar
+                    int barCount = (int)(percent / (100f / 20));
 
-                    // Update progress bar in the same console line
                     Console.SetCursorPosition(0, Console.CursorTop);
                     Console.Write($"[{new string('=', barCount)}{new string(' ', 20 - barCount)}] {percent:0.00}% [받은 패킷] OpCode: {dataPacket.OpCode} ({(int)dataPacket.OpCode}) / SeqNo: {dataPacket.SeqNo} / Length: {dataPacket.Body.Length}");
 
@@ -130,7 +135,6 @@ namespace Protocol
                         }
                         else
                         {
-                            // FileDownloadFailed_SHAhashValueDifferent
                             Console.WriteLine($"[받은 SHA-256 해시] {expectedHash}");
                             Console.WriteLine($"[현재 SHA-256 해시] {receivedFileHash}");
                             Console.WriteLine("파일 다운로드가 완료되었지만 해시값이 일치하지 않습니다. 파일이 손상되었을 수 있습니다.");
@@ -146,6 +150,7 @@ namespace Protocol
             }
             return false;
         }
+
 
         // 수신된 파일 저장 함수
         private string SaveReceivedFile(string filename, Dictionary<uint, byte[]> fileChunks)
@@ -199,8 +204,8 @@ namespace Protocol
                 }
                 else
                 {
-                    Thread.Sleep(100);
-                    waited += 100;
+                    Thread.Sleep(10);
+                    waited += 10;
                 }
             }
             return null;

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Protocol
@@ -49,7 +50,7 @@ namespace Protocol
         // ReceivePacket 메서드 - 단일 패킷을 스트림에서 읽기
         public static FTP ReceivePacket(NetworkStream stream)
         {
-            byte[] headerBuffer = new byte[11]; // 헤더 크기 (ProtoVer(1) + OpCode(2) + SeqNo(4) + Length(4))
+            byte[] headerBuffer = new byte[11];
             int bytesRead = stream.Read(headerBuffer, 0, headerBuffer.Length);
             if (bytesRead < headerBuffer.Length)
                 throw new Exception("패킷 헤더를 읽는 중 오류 발생");
@@ -69,11 +70,8 @@ namespace Protocol
                     totalBytesRead += read;
                 }
 
-                // Body 데이터 복호화
-                string encryptedBody = Encoding.UTF8.GetString(bodyBuffer);
-                string decryptedBody = AESHelper.Decrypt(encryptedBody);
-
-                protocol.Body = Encoding.UTF8.GetBytes(decryptedBody);
+                // Body 데이터를 복호화하여 설정
+                protocol.Body = AESHelper.Decrypt(bodyBuffer);
             }
 
             return protocol;

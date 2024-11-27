@@ -81,8 +81,7 @@ namespace Protocol
             _ftpProtocol.OpCode = OpCode.FileListResponse;
             string fileList = string.Join("\0", filenames);      // 파일 이름 배열을 file1\0file2\0.. 형태로 바꿈
             // Body 데이터 암호화
-            string encryptedBody = AESHelper.Encrypt(fileList);
-            _ftpProtocol.Body = Encoding.UTF8.GetBytes(encryptedBody); 
+            _ftpProtocol.Body = AESHelper.Encrypt(Encoding.UTF8.GetBytes(fileList)); 
             _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
             return _ftpProtocol.GetPacket();
         }
@@ -106,8 +105,7 @@ namespace Protocol
 
                 // Body 데이터를 암호화
                 string rawBodyString = Convert.ToBase64String(rawBody);
-                string encryptedBodyString = AESHelper.Encrypt(rawBodyString);
-                _ftpProtocol.Body = Encoding.UTF8.GetBytes(encryptedBodyString);
+                _ftpProtocol.Body = AESHelper.Encrypt(Encoding.UTF8.GetBytes(rawBodyString));
 
                 // 암호화된 Body 길이를 설정
                 _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
