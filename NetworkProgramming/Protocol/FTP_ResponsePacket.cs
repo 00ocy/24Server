@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SecurityLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -79,7 +80,9 @@ namespace Protocol
             // 디렉토리의 파일 목록 배열을 받아온 상태
             _ftpProtocol.OpCode = OpCode.FileListResponse;
             string fileList = string.Join("\0", filenames);      // 파일 이름 배열을 file1\0file2\0.. 형태로 바꿈
-            _ftpProtocol.Body = Encoding.UTF8.GetBytes(fileList);
+            // Body 데이터 암호화
+            string encryptedBody = AESHelper.Encrypt(fileList);
+            _ftpProtocol.Body = Encoding.UTF8.GetBytes(encryptedBody); 
             _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
             return _ftpProtocol.GetPacket();
         }
@@ -91,13 +94,22 @@ namespace Protocol
 
             if (ok)
             {
+                // 파일 크기를 네트워크 바이트 순서로 변환
                 byte[] fileSizeBytes = BitConverter.GetBytes(IPAddress.HostToNetworkOrder((int)filesize));
+                // 해시 값을 UTF-8 바이트 배열로 변환하고 최대 길이 제한 (64 bytes)
                 byte[] fileHashBytes = Encoding.UTF8.GetBytes(fileHash ?? string.Empty).Take(64).ToArray();
 
-                _ftpProtocol.Body = new byte[4 + fileHashBytes.Length];
-                Array.Copy(fileSizeBytes, 0, _ftpProtocol.Body, 0, fileSizeBytes.Length);
-                Array.Copy(fileHashBytes, 0, _ftpProtocol.Body, fileSizeBytes.Length, fileHashBytes.Length);
+                // Body 데이터 구성
+                byte[] rawBody = new byte[4 + fileHashBytes.Length];
+                Array.Copy(fileSizeBytes, 0, rawBody, 0, fileSizeBytes.Length);
+                Array.Copy(fileHashBytes, 0, rawBody, fileSizeBytes.Length, fileHashBytes.Length);
 
+                // Body 데이터를 암호화
+                string rawBodyString = Convert.ToBase64String(rawBody);
+                string encryptedBodyString = AESHelper.Encrypt(rawBodyString);
+                _ftpProtocol.Body = Encoding.UTF8.GetBytes(encryptedBodyString);
+
+                // 암호화된 Body 길이를 설정
                 _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
             }
             else
@@ -108,6 +120,7 @@ namespace Protocol
 
             return _ftpProtocol.GetPacket();
         }
+
         // 전송 완료 응답 패킷 생성
         public byte[] TransferCompletionResponse(bool success)
         {

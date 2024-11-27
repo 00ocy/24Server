@@ -1,37 +1,33 @@
-﻿using System;
+﻿using SecurityLibrary;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Protocol
 {
-    // FTP 패킷 수신 작업
-    // Thread로 호출되어 수신을 담당
-    // 패킷 읽기, 파싱
     public class FTP_PacketListener
     {
         // ReceivePackets 메서드 - 패킷 수신을 위한 작업 실행
-        public static void ReceivePackets(NetworkStream stream ,ConcurrentQueue<FTP> packetQueue, ConcurrentQueue<FTP> messageQueue, bool isRunning)
+        public static void ReceivePackets(NetworkStream stream, ConcurrentQueue<FTP> packetQueue, ConcurrentQueue<FTP> messageQueue, bool isRunning)
         {
             try
             {
                 while (isRunning)
                 {
-
                     FTP packet = ReceivePacket(stream);
-                    
+
                     // 메시지 모드 패킷은 별도 메시지 큐로 이동
                     if (packet.OpCode == OpCode.MessageRequest)
                     {
                         messageQueue.Enqueue(packet);
                     }
                     else
-                    {   // 패킷 내용 출력
+                    {
+                        // 패킷 내용 출력
                         if (packet.OpCode != OpCode.SplitTransferInProgress && packet.OpCode != OpCode.SplitTransferFinal)
                         {
                             packet.PrintPacketInfo("받은 패킷");
@@ -42,78 +38,54 @@ namespace Protocol
             }
             catch (IOException ioEx)
             {
-                // 스트림이 닫히거나 네트워크 오류 발생 시
                 Console.WriteLine($"패킷 수신 중 네트워크 오류 발생: {ioEx.Message}");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"패킷 수신 중 오류 발생: {ex.Message}");
             }
-
         }
+
         // ReceivePacket 메서드 - 단일 패킷을 스트림에서 읽기
         public static FTP ReceivePacket(NetworkStream stream)
         {
             byte[] headerBuffer = new byte[11]; // 헤더 크기 (ProtoVer(1) + OpCode(2) + SeqNo(4) + Length(4))
             int bytesRead = stream.Read(headerBuffer, 0, headerBuffer.Length);
-            if (bytesRead == 0)
-                throw new Exception("패킷 헤더를 읽는 중 오류 발생1");
-
             if (bytesRead < headerBuffer.Length)
-                throw new Exception("패킷 헤더를 읽는 중 오류 발생2");
+                throw new Exception("패킷 헤더를 읽는 중 오류 발생");
 
             FTP protocol = ParsePacket(headerBuffer);
 
-            // 메시지 모드로 처리할 OpCode 집합 정의
-            var messageModeOpCodes = new HashSet<OpCode> 
-            { 
-                OpCode.MessageRequest,
-                OpCode.LoginRequest,
-                OpCode.RegisterRequest
-            };
+            if (protocol.Length > 0)
+            {
+                byte[] bodyBuffer = new byte[protocol.Length];
+                int totalBytesRead = 0;
 
-            // 메시지 모드 처리
-            if (messageModeOpCodes.Contains(protocol.OpCode)) // 메시지 모드 조건
-            {
-                using (MemoryStream ms = new MemoryStream())
+                while (totalBytesRead < protocol.Length)
                 {
-                    byte[] buffer = new byte[1024];
-                    int read;
-                    while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
-                    {
-                        ms.Write(buffer, 0, read);
-                        if (!stream.DataAvailable) break;
-                    }
-                    protocol.Body = ms.ToArray();
+                    int read = stream.Read(bodyBuffer, totalBytesRead, (int)(protocol.Length - totalBytesRead));
+                    if (read <= 0)
+                        throw new Exception("패킷 바디를 읽는 중 오류 발생");
+                    totalBytesRead += read;
                 }
-            }
-            else
-            {
-                // 기존 방식으로 바디 읽기
-                if (protocol.Length > 0)
-                {
-                    byte[] bodyBuffer = new byte[protocol.Length];
-                    int totalBytesRead = 0;
-                    while (totalBytesRead < protocol.Length)
-                    {
-                        int read = stream.Read(bodyBuffer, totalBytesRead, (int)(protocol.Length - totalBytesRead));
-                        if (read <= 0)
-                            throw new Exception("패킷 바디를 읽는 중 오류 발생");
-                        totalBytesRead += read;
-                    }
-                    protocol.Body = bodyBuffer;
-                }
+
+                // Body 데이터 복호화
+                string encryptedBody = Encoding.UTF8.GetString(bodyBuffer);
+                string decryptedBody = AESHelper.Decrypt(encryptedBody);
+
+                protocol.Body = Encoding.UTF8.GetBytes(decryptedBody);
             }
 
             return protocol;
         }
+
         // 수신된 데이터를 패킷으로 변환하는 메서드
         public static FTP ParsePacket(byte[] data)
         {
-            FTP protocol = new FTP();  // 새 FTP 객체 생성
+            FTP protocol = new FTP();
             using (MemoryStream ms = new MemoryStream(data))
             {
-                protocol.ProtoVer = (byte)ms.ReadByte();  // 프로토콜 버전 읽기
+                protocol.ProtoVer = (byte)ms.ReadByte(); // 프로토콜 버전 읽기
 
                 // OpCode 파싱
                 byte[] buffer = new byte[2];
@@ -125,21 +97,12 @@ namespace Protocol
                 ms.Read(buffer, 0, 4);
                 protocol.SeqNo = (uint)IPAddress.NetworkToHostOrder(BitConverter.ToInt32(buffer, 0));
 
-
                 // Length 파싱
                 buffer = new byte[4];
                 ms.Read(buffer, 0, 4);
                 protocol.Length = (uint)IPAddress.NetworkToHostOrder(BitConverter.ToInt32(buffer, 0));
-
-                // Body 파싱 (Length가 0보다 클 경우에만)
-                if (protocol.Length > 0)
-                {
-                    protocol.Body = new byte[protocol.Length];
-                    ms.Read(protocol.Body, 0, (int)protocol.Length); // Body 데이터 읽기
-                }
             }
-            return protocol;  // 파싱된 FTP 패킷 반환
+            return protocol;
         }
     }
-
 }
