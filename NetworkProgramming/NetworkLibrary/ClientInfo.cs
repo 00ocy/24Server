@@ -16,6 +16,7 @@ namespace NetworkLibrary
         public int Port { get; }
         public bool IsConnected { get; set; }
         public DateTime LastSendMessageTime { get; set; }
+        public bool IsFileTransferInProgress { get; set; } // 파일 송수신 상태 변수 추가
 
         // 접속시간, 총 접속시간 
         //public DateTime ConnectedTime { get; }
@@ -32,6 +33,7 @@ namespace NetworkLibrary
             IpAddress = clientEp.Address.ToString();
             Port = clientEp.Port;
             IsConnected = true;
+            IsFileTransferInProgress = false; // 초기값 false
             //ConnectedTime = DateTime.Now;            
         }
 

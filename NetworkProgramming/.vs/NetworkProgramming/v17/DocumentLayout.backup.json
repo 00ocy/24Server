@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|c:\\users\\\uC624\uCC2C\uC601\\documents\\github\\24server\\networkprogramming\\tcpclienttest\\ftpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|solutionrelative:tcpclienttest\\ftpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|c:\\users\\\uC624\uCC2C\uC601\\documents\\github\\24server\\networkprogramming\\protocol\\ftp_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|solutionrelative:protocol\\ftp_service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|c:\\users\\\uC624\uCC2C\uC601\\documents\\github\\24server\\networkprogramming\\protocol\\ftp_requestpacket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|solutionrelative:protocol\\ftp_requestpacket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|c:\\users\\\uC624\uCC2C\uC601\\documents\\github\\24server\\networkprogramming\\networklibrary\\clienthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|solutionrelative:networklibrary\\clienthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|c:\\users\\\uC624\uCC2C\uC601\\documents\\github\\24server\\networkprogramming\\protocol\\ftp_responsepacket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,24 +23,20 @@
       "RelativeMoniker": "D:0:0:{0C058343-6285-4F91-B703-5BE7BBBBA5C0}|Security\\SecurityLibrary.csproj|solutionrelative:security\\aeshelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|c:\\users\\\uC624\uCC2C\uC601\\documents\\github\\24server\\networkprogramming\\protocol\\ftp_requestpacket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|solutionrelative:protocol\\ftp_requestpacket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|c:\\users\\\uC624\uCC2C\uC601\\documents\\github\\24server\\networkprogramming\\protocol\\ftp_packetlistener.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|solutionrelative:protocol\\ftp_packetlistener.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|c:\\users\\\uC624\uCC2C\uC601\\documents\\github\\24server\\networkprogramming\\networklibrary\\clienthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|solutionrelative:networklibrary\\clienthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|c:\\users\\\uC624\uCC2C\uC601\\documents\\github\\24server\\networkprogramming\\networklibrary\\serverhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|solutionrelative:networklibrary\\serverhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|c:\\users\\\uC624\uCC2C\uC601\\documents\\github\\24server\\networkprogramming\\protocol\\ftp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D7402275-F1F5-4920-9C7A-EDFC7161F846}|Protocol\\Protocol.csproj|solutionrelative:protocol\\ftp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|c:\\users\\\uC624\uCC2C\uC601\\documents\\github\\24server\\networkprogramming\\tcpclienttest\\ftpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14B32357-8863-4969-8D30-1B71887C9940}|TcpClientTest\\TcpClientTest.csproj|solutionrelative:tcpclienttest\\ftpclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|c:\\users\\\uC624\uCC2C\uC601\\documents\\github\\24server\\networkprogramming\\networklibrary\\serverhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|solutionrelative:networklibrary\\serverhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF356449-E007-48A1-96A0-739E7F34A73B}|NetworkLibrary\\NetworkLibrary.csproj|c:\\users\\\uC624\uCC2C\uC601\\documents\\github\\24server\\networkprogramming\\networklibrary\\clientinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -74,32 +74,31 @@
       "DocumentGroups": [
         {
           "DockedWidth": 206,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "ServerHandler.cs",
               "DocumentMoniker": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ServerHandler.cs",
               "RelativeDocumentMoniker": "NetworkLibrary\\ServerHandler.cs",
               "ToolTip": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ServerHandler.cs",
               "RelativeToolTip": "NetworkLibrary\\ServerHandler.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAWwEwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAWwFMAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-23T11:02:28.795Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "ClientHandler.cs",
               "DocumentMoniker": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientHandler.cs",
               "RelativeDocumentMoniker": "NetworkLibrary\\ClientHandler.cs",
               "ToolTip": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientHandler.cs",
               "RelativeToolTip": "NetworkLibrary\\ClientHandler.cs",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAmwO4AAAAuAAAAAAAAAA==",
+              "ViewState": "AQIAANkAAAAAAAAAAAAiwNsAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T11:44:57.574Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-13T11:44:57.574Z"
             },
             {
               "$type": "Document",
@@ -115,16 +114,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "FTP.cs",
               "DocumentMoniker": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTP.cs",
               "RelativeDocumentMoniker": "Protocol\\FTP.cs",
               "ToolTip": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTP.cs",
               "RelativeToolTip": "Protocol\\FTP.cs",
-              "ViewState": "AgIAAIYAAAAAAAAAAAAYwJ4AAAAXAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T01:20:19.259Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-19T01:20:19.259Z"
             },
             {
               "$type": "Document",
@@ -164,54 +162,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "FTP_ResponsePacket.cs",
               "DocumentMoniker": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTP_ResponsePacket.cs",
               "RelativeDocumentMoniker": "Protocol\\FTP_ResponsePacket.cs",
               "ToolTip": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTP_ResponsePacket.cs",
               "RelativeToolTip": "Protocol\\FTP_ResponsePacket.cs",
-              "ViewState": "AgIAAFoAAAAAAAAAAAAywFQAAABHAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAMwCUAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T06:07:39.761Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-21T06:07:39.761Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "FtpClient.cs",
               "DocumentMoniker": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\FtpClient.cs",
               "RelativeDocumentMoniker": "TcpClientTest\\FtpClient.cs",
               "ToolTip": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\TcpClientTest\\FtpClient.cs",
               "RelativeToolTip": "TcpClientTest\\FtpClient.cs",
-              "ViewState": "AgIAAIgAAAAAAAAAAADwv48AAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAFMCAAAAAAAAAAAIwFwCAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T14:18:48.384Z"
+              "WhenOpened": "2024-11-18T14:18:48.384Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "FTP_PacketListener.cs",
               "DocumentMoniker": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTP_PacketListener.cs",
               "RelativeDocumentMoniker": "Protocol\\FTP_PacketListener.cs",
               "ToolTip": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTP_PacketListener.cs",
               "RelativeToolTip": "Protocol\\FTP_PacketListener.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAiwEkAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T07:34:26.15Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-22T07:34:26.15Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "FTP_RequestPacket.cs",
               "DocumentMoniker": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTP_RequestPacket.cs",
               "RelativeDocumentMoniker": "Protocol\\FTP_RequestPacket.cs",
               "ToolTip": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTP_RequestPacket.cs",
               "RelativeToolTip": "Protocol\\FTP_RequestPacket.cs",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAYwH4AAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAuwB4AAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T05:42:20.25Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-19T05:42:20.25Z"
             },
             {
               "$type": "Document",
@@ -221,7 +217,7 @@
               "RelativeDocumentMoniker": "NetworkLibrary\\ClientInfo.cs",
               "ToolTip": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\NetworkLibrary\\ClientInfo.cs",
               "RelativeToolTip": "NetworkLibrary\\ClientInfo.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAYwCIAAAA3AAAAAAAAAA==",
+              "ViewState": "AQIAABUAAAAAAAAAAAAYwCIAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-13T11:44:57.587Z"
             },
@@ -239,29 +235,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "FTP_Service.cs",
               "DocumentMoniker": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTP_Service.cs",
               "RelativeDocumentMoniker": "Protocol\\FTP_Service.cs",
               "ToolTip": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\Protocol\\FTP_Service.cs",
               "RelativeToolTip": "Protocol\\FTP_Service.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwB4AAAAxAAAAAAAAAA==",
+              "ViewState": "AQIAAK8AAAAAAAAAAAAAAMkAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T10:35:05.44Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-23T10:35:05.44Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "AESHelper.cs",
               "DocumentMoniker": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\AESHelper.cs",
               "RelativeDocumentMoniker": "Security\\AESHelper.cs",
               "ToolTip": "C:\\Users\\\uC624\uCC2C\uC601\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\AESHelper.cs",
               "RelativeToolTip": "Security\\AESHelper.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAAwAcAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T08:37:35.065Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-21T08:37:35.065Z"
             },
             {
               "$type": "Document",

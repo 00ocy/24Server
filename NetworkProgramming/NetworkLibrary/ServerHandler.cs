@@ -108,10 +108,11 @@ namespace NetworkLibrary
             foreach (var client in _clientsList.Where(c => c.IsConnected))
             {
                 Console.WriteLine(
-                    $"[User.ID]: <{client.Id ?? "Unknown"}> | " +
-                    $"[User.IP]: <{client.IpAddress}:{client.Port}> | " +
+                    $"\n[User.ID]: <{client.Id ?? "Unknown"}> | " +
+                    $"[User.IP]: <{client.IpAddress}:{client.Port}> | \n" +
                     $"[Receive, Send Count]: <{client.ReceiveMessageCount}, {client.SendMessageCount}> | " +
-                    $"[Last message time]: <{client.LastSendMessageTime:HH:mm:ss}>"
+                    $"[Last message time]: <{client.LastSendMessageTime:HH:mm:ss}> | " +
+                    $"[File Transfer]: <{(client.IsFileTransferInProgress ? "In Progress" : "Idle")}>"
                 );
             }
         }

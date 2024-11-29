@@ -220,16 +220,15 @@ namespace NetworkLibrary
         // 파일 전송 요청 처리
         private void HandleFileTransferRequest(FTP requestProtocol)
         {
+            _clientInfo.IsFileTransferInProgress = true; // 파일 송수신 상태 활성화
+
             string[] bodyParts = Encoding.UTF8.GetString(requestProtocol.Body).Split('\0');
             string filename = bodyParts[0];
             uint filesize = uint.Parse(bodyParts[1]);
             string clientFileHash = bodyParts[2];
 
             Console.WriteLine($"파일 전송 요청을 받았습니다. 파일명: {filename}, 크기: {filesize} bytes");
-            if(true)
-            {
-                // 파일명, 크기 제한 조건문 필요시 작성
-            }
+
             FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
             byte[] responsePacket = responseProtocol.TransmitFileResponse(true);
             responseProtocol.PrintPacketInfo("보낸 패킷");
@@ -237,10 +236,13 @@ namespace NetworkLibrary
             _stream.Write(responsePacket, 0, responsePacket.Length);
 
             bool result = _ftpService.ReceiveFileData(filename, filesize, clientFileHash, _packetQueue, _isRunning);
-            if(result)
+
+            if (result)
             {
                 Logger.LogFileTransfer(filename, filesize, _clientInfo); // 파일 전송 로그 기록
             }
+
+            _clientInfo.IsFileTransferInProgress = false; // 파일 송수신 상태 비활성화
         }
 
         // 파일 목록 요청 처리
