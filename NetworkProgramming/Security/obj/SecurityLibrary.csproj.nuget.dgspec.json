@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj": {}
+    "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj": {
+    "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj",
         "projectName": "SecurityLibrary",
-        "projectPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj",
-        "packagesPath": "C:\\Users\\오찬영\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\오찬영\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\obj\\",
+        "projectPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\SecurityLibrary.csproj",
+        "packagesPath": "C:\\Users\\chan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\chan\\Documents\\GitHub\\24Server\\NetworkProgramming\\Security\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\오찬영\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

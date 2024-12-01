@@ -1,6 +1,5 @@
 ﻿using System.Net;
-using System.Text;
-using System.Security.Cryptography;
+
 namespace Protocol
 {
 

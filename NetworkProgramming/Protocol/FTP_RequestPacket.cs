@@ -1,8 +1,4 @@
 ﻿using SecurityLibrary;
-using System;
-using System.IO;
-using System.Net;
-using System.Reflection;
 using System.Text;
 
 namespace Protocol

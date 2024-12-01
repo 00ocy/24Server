@@ -1,8 +1,7 @@
 ﻿using System.Collections.Concurrent;
-using System.IO;
 using System.Net.Sockets;
-using System.Text;
 using SecurityLibrary;
+
 namespace Protocol
 {
     // 패킷 단위로 파일 전송 & 저장
@@ -191,7 +190,7 @@ namespace Protocol
         // 패킷 수신 대기 (특정 OpCode에 맞는 패킷)
         public FTP WaitForPacket(ConcurrentQueue<FTP> targetQueue, bool isRunning, params OpCode[] expectedOpCodes)
         {
-            int timeout = 5000;
+            int timeout = 10000;
             int waited = 0;
             while (isRunning && waited < timeout)
             {

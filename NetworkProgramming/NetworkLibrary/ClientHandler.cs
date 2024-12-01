@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Net.Sockets;
 using System.Text;
 using SecurityLibrary;
+
 namespace NetworkLibrary
 {
     public class ClientHandler
@@ -62,6 +63,7 @@ namespace NetworkLibrary
                 }
             }
         }
+
         private async Task ProcessMessagePacketsAsync()
         {
             while (_isRunning)

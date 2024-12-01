@@ -1,8 +1,4 @@
 ﻿using Protocol;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 
@@ -145,9 +141,14 @@ namespace NetworkLibrary
                 {
                     HandleSendCommand(command);
                 }
+                else if (command.StartsWith("/broadcast "))
+                {
+                    string message = command.Substring(11); // "/broadcast " 이후의 텍스트 추출
+                    BroadcastMessage(message);
+                }
                 else
                 {
-                    Console.WriteLine("Invalid command. Available commands: /info, /exit, /send [ID] [Message]");
+                    Console.WriteLine("Invalid command. Available commands: /info, /exit, /send [ID] [Message] /broadcast [Message]");
                 }
             }
         }

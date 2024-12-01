@@ -4,7 +4,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Text;
 using SecurityLibrary;
-using NetworkLibrary;
+
 namespace TcpClientTest
 {
     public class FtpClient
