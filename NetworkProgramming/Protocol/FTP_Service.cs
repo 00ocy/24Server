@@ -4,9 +4,9 @@ using SecurityLibrary;
 
 namespace Protocol
 {
-    // 패킷 단위로 파일 전송 & 저장
+    // 파일 전송 & 저장
     // 패킷 수신 대기 함수
-    // 해시 계산 함수
+    
     public class FTP_Service
     {
         private readonly NetworkStream _stream;

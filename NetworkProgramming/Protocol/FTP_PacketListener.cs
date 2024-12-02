@@ -49,7 +49,7 @@ namespace Protocol
             byte[] headerBuffer = new byte[11];
             int bytesRead = stream.Read(headerBuffer, 0, headerBuffer.Length);
             if (bytesRead < headerBuffer.Length)
-                throw new Exception("패킷 헤더를 읽는 중 오류 발생");
+                throw new Exception("패킷 헤더를 읽는 중 오류 발생");       
 
             FTP protocol = ParsePacket(headerBuffer);
 

@@ -46,19 +46,25 @@ namespace NetworkLibrary
         // 모든 클라이언트에게 메시지 보내기
         public void BroadcastMessage(string message)
         {
-            byte[] messageBuffer = Encoding.UTF8.GetBytes(message);
+
             foreach (var clientInfo in _clientsList.Where(c => c.IsConnected))
             {
-                using (NetworkStream stream = clientInfo.Client.GetStream())
-                {
-                    stream.Write(messageBuffer, 0, messageBuffer.Length);
+                // 메시지 송신
+                FTP_RequestPacket messageRequest = new FTP_RequestPacket(new FTP());
+                byte[] messagePacket = messageRequest.MessageSendRequest(message);
 
-                    // 전송 메시지 수 업데이트
-                    clientInfo.IncreaseSendMessageCount();
-                    clientInfo.LastSendMessageTime = DateTime.Now;
+                // 메시지 전송
+                NetworkStream stream = clientInfo.Client.GetStream();
 
-                    Console.WriteLine($"Sent to [{clientInfo.IpAddress}]:[{clientInfo.Port}]: {message}");
-                }
+                stream.Write(messagePacket, 0, messagePacket.Length);
+
+                // 전송 카운트 업데이트
+                clientInfo.IncreaseSendMessageCount();
+                clientInfo.LastSendMessageTime = DateTime.Now;
+
+                Logger.LogMessage("Server: " + message, clientInfo); // 메시지 로그 기록
+
+                Console.WriteLine($"Sent to [{clientInfo.IpAddress}]:[{clientInfo.Port}]: {message}");
             }
         }
 

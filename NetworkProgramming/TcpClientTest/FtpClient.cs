@@ -450,7 +450,7 @@ namespace TcpClientTest
 
             while (!success)
             {
-                Console.WriteLine("Which file do you want to upload?");
+                Console.WriteLine("업로드할 파일 선택");
                 Console.WriteLine($"Directory: {currentDirectory}");
                 int dirCount = 0;
                 foreach (string file in files)
