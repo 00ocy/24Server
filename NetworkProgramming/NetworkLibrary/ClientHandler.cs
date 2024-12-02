@@ -101,10 +101,10 @@ namespace NetworkLibrary
                     HandleConnectionRequest();
                     break;
 
-                case OpCode.MessageModeRequest: // 메세지 모드 변경 요청
+                /*case OpCode.MessageModeRequest: // 메세지 모드 변경 요청
                     HandleChangeToMessageModeRequest();
                     break;
-
+*/
                 case OpCode.LoginRequest: // 로그인 요청
                     HandleLoginRequest(requestProtocol);
                     break;
@@ -143,7 +143,7 @@ namespace NetworkLibrary
             }
         }
 
-        private void HandleChangeToMessageModeRequest()
+     /*   private void HandleChangeToMessageModeRequest()
         { 
             // 메세지 모드 변경 요청 처리
             Console.WriteLine("메세지 모드 변경 요청을 받았습니다.");
@@ -153,7 +153,7 @@ namespace NetworkLibrary
             // 변경 되었을 경우
             byte[] responsePacket = responseProtocol.ChangeMessageModeResponse(true);
             _stream.Write(responsePacket, 0, responsePacket.Length);
-        }
+        }*/
 
         // 회원가입 요청 처리
         private void HandleRegisterRequest(FTP requestProtocol)
@@ -241,7 +241,7 @@ namespace NetworkLibrary
 
             if (result)
             {
-                Logger.LogFileTransfer(filename, filesize, _clientInfo); // 파일 전송 로그 기록
+                Logger.LogFileSend(filename, filesize, _clientInfo); // 파일 전송 로그 기록
             }
 
             _clientInfo.IsFileTransferInProgress = false; // 파일 송수신 상태 비활성화
@@ -263,18 +263,28 @@ namespace NetworkLibrary
                 Console.WriteLine("더미 파일 생성이 완료되었습니다.");
             }
 
-            string[] files = Directory.GetFiles(currentDirectory).Select(Path.GetFileName).ToArray();
+            string[] fileEntries = Directory.GetFiles(currentDirectory)
+                .Select(file => new FileInfo(file))
+                .Select(fileInfo =>
+                {
+                    string fileHash = Hashing.CalculateFileHash(fileInfo.FullName);
+                    return $"{fileInfo.Name}:{fileInfo.Length}:{fileHash}"; // "파일명:파일크기:파일해시" 형식
+                })
+                .ToArray();
+
+            // `fileEntries`는 string[] 형식이므로 문제가 발생하지 않음
             FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
-            byte[] responsePacket = responseProtocol.GetFileListResponse(files);
+            byte[] responsePacket = responseProtocol.GetFileListResponse(fileEntries);
             responseProtocol.PrintPacketInfo("보낸 패킷");
 
             _stream.Write(responsePacket, 0, responsePacket.Length);
         }
 
+
+
         // 파일 보내달라 요청 처리
         private void HandleFileDownloadRequest(FTP requestProtocol)
         {
-            requestProtocol.PrintPacketInfo("받은 패킷");
 
             string filename = Encoding.UTF8.GetString(requestProtocol.Body);
             string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "S_UploadFiles");
@@ -285,15 +295,21 @@ namespace NetworkLibrary
                 FileInfo fileInfo = new FileInfo(filePath);
                 uint filesize = (uint)fileInfo.Length;
 
-                string fileHash = Hashing.CalculateFileHash(filePath);
+                string fileHash = Hashing.CalculateFileHash(filePath); // 파일 해시 계산
                 FTP_ResponsePacket responseProtocol = new FTP_ResponsePacket(new FTP());
 
+                // 응답 패킷 생성: 파일 크기와 해시 포함
                 byte[] responsePacket = responseProtocol.DownloadFileResponse(true, filesize, fileHash);
                 responseProtocol.PrintPacketInfo("보낸 패킷");
 
                 _stream.Write(responsePacket, 0, responsePacket.Length);
 
-                _ftpService.SendFileData(filePath);
+                // 파일 데이터 전송
+                if(_ftpService.SendFileData(filePath))
+                {
+                    Logger.LogFileReceive(filename, filesize, _clientInfo); // 클라이언트 파일 수신 기록
+                }
+
             }
             else
             {

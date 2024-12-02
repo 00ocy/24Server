@@ -18,7 +18,7 @@ namespace Protocol
             _ftpProtocol = ftpProtocol;
         }
 
-        public void SendFileData(string filePath)
+        public bool SendFileData(string filePath)
         {
             const int bufferSize = 4096; // 한 번에 읽을 데이터 크기
             byte[] buffer = new byte[bufferSize];
@@ -66,6 +66,7 @@ namespace Protocol
 
             Console.WriteLine($"\n\n[파일 전송 끝] 파일경로: {filePath}");
             Console.WriteLine($"\n[SHA-256 해시] {fileHash}\n");
+            return true;
         }
 
 

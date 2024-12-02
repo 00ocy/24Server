@@ -65,15 +65,15 @@ namespace Protocol
             Console.WriteLine($"[{action}] OpCode: {_ftpProtocol.OpCode} ({(int)_ftpProtocol.OpCode}) / SeqNo: {_ftpProtocol.SeqNo} / Length: {_ftpProtocol.Length}");
         }
 
-        public byte[] ChangeToMessageModeRequest()
+       /* public byte[] ChangeToMessageModeRequest()
         {
             _ftpProtocol.OpCode = OpCode.MessageModeRequest;
             _ftpProtocol.Length = 0;
             _ftpProtocol.Body = null;
             return _ftpProtocol.GetPacket();
-        }
+        }*/
 
-        // 메세지 모드 메세지 전송
+        // 메세지 전송
         public byte[] MessageSendRequest(string userInput)
         {
             _ftpProtocol.OpCode = OpCode.MessageRequest;

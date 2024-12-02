@@ -16,10 +16,7 @@
       },
       "SecurityLibrary/1.0.0": {
         "runtime": {
-          "SecurityLibrary.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "SecurityLibrary.dll": {}
         }
       }
     }

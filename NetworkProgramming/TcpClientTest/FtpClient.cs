@@ -239,7 +239,7 @@ namespace TcpClientTest
             bool exit = false;
             while (!exit)
             {
-                Console.WriteLine("선택 해주세요");
+                Console.WriteLine("선택해 주세요");
                 Console.WriteLine("1. 메세지 모드로 변경");
                 Console.WriteLine("2. 파일 업로드");
                 Console.WriteLine("3. 파일 다운로드");
@@ -361,22 +361,22 @@ namespace TcpClientTest
 
         public void ChangeToMessageMode()
         {
-            FTP_RequestPacket MessageModeRequest = new FTP_RequestPacket(new FTP());
+            //FTP_RequestPacket MessageModeRequest = new FTP_RequestPacket(new FTP());
 
-            byte[] MessageModePacket = MessageModeRequest.ChangeToMessageModeRequest();
+            //byte[] MessageModePacket = MessageModeRequest.ChangeToMessageModeRequest();
 
             // 패킷 내용 출력
-            MessageModeRequest.PrintPacketInfo("보낸 패킷");
+           // MessageModeRequest.PrintPacketInfo("보낸 패킷");
 
 
-            _stream.Write(MessageModePacket, 0, MessageModePacket.Length);
+            //_stream.Write(MessageModePacket, 0, MessageModePacket.Length);
 
             // 3. 서버로부터 파일 전송 응답 수신 대기
-            FTP responseProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning);
-            if (responseProtocol != null && responseProtocol.OpCode == OpCode.MessageModeOK)
-            {
+            //FTP responseProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning);
+            //if (responseProtocol != null && responseProtocol.OpCode == OpCode.MessageModeOK)
+            //{
                 HandleMessageMode();
-            }
+            //}
         }
         public void HandleMessageMode()
         {
@@ -542,10 +542,7 @@ namespace TcpClientTest
 
             // 서버에 파일 목록 요청
             byte[] fileListPacket = fileListRequest.GetFileListRequest();
-
-            // 패킷 내용 출력
             fileListRequest.PrintPacketInfo("보낸 패킷");
-
             _stream.Write(fileListPacket, 0, fileListPacket.Length);
 
             // 서버로부터 파일 목록 응답 수신 대기
@@ -553,7 +550,6 @@ namespace TcpClientTest
 
             if (responseProtocol != null && responseProtocol.OpCode == OpCode.FileListResponse)
             {
-                // 파일 목록 수신
                 string fileListString = Encoding.UTF8.GetString(responseProtocol.Body);
                 string[] files = fileListString.Split('\0');
 
@@ -576,18 +572,25 @@ namespace TcpClientTest
         {
             int select = 0;
             bool success = false;
-            Dictionary<int, string> filesDict = new Dictionary<int, string>();
+            Dictionary<int, (string Name, long Size, string Hash)> filesDict = new Dictionary<int, (string Name, long Size, string Hash)>();
 
             while (!success)
             {
-                Console.WriteLine("Which file do you want to download?");
+                Console.WriteLine("다운로드할 파일 선택");
                 int fileCount = 0;
+
                 foreach (string file in files)
                 {
                     fileCount++;
+                    string[] fileParts = file.Split(':'); // 파일명, 크기, 해시 구분
+                    string name = fileParts[0];
+                    long size = long.Parse(fileParts[1]);
+                    string hash = fileParts[2];
+
                     if (!filesDict.ContainsKey(fileCount))
-                        filesDict.Add(fileCount, file);
-                    Console.WriteLine($"{fileCount}. {file}");
+                        filesDict.Add(fileCount, (name, size, hash));
+
+                    Console.WriteLine($"{fileCount}. {name} ({size / 1024} KB)");
                 }
                 Console.WriteLine($"{fileCount + 1}. Cancel");
 
@@ -596,13 +599,13 @@ namespace TcpClientTest
                 {
                     if (select == fileCount + 1)
                     {
-                        // 취소 선택
                         Console.WriteLine("파일 다운로드를 취소하였습니다.");
                         return;
                     }
 
                     // 선택한 파일 다운로드
-                    DownloadFile(filesDict[select]);
+                    (string filename, long filesize, string fileHash) = filesDict[select];
+                    DownloadFile(filename, filesize, fileHash);
                     break;
                 }
                 else
@@ -612,29 +615,30 @@ namespace TcpClientTest
             }
         }
 
-        public void DownloadFile(string filename)
+        public void DownloadFile(string filename, long expectedSize, string expectedHash)
         {
             try
             {
                 FTP_RequestPacket downloadRequest = new FTP_RequestPacket(new FTP());
-                // 파일 다운로드 요청 패킷 전송
                 byte[] downloadPacket = downloadRequest.DownloadFileRequest(filename);
                 downloadRequest.PrintPacketInfo("보낸 패킷");
                 _stream.Write(downloadPacket, 0, downloadPacket.Length);
 
-                // 서버로부터 다운로드 응답 수신 대기
                 FTP responseProtocol = _ftpService.WaitForPacket(_packetQueue, _isRunning, OpCode.FileDownloadOK, OpCode.FileDownloadFailed_FileNotFound);
 
                 if (responseProtocol != null && responseProtocol.OpCode == OpCode.FileDownloadOK)
                 {
                     Console.WriteLine("서버가 파일 다운로드 요청을 승인하였습니다.");
 
-                    // 파일 크기 및 해시 수신
-                    uint filesize = (uint)IPAddress.NetworkToHostOrder(BitConverter.ToInt32(responseProtocol.Body, 0));
-                    string serverFileHash = Encoding.UTF8.GetString(responseProtocol.Body, 4, 64); // 서버가 전송한 해시값 추출
+                    uint filesize = (uint)expectedSize;
+
+                    if (filesize != expectedSize)
+                    {
+                        Console.WriteLine($"파일 크기 불일치: 기대값 {expectedSize} bytes, 서버값 {filesize} bytes");
+                    }
 
                     // 파일 데이터 수신 및 해시 검증
-                    _ftpService.ReceiveFileData(filename, filesize, serverFileHash, _packetQueue, _isRunning);
+                    _ftpService.ReceiveFileData(filename, filesize, expectedHash, _packetQueue, _isRunning);
                 }
                 else
                 {
@@ -646,6 +650,7 @@ namespace TcpClientTest
                 Console.WriteLine($"오류 발생: {ex.Message}");
             }
         }
+
 
 
 

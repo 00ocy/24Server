@@ -22,14 +22,14 @@ namespace Protocol
             return _ftpProtocol.GetPacket();
         }
 
-        // 메세지 모드 변경 응답 패킷 생성
+  /*      // 메세지 모드 변경 응답 패킷 생성
         public byte[] ChangeMessageModeResponse(bool ok)
         {
             _ftpProtocol.OpCode = ok ? OpCode.MessageModeOK : OpCode.MessageModeReject;
             _ftpProtocol.Length = 0;
             _ftpProtocol.Body = null;
             return _ftpProtocol.GetPacket();
-        }
+        }*/
 
         // 로그인 요청 응답 패킷 생성
         public byte[] LoginResoponse(bool ok, OpCode errorCode = OpCode.LoginFailed_PW)
@@ -71,16 +71,22 @@ namespace Protocol
         }
 
         // 파일 목록 보여달라는 응답 패킷 생성
-        public byte[] GetFileListResponse(string[] filenames)
+        public byte[] GetFileListResponse(string[] fileEntries)
         {
-            // 디렉토리의 파일 목록 배열을 받아온 상태
+            // `fileEntries`는 "파일명:파일크기:파일해시" 형식의 배열이어야 합니다.
             _ftpProtocol.OpCode = OpCode.FileListResponse;
-            string fileList = string.Join("\0", filenames);      // 파일 이름 배열을 file1\0file2\0.. 형태로 바꿈
+
+            // 파일 목록을 '\0'으로 구분된 문자열로 변환
+            string fileList = string.Join("\0", fileEntries);
+
             // Body 데이터 암호화
-            _ftpProtocol.Body = AESHelper.Encrypt(Encoding.UTF8.GetBytes(fileList)); 
+            _ftpProtocol.Body = AESHelper.Encrypt(Encoding.UTF8.GetBytes(fileList));
             _ftpProtocol.Length = (uint)_ftpProtocol.Body.Length;
+
+            // 패킷 생성
             return _ftpProtocol.GetPacket();
         }
+
 
         // 파일 다운로드 응답 패킷 생성
         public byte[] DownloadFileResponse(bool ok, uint filesize = 0, string fileHash = null)

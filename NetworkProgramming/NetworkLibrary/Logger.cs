@@ -45,10 +45,16 @@
             WriteLog("Login", "로그인 성공", clientId, clientInfo?.IpAddress, clientInfo?.Port ?? 0);
         }
 
-        public static void LogFileTransfer(string fileName, uint fileSize, ClientInfo clientInfo)
+        public static void LogFileSend(string fileName, uint fileSize, ClientInfo clientInfo)
         {
-            string message = $"파일 전송: {fileName} ({fileSize} bytes)";
-            WriteLog("FileTransfer", message, clientInfo?.Id, clientInfo?.IpAddress, clientInfo?.Port ?? 0);
+            string message = $"파일 송신: {fileName} ({fileSize} bytes)";
+            WriteLog("FileSend", message, clientInfo?.Id, clientInfo?.IpAddress, clientInfo?.Port ?? 0);
+        }
+
+        public static void LogFileReceive(string fileName, uint fileSize, ClientInfo clientInfo)
+        {
+            string message = $"파일 수신: {fileName} ({fileSize} bytes)";
+            WriteLog("FileReceive", message, clientInfo?.Id, clientInfo?.IpAddress, clientInfo?.Port ?? 0);
         }
     }
 }
